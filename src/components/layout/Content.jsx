@@ -8,7 +8,7 @@ function Content() {
             {routes[role].route.map((elem, idx) => (
                 <Route key={idx} path={elem.path} component={elem.component} />
             ))}
-            <Redirect from={routes[role].redirect.from} to={routes[role].redirect.from} />
+            <Redirect from={routes[role].redirect.from} to={routes[role].redirect.to} />
         </Switch>
     );
 }

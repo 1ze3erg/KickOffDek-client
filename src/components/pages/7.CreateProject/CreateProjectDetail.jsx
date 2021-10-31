@@ -1,7 +1,7 @@
 function CreateProjectDetail() {
     return (
         <div>
-            <h1>Create Projec tDetail</h1>
+            <h1>Create Project Detail</h1>
         </div>
     );
 }

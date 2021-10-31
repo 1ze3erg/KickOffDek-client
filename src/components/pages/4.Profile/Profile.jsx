@@ -1,4 +1,4 @@
-import ProfileEditor from "./Profileeditor";
+import ProfileEditor from "./ProfileEditor";
 import ProfilePage from "./ProfilePage";
 
 function Profile() {

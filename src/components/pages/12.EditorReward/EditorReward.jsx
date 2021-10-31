@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import ModalShippingOption from "./ModalShippingOption";
 import PreviewReward from "./PreviewReward";
 import RewardAdd from "./RewardAdd";
@@ -11,6 +12,9 @@ function EditorReward() {
             <RewardEdit />
             <PreviewReward />
             <ModalShippingOption />
+            <Link to="/edit-project/1" className="text-blue-500 underline">
+                Back to Editor Project
+            </Link>
         </div>
     );
 }

@@ -1,9 +1,9 @@
-import { createContext } from "react";
+import { createContext, useContext } from "react";
 
 const ContentContext = createContext();
 
 function ContentProvider({ children }) {
-    return <AppContext.Provider>{children}</AppContext.Provider>;
+    return <ContentContext.Provider>{children}</ContentContext.Provider>;
 }
 
 function useContentContext() {
