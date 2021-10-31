@@ -1,5 +1,5 @@
 function MainContainer({ children }) {
-    return <div className="xl:container mx-auto">{children}</div>;
+    return <div className="container mx-auto">{children}</div>;
 }
 
 export default MainContainer;
