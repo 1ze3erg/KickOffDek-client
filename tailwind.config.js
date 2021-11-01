@@ -10,7 +10,7 @@ module.exports = {
         'priorange': '#F9AE65',
         'priteal': '#44CFC7',
         'pripurple': '#605DDE',
-        'white': '#FFFFFF'
+        'white': '#FFFFFF',
        }),
       container: {
         screens: {
