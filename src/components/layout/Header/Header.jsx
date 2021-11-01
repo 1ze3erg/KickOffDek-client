@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useAppContext } from "../../../contexts/AppContext";
+import { removeRole, removeToken } from "../../../helpers/localStorage";
 import ModalChangePassword from "./ModalChangePassword";
 import ModalLogin from "./ModalLogin";
 import ModalPassword from "./ModalPassword";
 import ModalRegister from "./ModalRegister";
+import ModalSuccess from "./ModalSuccess";
 
 function Header() {
     const { auth } = useAppContext();
@@ -15,7 +17,14 @@ function Header() {
     const [showPassword, setShowPassword] = useState(false);
     const [showRegister, setShowRegister] = useState(false);
     const [showChangePassword, setShowChangePassword] = useState(false);
+    const [showSuccess, setShowSuccess] = useState(false);
     const [checkedEmail, setCheckedEmail] = useState("");
+
+    const clickLogout = () => {
+        removeToken();
+        removeRole();
+        window.location.reload();
+    };
 
     const bgColor =
         pathname === "/explore" ||
@@ -71,10 +80,17 @@ function Header() {
                                         />
                                     </li>
                                 </Link>
-                                )
+                                <li>
+                                    <button
+                                        className="inline-flex bg-prigreen text-white rounded-full px-4 py-2 justify-center items-center hover:bg-purple-300"
+                                        onClick={clickLogout}
+                                    >
+                                        Log Out
+                                    </button>
+                                </li>
                                 <Link to="/dashboard">
                                     <li>
-                                        <button className="inline-flex bg-purple-600 text-white rounded-full px-4 py-2 justify-center items-center hover:bg-purple-300">
+                                        <button className="inline-flex bg-pripurple text-white rounded-full px-4 py-2 justify-center items-center hover:bg-purple-300">
                                             Dashboard
                                         </button>
                                     </li>
@@ -114,12 +130,14 @@ function Header() {
                     setShowLogin={setShowLogin}
                     setShowRegister={setShowRegister}
                     setShowChangePassword={setShowChangePassword}
+                    setShowSuccess={setShowSuccess}
                     checkedEmail={checkedEmail}
                 />
             )}
             {showChangePassword && (
                 <ModalChangePassword setShowLogin={setShowLogin} setShowChangePassword={setShowChangePassword} />
             )}
+            {showSuccess && <ModalSuccess setShowSuccess={setShowSuccess} checkedEmail={checkedEmail} />}
         </nav>
     );
 }

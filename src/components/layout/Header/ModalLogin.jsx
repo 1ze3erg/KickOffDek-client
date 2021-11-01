@@ -2,7 +2,10 @@ import { useState } from "react";
 import { HiOutlineX } from "react-icons/hi";
 import { FaGofore } from "react-icons/fa";
 import { isEmail } from "validator";
+import { GoogleLogin } from "react-google-login";
 import axios from "../../../config/axios";
+import { clientId } from "../../../config/key";
+import { setRole, setToken } from "../../../helpers/localStorage";
 
 function ModalLogin({ setShowLogin, setShowPassword, setShowRegister, setCheckedEmail }) {
     const [email, setEmail] = useState("");
@@ -41,6 +44,29 @@ function ModalLogin({ setShowLogin, setShowPassword, setShowRegister, setChecked
                 }
             }
         } catch (err) {
+            if (err.response && err.response.status === 400) {
+                setErr(err.response?.data?.msg);
+            }
+            console.dir(err);
+        }
+    };
+
+    const responseGoogle = async (response) => {
+        try {
+            const { imageUrl, email, googleId, givenName, familyName } = response.profileObj;
+            const res = await axios.post("/users/login-with-google", {
+                imageUrl,
+                email,
+                googleId,
+                firstName: givenName,
+                lastName: familyName,
+            });
+            console.log(res.data);
+            setToken(res.data?.token);
+            setRole(res.data?.role);
+            setShowLogin(false);
+            window.location.reload();
+        } catch (err) {
             console.dir(err);
         }
     };
@@ -60,10 +86,22 @@ function ModalLogin({ setShowLogin, setShowPassword, setShowRegister, setChecked
                         />
                         <h2 className="text-2xl py-4 text-gray-900 ">Enter your email to login or register</h2>
                         <div className="flex flex-col mx-auto justify-center text-xl items-center text-purple-800">
-                            <div className="flex flex-row mx-auto justify-center py-3">
-                                <FaGofore />
-                                <p className="text-sm px-3 font-semibold">Login with Google</p>
-                            </div>
+                            <GoogleLogin
+                                clientId={clientId}
+                                render={(renderProps) => (
+                                    <button
+                                        className="flex flex-row mx-auto justify-center p-5 rounded-md hover:bg-gray-100"
+                                        onClick={renderProps.onClick}
+                                    >
+                                        <FaGofore />
+                                        <p className="text-sm px-3 font-semibold">Login with Google</p>
+                                    </button>
+                                )}
+                                buttonText="Login with Google"
+                                onSuccess={responseGoogle}
+                                onFailure={responseGoogle}
+                                cookiePolicy={"single_host_origin"}
+                            />
                             <div>
                                 <p className="text-sm text-gray-500 my-5">Or</p>
                             </div>
