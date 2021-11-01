@@ -30,7 +30,8 @@ module.exports = {
           192: "48rem",
         },
       },
-      textColor: {
+      textColor: theme => ({
+        ...theme('colors'),
         'pridark': '#232323',
         'prilight': '#E0E2EE',
         'prigreen': '#3C6D79',
@@ -38,7 +39,7 @@ module.exports = {
         'priteal': '#44CFC7',
         'pripurple': '#605DDE',
         'white': '#FFFFFF'
-      }
+      })
     },
 
     variants: {
