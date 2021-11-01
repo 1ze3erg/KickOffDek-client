@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getToken, removeRole, removeToken } from "../helpers/localStorage";
 import { API_URL } from "./env";
 
 axios.defaults.baseURL = API_URL;
@@ -20,11 +21,8 @@ axios.interceptors.response.use(
     (err) => {
         if (err.response && err.response.status === 401) {
             removeToken();
+            removeRole();
             window.location.reload();
-            return;
-        }
-        if (err.response && err.response.status === 400) {
-            console.dir(err);
             return;
         }
         return Promise.reject(err);
