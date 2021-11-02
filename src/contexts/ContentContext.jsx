@@ -3,7 +3,7 @@ import { createContext, useContext } from "react";
 const ContentContext = createContext();
 
 function ContentProvider({ children }) {
-    return <ContentContext.Provider>{children}</ContentContext.Provider>;
+    return <ContentContext.Provider value={{}}>{children}</ContentContext.Provider>;
 }
 
 function useContentContext() {

@@ -1,9 +1,11 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useState } from "react";
+import { getToken } from "../helpers/localStorage";
 
 const AppContext = createContext();
 
 function AppProvider({ children }) {
-    return <AppContext.Provider>{children}</AppContext.Provider>;
+    const [auth, setAuth] = useState(getToken() ? true : false);
+    return <AppContext.Provider value={{ auth, setAuth }}>{children}</AppContext.Provider>;
 }
 
 function useAppContext() {
