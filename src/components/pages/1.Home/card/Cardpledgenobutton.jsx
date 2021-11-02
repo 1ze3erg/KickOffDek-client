@@ -1,14 +1,4 @@
-// import axios from "../../config/axios";
-import React, { useEffect, useState } from "react";
-
 function Cardpledgenobutton() {
-  const [pledge, setPledge] = useState([]);
-
-  const totalPledge = pledge.reduce((acc, i) => {
-    return acc + +i?.amount;
-  }, 0);
-
-
   return (
     <div className="text-gray-600 overflow-hidden shadow-lg transition duration-200 ease-in-out transform hover:-translate-y-1 hover:shadow-2xl rounded-lg w-72 cursor-pointer m-auto mx-3">
       <div className="w-full block h-full">

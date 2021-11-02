@@ -71,13 +71,13 @@ function EditorSidebar({ setShowSidebar, setShowCampaignDetail, setShowProfileDe
                     </button>
                 </div>
             </div>
-            <div className="">
-                <h1 className="text-pridark text-md py-2">Edit</h1>
+            <div className="h-150 overflow-y-scroll">
+                <h1 className="text-pridark text-md mb-1">Edit</h1>
                 <ul className="">
                     {naveditor.map((elem, idx) => (
                         <Link to={{ pathname: elem.link }} key={idx}>
                             <li onClick={elem.onClick}>
-                                <div className="flex items-center justify-between py-5 px-3 text-green-800 hover:bg-prilight rounded-md">
+                                <div className="flex items-center justify-between mr-2 py-5 px-3 text-green-800 hover:bg-prilight rounded-md">
                                     <div className="flex">
                                         <BsCheck2Circle className="text-purple-800 text-xl" />
                                         <h1 className="mx-3">{elem.name}</h1>
@@ -88,12 +88,12 @@ function EditorSidebar({ setShowSidebar, setShowCampaignDetail, setShowProfileDe
                         </Link>
                     ))}
                 </ul>
-                <h1 className="text-pridark text-md py-2">Manage</h1>
+                <h1 className="text-pridark text-md my-1">Manage</h1>
                 <ul className="">
                     {navupdateproject.map((elem, idx) => (
                         <Link to={elem.link} key={idx}>
                             <li>
-                                <div className="flex items-center justify-between py-5 px-3 text-green-800 hover:bg-prilight rounded-md">
+                                <div className="flex items-center justify-between mr-2 py-5 px-3 text-green-800 hover:bg-prilight rounded-md">
                                     <div className="flex">
                                         <div className="text-purple-800 text-xl">{elem.icon}</div>
                                         <h1 className="mx-3">{elem.name}</h1>

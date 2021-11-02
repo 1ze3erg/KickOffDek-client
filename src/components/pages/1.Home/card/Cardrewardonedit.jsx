@@ -6,7 +6,7 @@ function Cardrewardonedit() {
   const [HideShowButton, setHideShowButton] = useState("Show more");
 
   const showMore = () => {
-    if (ShowMore == "truncate") {
+    if (ShowMore === "truncate") {
       setShowMore("");
       setHideShowButton("Show less");
     } else {
@@ -16,7 +16,7 @@ function Cardrewardonedit() {
   };
 
   return (
-    <div className="overflow-hidden shadow-lg transform   rounded-lg w-72 m-auto mx-3 text-pridark">
+    <div className="overflow-hidden shadow-lg transform rounded-lg w-72 m-auto mx-3 text-pridark">
       <div className="w-full block h-full">
         <img
           className="h-48 w-full object-cover"

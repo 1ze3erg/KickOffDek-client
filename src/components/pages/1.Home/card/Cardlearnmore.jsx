@@ -1,6 +1,3 @@
-import React, { useState } from "react";
-import { BsPerson, BsCalendarCheck, BsFillTrashFill } from "react-icons/bs";
-
 function Cardlearnmore() {
   return (
     <div className="overflow-hidden shadow-lg transform   rounded-lg w-68 m-auto mx-3 text-pridark">

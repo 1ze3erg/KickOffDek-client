@@ -65,7 +65,7 @@ function EditorProfileDetail({ setShowSidebar, setShowProfileDetail, project, se
                     Save
                 </button>
             </div>
-            <div className=" h-screen overflow-y-scroll">
+            <div className="h-150 overflow-y-scroll pr-2">
                 <div className="w-full mx-auto flex flex-col p-2">
                     <h1 className="mt-5 mb-7 font-bold text-lg">Overview</h1>
                     <div className="mb-5">

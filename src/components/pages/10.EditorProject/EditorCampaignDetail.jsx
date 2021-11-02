@@ -28,6 +28,8 @@ function EditorCampaignDetail({ setShowSidebar, setShowCampaignDetail, project, 
             } else {
                 setProject((currentState) => ({ ...currentState, [e.target.name]: e.target.value || 0 }));
             }
+        } else if (e.target.name === "currencyId") {
+            setProject((currentState) => ({ ...currentState, [e.target.name]: e.target.value }));
         } else {
             setProject((currentState) => ({ ...currentState, [e.target.name]: e.target.value }));
         }
@@ -67,7 +69,7 @@ function EditorCampaignDetail({ setShowSidebar, setShowCampaignDetail, project, 
                     Save
                 </button>
             </div>
-            <div className="w-full mx-auto flex flex-col p-2">
+            <div className="w-full mx-auto flex flex-col p-2 h-150">
                 <h1 className="mt-5 mb-7 font-bold text-lg">Overview</h1>
                 <div className="mb-5">
                     <label htmlFor="title" className="text-sm">

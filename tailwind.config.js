@@ -12,28 +12,6 @@ module.exports = {
             pripurple: "#605DDE",
             white: "#FFFFFF",
         }),
-        container: {
-            screens: {
-                sm: "100%",
-                md: "100%",
-                lg: "1024px",
-                xl: "1200px",
-            },
-        },
-      },
-      extend: {
-        spacing: {
-          68: "17rem",
-          76: "19rem",
-          84: "21rem",
-          96: "24rem",
-          120: "30rem",
-          144: "36rem",
-          150: "37.5rem",
-          192: "48rem",
-          240: "60rem",
-          288: "72rem"
-        },
         textColor: (theme) => ({
             ...theme("colors"),
             pridark: "#232323",
@@ -54,6 +32,28 @@ module.exports = {
             pripurple: "#605DDE",
             white: "#FFFFFF",
         }),
+        container: {
+            screens: {
+                sm: "100%",
+                md: "100%",
+                lg: "1024px",
+                xl: "1200px",
+            },
+        },
+        extend: {
+            spacing: {
+                68: "17rem",
+                76: "19rem",
+                84: "21rem",
+                96: "24rem",
+                120: "30rem",
+                144: "36rem",
+                150: "37.5rem",
+                192: "48rem",
+                240: "60rem",
+                288: "72rem",
+            },
+        },
     },
     variants: {
         extend: {},

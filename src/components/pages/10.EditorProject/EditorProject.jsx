@@ -10,6 +10,7 @@ import axios from "../../../config/axios";
 function EditorProject() {
     const { projectId } = useParams();
     const [project, setProject] = useState({});
+    console.log(project);
     const [showSidebar, setShowSidebar] = useState(true);
     const [showCampaignDetail, setShowCampaignDetail] = useState(false);
     const [showProfileDetail, setShowProfileDetail] = useState(false);

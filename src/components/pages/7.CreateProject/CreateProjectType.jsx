@@ -45,7 +45,7 @@ function CreateProjectType({ setShowProjectType, setShowCampaignDetail, input: {
                     Next
                 </button>
             </div>
-            <div className="w-full mx-auto flex flex-col p-3">
+            <div className="w-full mx-auto flex flex-col p-3 h-150">
                 {types.map((elem) => (
                     <div
                         key={elem.id}
