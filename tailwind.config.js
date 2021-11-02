@@ -26,9 +26,12 @@ module.exports = {
           76: "19rem",
           84: "21rem",
           96: "24rem",
+          120: "30rem",
           144: "36rem",
           150: "37.5rem",
           192: "48rem",
+          240: "60rem",
+          288: "72rem"
         },
       },
       textColor: theme => ({

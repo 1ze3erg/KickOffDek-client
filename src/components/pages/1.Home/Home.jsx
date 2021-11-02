@@ -3,48 +3,48 @@ import Cardpledge from "./card/Cardpledge";
 import Cardpledgenobutton from "./card/Cardpledgenobutton";
 import Cardrewardcheckout from "./card/Cardrewardcheckout";
 import Cardrewardonedit from "./card/Cardrewardonedit";
-
+import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
+import Cardlearnmore from "./card/Cardlearnmore";
 
 function Home() {
-  
   return (
     <>
       <div className="container mx-auto ">
-        <section class="relative">
-          <div class="container flex flex-col-reverse lg:flex-row items-center gap-12 mt-2 lg:mt-4">
-            <div class="flex flex-1 flex-col items-center lg:items-start">
-              <h2 class="text-pridark text-4xl md:text-4 lg:text-5xl text-center lg:text-left mb-6">
+        <section className="relative">
+          <div className="container flex flex-col-reverse lg:flex-row items-center gap-12 mt-2 lg:mt-4">
+            <div className="flex flex-1 flex-col items-center lg:items-start">
+              <h2 className="text-pridark text-4xl md:text-4 lg:text-5xl text-center lg:text-left mb-6">
                 Shaping ideas, creating
               </h2>
-              <h2 class="text-green-800 text-3xl md:text-4 lg:text-5xl text-center lg:text-left mb-6">
+              <h2 className="text-prigreen text-3xl md:text-4 lg:text-5xl text-center lg:text-left mb-6">
                 together
               </h2>
-              <p class="text-bookmark-grey text-md text-center lg:text-left mb-6">
+              <p className="text-gray-600 text-md text-center lg:text-left mb-6">
                 Pozible is a leading crowdfunding platform & community for
                 creative projects, emerging brands and inspiring causes. We
                 provide a way for creators to access funding beyond ‘official’
                 channels by talking directly to switched-on consumers, fans,
                 peers and like-minded community members.
               </p>
-              <div class="flex justify-center flex-wrap gap-6">
+              <div className="flex justify-center flex-wrap gap-6">
                 <button
                   type="button"
-                  class="btn text-green-800 hover:bg-white hover:text-black"
+                  className="px-3 bg-prigreen transition-colors duration-700 text-white h-12 rounded-xl hover:bg-green-900"
                 >
                   Create a campaign
                 </button>
                 <button
                   type="button"
-                  class="btn btn-white hover:bg-purple-800 hover:text-white"
+                  className="px-3 bg-priorange transition-colors duration-700 text-white h-12 rounded-xl hover:bg-red-500"
                 >
-                  Support a campagin
+                  Support a campaign
                 </button>
               </div>
             </div>
 
-            <div class="flex justify-center flex-1 mb-10 md:mb-16 lg:mb-0 z-10">
+            <div className="flex justify-center flex-1 mb-10 md:mb-16 lg:mb-0 z-10">
               <img
-                class="w-5/6 h-5/6 sm:w-3/4 sm:h-3/4 md:w-full md:h-full"
+                className="w-5/6 h-5/6 sm:w-3/4 sm:h-3/4 md:w-full md:h-full"
                 src="https://res.cloudinary.com/thisisdupreecloud/image/upload/v1635757630/pngegg_r0kh23.png"
                 alt=""
               />
@@ -52,11 +52,11 @@ function Home() {
           </div>
 
           <div
-            class="
+            className="
           hidden
           md:block
           overflow-hidden
-          bg-purple-800
+          bg-prigreen
           rounded-l-full
           absolute
           h-80
@@ -70,350 +70,121 @@ function Home() {
           ></div>
         </section>
 
-          
-        <section className="bg-prilight flex flex-col items-center justify-center mt-5">
-          <h1 className="text-pridark text-xl  lg:text-5xl text-center mb-6">
+        <section className=" flex flex-col items-center justify-center mt-5">
+          <h1 className="text-pridark text-xl  lg:text-4xl text-center mb-6">
             Creative work shows us what’s possible.
           </h1>
           <h1 className="text-pridark text-xl  lg:text-3xl text-center mb-6">
             Help fund it here.
           </h1>
           <h3 className="text-pridark text-sm text-priorange  lg:text-md text-center mb-6">
-            Help fund it here.
+            WITHIN THE LAST DAY
           </h3>
-          <div className="grid grid-cols-3 gap-4 border border-gray-400">
-            <div className="flex flex-col justify-center items-center border w-96 border-gray-400">
-              <span>123</span>
-              <span>projects funded</span>
+          <div className="grid grid-cols-3 gap-4 ">
+            <div className="flex flex-col justify-center items-center rounded-xl w-96 border-2 border-gray-300">
+              <span className="py-3 text-3xl text-prigreen">123</span>
+              <span className="pb-2 text-sm text-gray-600">
+                projects funded
+              </span>
             </div>
-            <div className="flex flex-col justify-center items-center border w-96 border-gray-400">
-              <span>$1,726,039</span>
-              <span>towards creative work</span>
+            <div className="flex flex-col justify-center items-center rounded-xl  w-96 border-2 border-gray-300">
+              <span className="py-3 text-3xl text-prigreen">$1,726,039</span>
+              <span className="pb-2 text-sm text-gray-600">
+                towards creative work
+              </span>
             </div>
-            <div className="flex flex-col justify-center items-center border w-96 border-gray-400">
-              <span>18,846</span>
-              <span>backings</span>
+            <div className="flex flex-col justify-center items-center rounded-xl  w-96 border-2 border-gray-300 ">
+              <span className="py-3 text-3xl text-prigreen">18,846</span>
+              <span className="pb-2 text-sm text-gray-600">backings</span>
             </div>
           </div>
-          
         </section>
-
+      </div>
+      <div className="bg-pridark text-white">
         <section>
-          <div className="container mx-auto  flex flex-col items-center mt-20">
-            <h1 className="my-8 text-3xl font-semibold">Trending Projects</h1>
+          <div className="container mx-auto  flex flex-col items-center mt-16">
+            <h1 className="my-16 text-3xl font-semibold">Trending Projects</h1>
             <div className="flex flex-row justify-between gap-10 my-10">
-              <Cardpledge/>
-              <Cardpledge/>
-              <Cardpledge/>
-              <Cardpledge/>
-            </div>
-          
-            <button className="w-56 my-10 bg-pridark transition-colors duration-700 text-white h-12 rounded-xl hover:bg-gray-500">See more</button>
-          </div>
-
-        </section>
-
-        <section>
-          <div className="container mx-auto  flex flex-col items-center mt-20">
-            <h1 className="my-8 text-3xl font-semibold">Trending Projects</h1>
-            <div className="flex flex-row justify-between gap-10 my-10">
-              <Cardpledge/>
+              <Cardpledge />
               <Cardpledgenobutton />
               <Cardrewardcheckout />
               <Cardrewardonedit />
             </div>
-          
-            <button className="w-56 my-10 bg-pridark transition-colors duration-700 text-white h-12 rounded-xl hover:bg-gray-500">See more</button>
-          </div>
 
+            <button className="w-56 my-5 bg-priorange transition-colors duration-700 text-white h-12 rounded-xl hover:bg-red-500">
+              See more
+            </button>
+          </div>
         </section>
 
-        {/* <section class="bg-gray-200 py-20 mt-20 lg:mt-60">
-          <div class="sm:w-3/4 lg:w-5/12 mx-auto px-2">
-            <h1 class="text-3xl text-center text-bookmark-blue">Features</h1>
-            <p class="text-center text-bookmark-grey mt-4">
-              Our aim is to make it quick and easy for you to access your
-              favourite websites. Your bookmarks sync between your devices so
-              you can access them on the go.
-            </p>
-          </div>
-
-          <div class="relative mt-20 lg:mt-24">
-            <div class="container flex flex-col lg:flex-row items-center justify-center gap-x-24">
-              <div class="flex flex-1 justify-center z-10 mb-10 lg:mb-0">
-                <img
-                  class="w-5/6 h-5/6 sm:w-3/4 sm:h-3/4 md:w-full md:h-full"
-                  src="https://res.cloudinary.com/thisisdupreecloud/image/upload/v1635757630/pngegg_r0kh23.png"
-                  alt=""
-                />
-              </div>
-
-              <div class="flex flex-1 flex-col items-center lg:items-start">
-                <h1 class="text-3xl text-bookmark-blue">
-                  Bookmark in one click
-                </h1>
-                <p class="text-bookmark-grey my-4 text-center lg:text-left sm:w-3/4 lg:w-full">
-                  Organize your bookmarks however you like. Our simple
-                  drag-and-drop interface gives you complete control over how
-                  you manage your favourite sites.
-                </p>
-                <button
-                  type="button"
-                  class="btn btn-purple hover:bg-gray-200 hover:text-black"
-                >
-                  More Info
-                </button>
-              </div>
-            </div>
-
-            <div
-              class="
-            hidden
-            lg:block
-            overflow-hidden
-            bg-priorange
-            rounded-r-full
-            absolute
-            h-80
-            w-2/4
-            -bottom-24
-            -left-36
-          "
-            ></div>
-          </div>
-
-          <div class="relative mt-20 lg:mt-52">
-            <div class="container flex flex-col lg:flex-row-reverse items-center justify-center gap-x-24">
-              <div class="flex flex-1 justify-center z-10 mb-10 lg:mb-0">
-                <img
-                  class="w-5/6 h-5/6 sm:w-3/4 sm:h-3/4 md:w-full md:h-full"
-                  src="https://res.cloudinary.com/thisisdupreecloud/image/upload/v1635757630/pngegg_r0kh23.png"
-                  alt=""
-                />
-              </div>
-
-              <div class="flex flex-1 flex-col items-center lg:items-start">
-                <h1 class="text-3xl text-bookmark-blue">Intelligent search</h1>
-                <p class="text-bookmark-grey my-4 text-center lg:text-left sm:w-3/4 lg:w-full">
-                  Our powerful search feature will help you find saved sites in
-                  no time at all. No need to crawl through all of your
-                  bookmarks.
-                </p>
-                <button
-                  type="button"
-                  class="btn btn-purple hover:bg-gray-200 hover:text-black"
-                >
-                  More Info
-                </button>
-              </div>
-            </div>
-
-            <div
-              class="
-            hidden
-            lg:block
-            overflow-hidden
-            bg-priorange
-            rounded-l-full
-            absolute
-            h-80
-            w-2/4
-            -bottom-24
-            -right-36
-          "
-            ></div>
-          </div>
-
-          <div class="relative mt-20 lg:mt-52">
-            <div class="container flex flex-col lg:flex-row items-center justify-center gap-x-24">
-              <div class="flex flex-1 justify-center z-10 mb-10 lg:mb-0">
-                <img
-                  class="w-5/6 h-5/6 sm:w-3/4 sm:h-3/4 md:w-full md:h-full"
-                  src="https://res.cloudinary.com/thisisdupreecloud/image/upload/v1635757630/pngegg_r0kh23.png"
-                  alt=""
-                />
-              </div>
-
-              <div class="flex flex-1 flex-col items-center lg:items-start">
-                <h1 class="text-3xl text-bookmark-blue">
-                  Share your bookmarks
-                </h1>
-                <p class="text-bookmark-grey my-4 text-center lg:text-left sm:w-3/4 lg:w-full">
-                  Easily share your bookmarks and collections with others.
-                  Create a shareable link that you can send at the click of a
-                  button.
-                </p>
-                <button
-                  type="button"
-                  class="btn btn-purple hover:bg-gray-200 hover:text-black"
-                >
-                  More Info
-                </button>
-              </div>
-            </div>
-
-            <div
-              class="
-            hidden
-            lg:block
-            overflow-hidden
-            bg-priorange
-            rounded-r-full
-            absolute
-            h-80
-            w-2/4
-            -bottom-24
-            -left-36
-          "
-            ></div>
-          </div>
-        </section> */}
-
-        {/* <section class="py-20 mt-20">
-          <div class="sm:w-3/4 lg:w-5/12 mx-auto px-2">
-            <h1 class="text-3xl text-center text-bookmark-blue">
-              Download the extension
+        <section>
+          <div className="mt-32 flex flex-col items-center justify-center">
+            <h1 className="text-3xl font-semibold my-5">Highlights</h1>
+            <h1 className="text-2xl my-5">
+              Success stories and latest updates
             </h1>
-            <p class="text-center text-bookmark-grey mt-4">
-              We’ve got more browsers in the pipeline. Please do let us know if
-              you’ve got a favourite you’d like us to prioritize.
+            <div className="flex justify-center ">
+              <div className="mx-3 relative top-24 w-12 h-12 rounded-full text-prigreen bg-white text-3xl font-normal flex items-center justify-center hover:bg-prigreen hover:text-white">
+                <FaAngleLeft />
+              </div>
+              <img
+                className="w-240 h-120 object-cover shadow-2xl rounded-xl"
+                src="https://res.cloudinary.com/thisisdupreecloud/image/upload/v1634233045/photo-1526485856375-9110812fbf35_yqwrab.jpg"
+              />
+              <div className="mx-3 relative top-24 w-12 h-12 rounded-full text-prigreen bg-white text-3xl font-normal flex items-center justify-center hover:bg-prigreen hover:text-white">
+                <FaAngleRight />
+              </div>
+            </div>
+            <div className="flex justify-center my-5 gap-4 mb-32">
+              <div className="h-3 w-3 bg-prigreen rounded-full"></div>
+              <div className="h-3 w-3 bg-prilight rounded-full"></div>
+              <div className="h-3 w-3 bg-prilight rounded-full"></div>
+              <div className="h-3 w-3 bg-prilight rounded-full"></div>
+            </div>
+          </div>
+        </section>
+      </div>
+      <section>
+        <div className="container mx-auto  flex flex-col items-center mt-32">
+          <h1 className="my-8 text-3xl font-semibold">
+            Dont know where to start your project, right?
+          </h1>
+          <h1 className="my-3 text-xl text-priorange">
+            Learn more about how people create cool things here.
+          </h1>
+          <div className="flex flex-row justify-between gap-10 my-10">
+            <Cardlearnmore />
+            <Cardlearnmore />
+            <Cardlearnmore />
+          </div>
+        </div>
+      </section>
+
+      <section className="container mx-auto mt-10  text-black py-20">
+        <div className="container">
+          <div className="sm:w-3/4 lg:w-2/4 mx-auto">
+            <p className="font-light uppercase text-center mb-8">
+              35,000+ PEOPLE ALREADY CREATED PROJECTS
             </p>
-          </div>
-
-          <div class="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16 max-w-screen-lg mt-16">
-            <div class="flex flex-col rounded-md shadow-md lg:mb-16">
-              <div class="p-6 flex flex-col items-center">
-                <img
-                  src="https://res.cloudinary.com/thisisdupreecloud/image/upload/v1635757630/pngegg_r0kh23.png"
-                  alt=""
-                />
-                <h3 class="mt-5 mb-2 text-bookmark-blue text-lg">
-                  Add to Chrome
-                </h3>
-                <p class="mb-2 text-bookmark-grey font-light">
-                  Minimum version 62
-                </p>
-              </div>
-              <hr class="border-b border-bookmark-white" />
-              <div class="flex p-6">
-                <button
-                  type="button"
-                  class="flex-1 btn btn-purple hover:bg-gray-200 hover:text-black"
-                >
-                  Add & Install Extension
-                </button>
-              </div>
-            </div>
-
-            <div class="flex flex-col rounded-md shadow-md lg:my-8">
-              <div class="p-6 flex flex-col items-center">
-                <img src="./imgs/logo-firefox.svg" alt="" />
-                <h3 class="mt-5 mb-2 text-bookmark-blue text-lg">
-                  Add to Firefox
-                </h3>
-                <p class="mb-2 text-bookmark-grey font-light">
-                  Minimum version 62
-                </p>
-              </div>
-              <hr class="border-b border-bookmark-white" />
-              <div class="flex p-6">
-                <button
-                  type="button"
-                  class="flex-1 btn btn-purple hover:bg-gray-200 hover:text-black"
-                >
-                  Add & Install Extension
-                </button>
-              </div>
-            </div>
-
-            <div class="flex flex-col rounded-md shadow-md lg:mt-16">
-              <div class="p-6 flex flex-col items-center">
-                <img src="./imgs/logo-opera.svg" alt="" />
-                <h3 class="mt-5 mb-2 text-bookmark-blue text-lg">
-                  Add to Opera
-                </h3>
-                <p class="mb-2 text-bookmark-grey font-light">
-                  Minimum version 62
-                </p>
-              </div>
-              <hr class="border-b border-bookmark-white" />
-              <div class="flex p-6">
-                <button
-                  type="button"
-                  class="flex-1 btn btn-purple hover:bg-gray-200 hover:text-black"
-                >
-                  Add & Install Extension
-                </button>
-              </div>
-            </div>
-          </div>
-        </section> */}
-
-        {/* <section class="bg-white py-20">
-          <div class="container">
-            <div class="sm:w-3/4 lg:w-5/12 mx-auto px-2">
-              <h1 class="text-3xl text-center text-bookmark-blue">
-                Frequently Asked Questions
-              </h1>
-              <p class="text-center text-bookmark-grey mt-4">
-                Here are some of our FAQs. If you have any other questions you’d
-                like answered please feel free to email us.
-              </p>
-            </div>
-
-            <div class="flex flex-col sm:w-3/4 lg:w-5/12 mt-12 mx-auto">
-              <div class="flex items-center border-b py-4">
-                <span class="flex-1">What is a Bookmark?</span>
-                <i class="text-bookmark-purple fas fa-chevron-down"></i>
-              </div>
-              <div class="flex items-center border-b py-4">
-                <span class="flex-1">How can I request a new browser?</span>
-                <i class="text-bookmark-purple fas fa-chevron-down"></i>
-              </div>
-              <div class="flex items-center border-b py-4">
-                <span class="flex-1">Is there a mobile app?</span>
-                <i class="text-bookmark-purple fas fa-chevron-down"></i>
-              </div>
-              <div class="flex items-center border-b py-4">
-                <span class="flex-1">What about other Chromium browsers?</span>
-                <i class="text-bookmark-purple fas fa-chevron-down"></i>
-              </div>
+            <h1 className="text-3xl text-center">
+              Stay up-to-date with the latest news
+            </h1>
+            <div className="flex flex-col sm:flex-row gap-6 mt-8">
+              <input
+                type="text"
+                placeholder="Enter your email address"
+                className="border border-gray-400 focus:outline-none flex-1 px-2 py-3 rounded-md text-black"
+              />
               <button
                 type="button"
-                class="mt-12 flex self-center btn btn-purple hover:bg-gray-200hover:text-black"
+                className="w-32 bg-priorange transition-colors duration-700 text-white h-12 rounded-xl hover:bg-red-500"
               >
-                More Info
+                Join us
               </button>
             </div>
           </div>
-        </section>
-
-        <section class="bg-purple-800 text-white py-20">
-          <div class="container">
-            <div class="sm:w-3/4 lg:w-2/4 mx-auto">
-              <p class="font-light uppercase text-center mb-8">
-                35,000+ ALREADY JOINED
-              </p>
-              <h1 class="text-3xl text-center">
-                Stay up-to-date with what we’re doing
-              </h1>
-              <div class="flex flex-col sm:flex-row gap-6 mt-8">
-                <input
-                  type="text"
-                  placeholder="Enter your email address"
-                  class="focus:outline-none flex-1 px-2 py-3 rounded-md text-black"
-                />
-                <button
-                  type="button"
-                  class="btn bg-red-800 hover:bg-gray-200 hover:text-black"
-                >
-                  Contact Us
-                </button>
-              </div>
-            </div>
-          </div>
-        </section> */}
-      </div>
+        </div>
+      </section>
     </>
   );
 }
