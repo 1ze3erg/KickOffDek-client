@@ -1,8 +1,8 @@
+import { useState } from "react";
 import { MdKeyboardBackspace } from "react-icons/md";
 import { BsFillCloudArrowUpFill } from "react-icons/bs";
 import { FiAlertCircle } from "react-icons/fi";
 import axios from "../../../config/axios";
-import { useState } from "react";
 
 function CreateProjectVisual({ setShowCampaignDetail, setShowProjectVisual, input, setInput, clickCreateProject }) {
     const { coverImage, campaignImage } = input;
@@ -33,7 +33,7 @@ function CreateProjectVisual({ setShowCampaignDetail, setShowProjectVisual, inpu
     const buttonNextDisabled = !coverImage || !campaignImage;
 
     return (
-        <div className="col-span-3 flex flex-col justify-start py-5 px-3 bg-gray-100">
+        <div className="col-span-3 flex flex-col justify-start py-5 px-3">
             <div className="flex justify-between items-center mb-2">
                 <div className="flex items-center">
                     <MdKeyboardBackspace
@@ -52,11 +52,11 @@ function CreateProjectVisual({ setShowCampaignDetail, setShowProjectVisual, inpu
                     onClick={clickCreateProject}
                     disabled={buttonNextDisabled}
                 >
-                    Complete
+                    Create Project
                 </button>
             </div>
             <div className="flex flex-col py-2 w-full h-screen">
-                <div className="">
+                <div>
                     <h1 className="text-sm ">Cover image</h1>
                 </div>
                 <div className="flex flex-col my-2 rounded items-center">
@@ -78,7 +78,7 @@ function CreateProjectVisual({ setShowCampaignDetail, setShowProjectVisual, inpu
                                     <span className="mt-2 text-sm leading-normal">Select a file</span>
                                 </>
                             ) : (
-                                <div class="w-10 h-10 border-4 border-purple-600 rounded-full loader z-10"></div>
+                                <div class="w-10 h-10 border-4 border-pripurple rounded-full loader z-10"></div>
                             )}
                             <input
                                 className="hidden"
@@ -94,7 +94,7 @@ function CreateProjectVisual({ setShowCampaignDetail, setShowProjectVisual, inpu
                         <span className="text-xs text-gray-400 px-2">Min. Width 1920px & Min. Height 1080px</span>
                     </div>
                 </div>
-                <div className="">
+                <div>
                     <h1 className="text-sm ">Campaign Image</h1>
                 </div>
                 <div className="flex flex-col my-2 rounded items-center">
@@ -109,14 +109,14 @@ function CreateProjectVisual({ setShowCampaignDetail, setShowProjectVisual, inpu
                         />
                     </div>
                     <div className="relative flex w-full flex-wrap items-stretch mb-3">
-                        <label className="w-full flex flex-col items-center px-4 py-3 bg-white rounded-md shadow-md tracking-wide uppercase border border-blue cursor-pointer hover:bg-purple-600 hover:text-white text-purple-600 ease-linear transition-all duration-150">
+                        <label className="w-full flex flex-col items-center px-4 py-3 bg-white rounded-md shadow-md tracking-wide uppercase border border-blue cursor-pointer hover:bg-pripurple hover:text-white text-pripurple ease-linear transition-all duration-150">
                             {!campaignImageStatus ? (
                                 <>
                                     <BsFillCloudArrowUpFill className="text-3xl mr-3" />
                                     <span className="mt-2 text-base leading-normal">Select a file</span>
                                 </>
                             ) : (
-                                <div class="w-10 h-10 border-4 border-purple-600 rounded-full loader z-10"></div>
+                                <div class="w-10 h-10 border-4 border-pripurple rounded-full loader z-10"></div>
                             )}
 
                             <input className="hidden" type="file" name="campaignImage" onChange={handleChangeFile} />

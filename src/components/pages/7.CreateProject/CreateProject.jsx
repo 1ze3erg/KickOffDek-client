@@ -38,8 +38,7 @@ function CreateProject() {
         try {
             console.log("create project");
             const res = await axios.post("/projects/create", input);
-            console.log(res.data);
-            history.push("/create-success");
+            history.push("/create-success", { projectId: res.data?.id });
         } catch (err) {
             console.dir(err);
         }
