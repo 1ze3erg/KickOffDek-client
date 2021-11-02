@@ -12,7 +12,7 @@ function Home() {
 
   useEffect(() => {
     if (emblaApi) {
-      // Embla API is ready
+      // Embla API is ready1
     }
   }, [emblaApi]);
   return (
