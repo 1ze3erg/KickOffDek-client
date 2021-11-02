@@ -14,18 +14,20 @@ function ModalLogin({ setShowLogin, setShowPassword, setShowRegister, setChecked
     const handleChangeInput = (e) => {
         if (e.target.value.trim() === "") {
             setEmail("");
-            setErr("email is required");
+            setErr("Email is required");
         } else if (!isEmail(e.target.value)) {
             setEmail(e.target.value);
-            setErr("email is invalid");
+            setErr("Email is invalid");
         } else {
             setEmail(e.target.value);
             setErr("");
         }
     };
 
-    const clickCheckEmail = async () => {
+    const clickCheckEmail = async (e) => {
         try {
+            e.preventDefault();
+
             if (email.trim() === "") {
                 setErr("email is required");
                 return;
@@ -105,7 +107,7 @@ function ModalLogin({ setShowLogin, setShowPassword, setShowRegister, setChecked
                             <div>
                                 <p className="text-sm text-gray-500 my-5">Or</p>
                             </div>
-                            <div className="flex flex-col items-start">
+                            <form className="flex flex-col items-start">
                                 <label
                                     htmlFor="username"
                                     className="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100"
@@ -131,7 +133,7 @@ function ModalLogin({ setShowLogin, setShowPassword, setShowRegister, setChecked
                                         Next
                                     </button>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                     <div className="p-3  mt-2 text-center space-x-4 md:block">

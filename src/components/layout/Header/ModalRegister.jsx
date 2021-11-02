@@ -99,7 +99,7 @@ function ModalRegister({ setShowLogin, setShowRegister, setShowChangePassword, s
                 id="modal-id"
             >
                 <div className="absolute backdrop-filter backdrop-blur-lg  inset-0 z-0"></div>
-                <div className="w-150  p-3 relative mx-auto my-auto rounded-xl shadow-lg  bg-white ">
+                <div className="w-150 p-3 relative mx-auto my-auto rounded-xl shadow-lg  bg-white ">
                     <div className="text-center p-3 flex-auto justify-center">
                         <HiOutlineX
                             className="text-gray-900 absolute right-7 hover:text-red-800"
@@ -109,7 +109,7 @@ function ModalRegister({ setShowLogin, setShowRegister, setShowChangePassword, s
                         <h3 className="text-xl py-2 text-gray-900 ">Register account</h3>
                     </div>
                     <div className="flex flex-row mx-auto justify-center text-xl items-start w-11/12">
-                        <div className="mr-5">
+                        <div className="w-full">
                             <label
                                 htmlFor="username"
                                 className="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100"
@@ -164,13 +164,13 @@ function ModalRegister({ setShowLogin, setShowRegister, setShowChangePassword, s
                                 onChange={handleChangeInput}
                             />
                             {err.password && <p className="text-xs pt-2 text-red-700">{err.password}</p>}
-                            <div className="flex flex-row">
-                                <div className="w-2/3 mt-3 h-1 bg-blue-200 rounded-full">
+                            <div className="flex flex-col">
+                                <div className="w-full mt-3 h-1 bg-blue-200 rounded-full">
                                     <div
                                         className={`${levelWidth} h-full text-center text-xs text-white bg-blue-600 rounded-full`}
                                     ></div>
                                 </div>
-                                <span className="px-4 pt-1 text-sm">{passwordLevel}</span>
+                                <p className="pt-1 text-sm">{passwordLevel}</p>
                             </div>
                         </div>
                     </div>
