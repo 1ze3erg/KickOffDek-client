@@ -1,6 +1,7 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 function CreateProjectSuccess() {
+    const location = useLocation();
     return (
         <div className="w-10/12 mx-auto flex justify-center">
             <div className="flex flex-col items-center">
@@ -11,7 +12,7 @@ function CreateProjectSuccess() {
                     you like to do it now?
                 </h1>
                 <div className="flex flex-col items-stretch p-2">
-                    <Link to="/edit-project/1">
+                    <Link to={`/edit-project/${location.state?.projectId}`}>
                         <button className="w-full border border-gray-500 py-3 px-4 rounded-lg bg-purple-600 text-white mb-5">
                             Go to Project Editor
                         </button>

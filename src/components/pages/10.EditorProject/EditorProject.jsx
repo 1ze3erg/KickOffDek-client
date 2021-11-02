@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import EditorCampaignDetail from "./EditorCampaignDetail";
 import EditorProfileDetail from "./EditorProfileDetail";
@@ -6,15 +7,23 @@ import EditorVisual from "./EditorVisual";
 import PreviewEdit from "./PreviewEdit";
 
 function EditorProject() {
+    const [showCampaignDetail, setShowCampaignDetail] = useState(false);
+    const [showProfileDetail, setShowProfileDetail] = useState(false);
+    const [showVisual, setShowVisual] = useState(false);
     return (
-        <div>
-            <h1>Editor Project</h1>
-            <EditorSidebar />
-            <EditorCampaignDetail />
-            <EditorProfileDetail />
-            <EditorVisual />
-            <PreviewEdit />
-            <Link to="/dashboard" className="text-blue-500 underline">
+        <>
+            <div className="grid grid-cols-12 min-h-screen bg-gray-100">
+                <EditorSidebar
+                    setShowCampaignDetail={setShowCampaignDetail}
+                    setShowProfileDetail={setShowProfileDetail}
+                    setShowVisual={setShowVisual}
+                />
+                {showCampaignDetail && <EditorCampaignDetail setShowCampaignDetail={setShowCampaignDetail} />}
+                {showProfileDetail && <EditorProfileDetail setShowProfileDetail={setShowProfileDetail} />}
+                {showVisual && <EditorVisual setShowVisual={setShowVisual} />}
+                <PreviewEdit />
+            </div>
+            {/* <Link to="/dashboard" className="text-blue-500 underline">
                 Back to Dashboard
             </Link>
             <br />
@@ -36,8 +45,8 @@ function EditorProject() {
             <br />
             <Link to="/edit-project/:projectId/update" className="text-blue-500 underline">
                 Go to Editor Update
-            </Link>
-        </div>
+            </Link> */}
+        </>
     );
 }
 
