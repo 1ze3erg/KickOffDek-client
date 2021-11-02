@@ -1,71 +1,139 @@
+import { useEffect, useState } from "react";
 import { HiArrowNarrowLeft } from "react-icons/hi";
-import { Link } from "react-router-dom";
+import axios from "../../../config/axios";
 
-function EditorCampaignDetail() {
+function EditorCampaignDetail({ setShowSidebar, setShowCampaignDetail, project, setProject }) {
+    const { title, currencyId, target, endDate } = project;
+    const [currencies, setCurrencies] = useState([]);
+    const [err, setErr] = useState({ target: "" });
+
+    useEffect(() => {
+        axios
+            .get("/currencies/get-all")
+            .then((res) => {
+                setCurrencies(res.data);
+            })
+            .catch((err) => {
+                console.dir(err);
+            });
+    }, []);
+
+    const handleChangeInput = (e) => {
+        if (e.target.name === "target") {
+            if (e.target.value.slice(0, 1) === "0") {
+                setProject((currentState) => ({ ...currentState, [e.target.name]: e.target.value.slice(1) }));
+            } else if (isNaN(+e.target.value)) {
+                setProject((currentState) => ({ ...currentState, [e.target.name]: e.target.value }));
+                setErr((currentState) => ({ ...currentState, [e.target.name]: "target must be numeric" }));
+            } else {
+                setProject((currentState) => ({ ...currentState, [e.target.name]: e.target.value || 0 }));
+            }
+        } else {
+            setProject((currentState) => ({ ...currentState, [e.target.name]: e.target.value }));
+        }
+    };
+
+    const clickSave = async () => {
+        try {
+            if (!err.target) {
+                const res = await axios.put(`/projects/update/${project.id}`, { title, currencyId, target, endDate });
+                alert(res.data?.msg);
+            }
+        } catch (err) {
+            if (err.response && err.response?.status === 400) {
+                alert(err.response?.data?.msg);
+            }
+            console.dir(err);
+        }
+    };
+
     return (
         <div className="col-span-3 flex flex-col justify-start py-5 px-3">
-            <div className="flex flex-row items-center">
-                <Link to={{ pathname: "/project" }}>
-                    <HiArrowNarrowLeft className="text-xl mr-3" />
-                </Link>
-                <h1 className="font-semibold text-xl mr-3">Campaign Details</h1>
-                <button className="bg-green-700 text-white rounded-md h-7 w-24">
+            <div className="flex justify-between items-center mb-2">
+                <div className="flex items-center">
+                    <HiArrowNarrowLeft
+                        className="text-2xl mr-2 cursor-pointer"
+                        onClick={() => {
+                            setShowSidebar(true);
+                            setShowCampaignDetail(false);
+                        }}
+                    />
+                    <h1 className="text-xl font-bold">Campaign Details</h1>
+                </div>
+                <button
+                    className="py-1 px-4 border border-gray-700 rounded-xl bg-prigreen text-white"
+                    onClick={clickSave}
+                >
                     Save
                 </button>
             </div>
-            <div className="mt-8">
-                <h1 className="text-sm ">Overview</h1>
-            </div>
-            <div className="flex flex-col py-4 my-5 w-full ">
-                {/* Input Name */}
-                <div className="flex flex-row h-10 my-5 border border-gray-300 rounded">
+            <div className="w-full mx-auto flex flex-col p-2">
+                <h1 className="mt-5 mb-7 font-bold text-lg">Overview</h1>
+                <div className="mb-5">
+                    <label htmlFor="title" className="text-sm">
+                        Campaign Title
+                    </label>
                     <input
-                        name="title"
-                        className="text-sm  rounded-l px-4 py-2 w-full focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                        className="mt-1 w-full py-4 px-3 text-gray-800 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                         type="text"
-                        placeholder="Write something here..."
-                    ></input>
-                    <span className="text-sm text-gray-600 focus: px-4 py-2 whitespace-no-wrap">34/35</span>
+                        name="title"
+                        id="title"
+                        placeholder="Campaign Title"
+                        value={title}
+                        onChange={handleChangeInput}
+                    />
                 </div>
-                {/* Input Currency */}
-                <div className=" my-5">
-                    <div class="col-span-6 sm:col-span-4">
-                        <select
-                            id="currencyId"
-                            name="currencyId"
-                            class="mt-1 h-10 block w-full py-2 px-3 text-gray-600 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                        >
-                            <option value="">Select Currency</option>
-                            {/* {currencies.map((elem) => (
-                                <option key={elem.id} value={elem.id}>
-                                    {elem.name}
-                                </option>
-                            ))} */}
-                        </select>
-                    </div>
+                <div className="mb-5">
+                    <label htmlFor="currencyId" className="text-sm">
+                        Currency
+                    </label>
+                    <select
+                        className="mt-1 w-full py-4 px-3 text-gray-800 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        id="currencyId"
+                        name="currencyId"
+                        value={currencyId}
+                        onChange={handleChangeInput}
+                    >
+                        {currencies.map((elem) => (
+                            <option key={elem.id} value={elem.id}>
+                                {elem.name}
+                            </option>
+                        ))}
+                    </select>
                 </div>
-                {/* Input Target */}
-                <div className="my-5">
+                <div className="mb-5">
+                    <label htmlFor="target" className="text-sm">
+                        Target
+                    </label>
                     <div className="mt-1 relative rounded shadow-sm border border-gray-300">
-                        <div className="absolute inset-y-0 left-0 pl-3 h-10 flex items-center pointer-events-none">
-                            <span className="text-gray-500 sm:text-sm">$</span>
+                        <div className="absolute inset-y-0 left-0 pl-3 py-4 px-3 flex items-center pointer-events-none">
+                            <span className="text-gray-500 sm:text-sm">
+                                {currencies.find((elem) => elem.id === +currencyId)?.name}
+                            </span>
                         </div>
                         <input
+                            className="focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-14 pr-12 py-4 px-3 sm:text-sm border-gray-300 rounded-md"
                             type="text"
-                            name="target"
                             id="target"
-                            className="h-10 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md"
+                            name="target"
                             placeholder="0.00"
+                            value={target}
+                            onChange={handleChangeInput}
                         />
                     </div>
+                    {err.target && <p className="text-xs pt-2 text-red-700">{err.target}</p>}
                 </div>
-                {/* Input Date */}
-                <div className="flex flex-row my-5">
+                <div className="mb-5">
+                    <label htmlFor="endDate" className="text-sm">
+                        End Date
+                    </label>
                     <input
-                        type="date"
-                        placeholder="date...."
-                        className="border border-gray-300 text-sm text-gray-600 w-full p-2 my-2 h-10 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                        className="border border-gray-300 text-sm text-gray-600 w-full py-5 px-3 my-2 h-10 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                        id="endDate"
                         name="endDate"
+                        type="datetime-local"
+                        value={endDate.slice(0, 16)}
+                        onChange={handleChangeInput}
                     />
                 </div>
             </div>

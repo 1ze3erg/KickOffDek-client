@@ -2,19 +2,31 @@ import { BsCheck2Circle, BsChevronRight, BsFillPersonFill, BsCurrencyDollar } fr
 import { HiOutlineShare } from "react-icons/hi";
 import { Link } from "react-router-dom";
 
-function EditorSidebar() {
+function EditorSidebar({ setShowSidebar, setShowCampaignDetail, setShowProfileDetail, setShowVisual }) {
     const naveditor = [
         {
             name: "Campaigns Details",
             link: "",
+            onClick: () => {
+                setShowSidebar(false);
+                setShowCampaignDetail(true);
+            },
         },
         {
             name: "Profile Details",
             link: "",
+            onClick: () => {
+                setShowSidebar(false);
+                setShowProfileDetail(true);
+            },
         },
         {
             name: "Visuals",
             link: "",
+            onClick: () => {
+                setShowSidebar(false);
+                setShowVisual(true);
+            },
         },
         {
             name: "Descriptions",
@@ -62,9 +74,9 @@ function EditorSidebar() {
             <div className="">
                 <h1 className="text-pridark text-md py-2">Edit</h1>
                 <ul className="">
-                    {naveditor.map((elem) => (
-                        <Link to={{ pathname: elem.link }}>
-                            <li>
+                    {naveditor.map((elem, idx) => (
+                        <Link to={{ pathname: elem.link }} key={idx}>
+                            <li onClick={elem.onClick}>
                                 <div className="flex items-center justify-between py-5 px-3 text-green-800 hover:bg-prilight rounded-md">
                                     <div className="flex">
                                         <BsCheck2Circle className="text-purple-800 text-xl" />
@@ -78,8 +90,8 @@ function EditorSidebar() {
                 </ul>
                 <h1 className="text-pridark text-md py-2">Manage</h1>
                 <ul className="">
-                    {navupdateproject.map((elem) => (
-                        <Link to={elem.link}>
+                    {navupdateproject.map((elem, idx) => (
+                        <Link to={elem.link} key={idx}>
                             <li>
                                 <div className="flex items-center justify-between py-5 px-3 text-green-800 hover:bg-prilight rounded-md">
                                     <div className="flex">
