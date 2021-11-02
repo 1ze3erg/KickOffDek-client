@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { BsPerson , BsCalendarCheck } from "react-icons/bs";
+import { BsPerson , BsCalendarCheck  } from "react-icons/bs";
 
 function Cardrewardonedit() {
   const [ShowMore, setShowMore] = useState("truncate");

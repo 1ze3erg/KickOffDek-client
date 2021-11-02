@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { BsPerson , BsCalendarCheck } from "react-icons/bs";
+import { BsPerson , BsCalendarCheck ,BsFillTrashFill } from "react-icons/bs";
 
 function Cardrewardcheckout() {
   const [ShowMore, setShowMore] = useState("truncate");
@@ -18,6 +18,8 @@ function Cardrewardcheckout() {
           alt=""
           src="https://res.cloudinary.com/thisisdupreecloud/image/upload/v1634239095/photo-1537519646099-335112f03225_jwqufc.jpg"
         />
+        <BsFillTrashFill className="absolute bottom-4 right-3 text-xl text-pridark" />
+        
         <button className="absolute top-3 right-3 text-white  w-20 rounded-lg h-10 bg-prigreen transition-colors duration-700   hover:bg-gray-700">Edit</button>
         <div className="bg-white w-full p-4 flex flex-col pt-4">
           <div className="flex items-center justify-center">
