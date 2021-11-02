@@ -1,33 +1,25 @@
 import React, { useEffect } from "react";
-import useEmblaCarousel from "embla-carousel-react";
-import EmblaCarousel from "./EmblaCarousal";
-import "./css/base.css";
-import "./css/reset.css";
-import Cardpledge from "./cardpledge";
+import Cardpledge from "./card/Cardpledge";
+import Cardpledgenobutton from "./card/Cardpledgenobutton";
+import Cardrewardcheckout from "./card/Cardrewardcheckout";
+import Cardrewardonedit from "./card/Cardrewardonedit";
+
 
 function Home() {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: false });
-  const SLIDE_COUNT = 5;
-  const slides = Array.from(Array(SLIDE_COUNT).keys());
-
-  useEffect(() => {
-    if (emblaApi) {
-      // Embla API is ready1
-    }
-  }, [emblaApi]);
+  
   return (
     <>
       <div className="container mx-auto ">
-        <section class="relative bg-priteal">
+        <section class="relative">
           <div class="container flex flex-col-reverse lg:flex-row items-center gap-12 mt-2 lg:mt-4">
             <div class="flex flex-1 flex-col items-center lg:items-start">
-              <h2 class="text-pridark text-3xl md:text-4 lg:text-5xl text-center lg:text-left mb-6">
+              <h2 class="text-pridark text-4xl md:text-4 lg:text-5xl text-center lg:text-left mb-6">
                 Shaping ideas, creating
               </h2>
               <h2 class="text-green-800 text-3xl md:text-4 lg:text-5xl text-center lg:text-left mb-6">
                 together
               </h2>
-              <p class="text-bookmark-grey text-lg text-center lg:text-left mb-6">
+              <p class="text-bookmark-grey text-md text-center lg:text-left mb-6">
                 Pozible is a leading crowdfunding platform & community for
                 creative projects, emerging brands and inspiring causes. We
                 provide a way for creators to access funding beyond ‘official’
@@ -78,7 +70,7 @@ function Home() {
           ></div>
         </section>
 
-          <Cardpledge />
+          
         <section className="bg-prilight flex flex-col items-center justify-center mt-5">
           <h1 className="text-pridark text-xl  lg:text-5xl text-center mb-6">
             Creative work shows us what’s possible.
@@ -103,19 +95,40 @@ function Home() {
               <span>backings</span>
             </div>
           </div>
-          <div className="embla" ref={emblaRef}>
-            <div className="embla__container">
-              <div className="embla__slide">Slide 1</div>
-              <div className="embla__slide">Slide 2</div>
-              <div className="embla__slide">Slide 3</div>
-            </div>
-          </div>
-          <div className="w-full h-144">
-            <EmblaCarousel slides={slides} />
-          </div>
+          
         </section>
 
-        <section class="bg-gray-200 py-20 mt-20 lg:mt-60">
+        <section>
+          <div className="container mx-auto  flex flex-col items-center mt-20">
+            <h1 className="my-8 text-3xl font-semibold">Trending Projects</h1>
+            <div className="flex flex-row justify-between gap-10 my-10">
+              <Cardpledge/>
+              <Cardpledge/>
+              <Cardpledge/>
+              <Cardpledge/>
+            </div>
+          
+            <button className="w-56 my-10 bg-pridark transition-colors duration-700 text-white h-12 rounded-xl hover:bg-gray-500">See more</button>
+          </div>
+
+        </section>
+
+        <section>
+          <div className="container mx-auto  flex flex-col items-center mt-20">
+            <h1 className="my-8 text-3xl font-semibold">Trending Projects</h1>
+            <div className="flex flex-row justify-between gap-10 my-10">
+              <Cardpledge/>
+              <Cardpledgenobutton />
+              <Cardrewardcheckout />
+              <Cardrewardonedit />
+            </div>
+          
+            <button className="w-56 my-10 bg-pridark transition-colors duration-700 text-white h-12 rounded-xl hover:bg-gray-500">See more</button>
+          </div>
+
+        </section>
+
+        {/* <section class="bg-gray-200 py-20 mt-20 lg:mt-60">
           <div class="sm:w-3/4 lg:w-5/12 mx-auto px-2">
             <h1 class="text-3xl text-center text-bookmark-blue">Features</h1>
             <p class="text-center text-bookmark-grey mt-4">
@@ -254,7 +267,7 @@ function Home() {
           "
             ></div>
           </div>
-        </section>
+        </section> */}
 
         {/* <section class="py-20 mt-20">
           <div class="sm:w-3/4 lg:w-5/12 mx-auto px-2">
