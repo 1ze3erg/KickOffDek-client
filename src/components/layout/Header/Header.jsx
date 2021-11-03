@@ -12,6 +12,7 @@ function Header() {
     const { auth } = useAppContext();
     const { pathname } = useLocation();
     console.log(pathname);
+    console.log(pathname.slice(0, 13));
 
     const [showLogin, setShowLogin] = useState(false);
     const [showPassword, setShowPassword] = useState(false);

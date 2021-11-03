@@ -1,8 +1,9 @@
 import { BsCheck2Circle, BsChevronRight, BsFillPersonFill, BsCurrencyDollar } from "react-icons/bs";
 import { HiOutlineShare } from "react-icons/hi";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 function EditorSidebar({ setShowSidebar, setShowCampaignDetail, setShowProfileDetail, setShowVisual }) {
+    const { projectId } = useParams();
     const naveditor = [
         {
             name: "Campaigns Details",
@@ -30,35 +31,37 @@ function EditorSidebar({ setShowSidebar, setShowCampaignDetail, setShowProfileDe
         },
         {
             name: "Descriptions",
-            link: "/edit-project/1/description",
+            link: `/edit-project/${projectId}/description`,
         },
         {
             name: "Rewards",
-            link: "/edit-project/1/reward",
+            link: `/edit-project/${projectId}/reward`,
         },
         {
             name: "Payments",
-            link: "/edit-project/1/bank-account",
+            link: `/edit-project/${projectId}/bank-account`,
         },
         {
             name: "Launch",
-            link: "/edit-project/1/launch",
+            link: `/edit-project/${projectId}/launch`,
         },
     ];
     const navupdateproject = [
         {
             icon: <HiOutlineShare />,
             name: "Updates",
-            link: "/edit-project/:projectId/update",
+            link: `/edit-project/${projectId}/update`,
         },
         {
             icon: <BsFillPersonFill />,
             name: "Supporters",
+            link: ""
         },
 
         {
             icon: <BsCurrencyDollar />,
             name: "Payments",
+            link: ""
         },
     ];
     return (

@@ -22,11 +22,13 @@ function EditorCampaignDetail({ setShowSidebar, setShowCampaignDetail, project, 
         if (e.target.name === "target") {
             if (e.target.value.slice(0, 1) === "0") {
                 setProject((currentState) => ({ ...currentState, [e.target.name]: e.target.value.slice(1) }));
+                setErr((currentState) => ({ ...currentState, [e.target.name]: "" }));
             } else if (isNaN(+e.target.value)) {
                 setProject((currentState) => ({ ...currentState, [e.target.name]: e.target.value }));
                 setErr((currentState) => ({ ...currentState, [e.target.name]: "target must be numeric" }));
             } else {
                 setProject((currentState) => ({ ...currentState, [e.target.name]: e.target.value || 0 }));
+                setErr((currentState) => ({ ...currentState, [e.target.name]: "" }));
             }
         } else if (e.target.name === "currencyId") {
             setProject((currentState) => ({ ...currentState, [e.target.name]: e.target.value }));
@@ -118,7 +120,7 @@ function EditorCampaignDetail({ setShowSidebar, setShowCampaignDetail, project, 
                             type="text"
                             id="target"
                             name="target"
-                            placeholder="0.00"
+                            placeholder="0"
                             value={target}
                             onChange={handleChangeInput}
                         />

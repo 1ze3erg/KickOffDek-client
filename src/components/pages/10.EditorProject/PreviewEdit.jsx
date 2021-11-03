@@ -130,7 +130,9 @@ function PreviewEdit({ project }) {
                                         <p className="text-pridark text-2xl">{calDiffDay(endDate) || 0}</p>
                                     </div>
                                     <div className="flex flex-start justify-between">
-                                        <p className="text-md ">of {formatMoney(+target, currency) || 0} target</p>
+                                        <p className="text-md">
+                                            of {formatMoney(+target, currency)?.slice(0, -3) || 0} target
+                                        </p>
                                         <p className="text-md">days left</p>
                                     </div>
                                     <button className="w-full h-12 rounded-xl text-white text-lg mt-3 bg-prigreen transition-colors duration-700 hover:bg-gray-700">
