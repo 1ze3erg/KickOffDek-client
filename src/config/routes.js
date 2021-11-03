@@ -2,6 +2,8 @@ import Home from "../components/pages/1.Home/Home";
 import EditorProject from "../components/pages/10.EditorProject/EditorProject";
 import EditorDescription from "../components/pages/11.EditorDescription/EditorDescription";
 import EditorReward from "../components/pages/12.EditorReward/EditorReward";
+import RewardAdd from "../components/pages/12.EditorReward/RewardAdd";
+import RewardEdit from "../components/pages/12.EditorReward/RewardEdit";
 import EditorBankAccount from "../components/pages/13.EditorBankAccount/EditorBankAccount";
 import EditorLaunch from "../components/pages/14.EditorLaunch/EditorLaunch";
 import EditorUpdate from "../components/pages/15.EditorUpdate/EditorUpdate";
@@ -28,6 +30,8 @@ const routes = {
             { path: "/dashboard", component: Dashboard },
             { path: "/edit-project/:projectId/description", component: EditorDescription },
             { path: "/edit-project/:projectId/reward", component: EditorReward },
+            { path: "/edit-project/:projectId/reward-add", component: RewardAdd },
+            { path: "/edit-project/:projectId/reward-edit/:rewardId", component: RewardEdit },
             { path: "/edit-project/:projectId/bank-account", component: EditorBankAccount },
             { path: "/edit-project/:projectId/launch", component: EditorLaunch },
             { path: "/edit-project/:projectId/update", component: EditorUpdate },
