@@ -1,9 +1,11 @@
+import { useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import { MdOutlineLocalShipping } from "react-icons/md";
 import { HiArrowNarrowLeft } from "react-icons/hi";
-import { useState } from "react";
 import ModalShippingOption from "./ModalShippingOption";
 
-function RewardAdditional({ setShowRewardHome, setShowRewardOverview, setShowRewardDetail, setShowRewardAdditional }) {
+function RewardAdditional({ setShowRewardOverview, setShowRewardDetail, setShowRewardAdditional, clickCreateReward }) {
+    const { projectId } = useParams();
     const [showModal, setShowModal] = useState(false);
     return (
         <div className="w-1/2 self-start">
@@ -19,21 +21,19 @@ function RewardAdditional({ setShowRewardHome, setShowRewardOverview, setShowRew
                     <h1 className="font-semibold text-xl">New Reward</h1>
                 </div>
                 <div className="flex flex-row items-center justify-between ">
-                    <button
-                        className="bg-priorange hover:bg-pripurple px-5 py-2 text-md text-white rounded-lg"
-                        onClick={() => {
-                            setShowRewardHome(true);
-                            setShowRewardOverview(true);
-                            setShowRewardAdditional(false);
-                        }}
-                    >
-                        Create Reward
-                    </button>
+                    <Link to={`/edit-project/${projectId}/reward`}>
+                        <button
+                            className="bg-priorange hover:bg-pripurple px-5 py-2 text-md text-white rounded-lg"
+                            onClick={clickCreateReward}
+                        >
+                            Create Reward
+                        </button>
+                    </Link>
                 </div>
             </div>
-            <div className="mx-5 my-5 overflow-auto shadow-xl rounded-lg px-5">
+            <div className="h-150 overscroll-y-auto mx-5 my-5 overflow-auto shadow-xl rounded-lg px-5">
                 <div className="mt-10">
-                    <h1>Reward overview</h1>
+                    <h1>Reward Additional</h1>
                 </div>
                 <div className="flex items-center justify-center">
                     <div className="flex flex-col items-center justify-center border border-gray-900 rounded-lg w-full my-10 mx-10 py-5">

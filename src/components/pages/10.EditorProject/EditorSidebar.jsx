@@ -69,7 +69,7 @@ function EditorSidebar({ setShowSidebar, setShowCampaignDetail, setShowProfileDe
             <div className="flex justify-between items-center mb-5">
                 <div className="flex justify-between items-center w-full">
                     <h1 className="text-xl font-bold mr-8">Project Editor</h1>
-                    <Link>
+                    <Link to={`/edit-project/${projectId}/launch/`}>
                         <button className="py-2 px-5 rounded-xl bg-priorange hover:bg-pripurple text-white">
                             Launch
                         </button>

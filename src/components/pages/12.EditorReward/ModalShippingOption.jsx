@@ -13,7 +13,7 @@ function ModalShippingOption({ setShowModal }) {
                 <div className="w-150  p-3 relative mx-auto my-auto rounded-xl shadow-lg  bg-white ">
                     <div className=" p-3 itmes-center">
                         <HiOutlineX
-                            className="text-gray-900 absolute right-7 hover:text-red-800"
+                            className="text-gray-900 absolute right-7 hover:text-red-800 cursor-pointer"
                             onClick={() => {
                                 setShowModal(false);
                             }}
