@@ -59,7 +59,7 @@ function PreviewDesktopCreate({ input, userInfo }) {
                                 <span className="px-1">Share</span>
                             </button>
 
-                            <button className="inline-flex bg-clear mx-3 text-white rounded-full h-8 px-3 justify-center items-center hover:bg-purple-300">
+                            <button className="inline-flex bg-clear mx-3 text-white rounded-full h-8 px-3 justify-center items-center hover:bg-purple-300" title={about}>
                                 <HiOutlineShare />
                                 <span className="px-1">About</span>
                             </button>

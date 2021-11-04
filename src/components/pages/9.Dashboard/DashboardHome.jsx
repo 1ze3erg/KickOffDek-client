@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { BsChevronDown, BsPencil } from "react-icons/bs";
 import { AiOutlineWarning } from "react-icons/ai";
@@ -12,6 +11,7 @@ function DashboardHome() {
           <img
             src="https://res.cloudinary.com/thisisdupreecloud/image/upload/v1635934306/Roll-Up-both-UAV-02.252.jpg_fyoh8f.png"
             className="h-12 w-12 object-cover rounded-full"
+            alt="detailImage"
           />
           <div className="flex flex-col mx-3">
             <span>Hi The Guy you know, welcome to your Dashboard!</span>

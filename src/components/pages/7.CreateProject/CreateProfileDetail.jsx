@@ -23,7 +23,7 @@ function CreateProfileDetail({ setShowCampaignDetail, setShowProfileDetail, setS
         if (e.target.name === "organization" && e.target.value.trim() === "") {
             setInput((currentState) => ({ ...currentState, [e.target.name]: "" }));
             setErr(currentState => ({ ...currentState, organization: "organization is required" }))
-        } else if (e.target.name == "categoryId") {
+        } else if (e.target.name === "categoryId") {
             setInput((currentState) => ({
                 ...currentState,
                 category: categories.find((elem) => elem.id === +e.target.value)?.name,

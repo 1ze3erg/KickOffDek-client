@@ -23,7 +23,6 @@ function RewardAdd() {
 
     const clickCreateReward = async () => {
         try {
-            console.log("create project");
             const res = await axios.post("/rewards/create", { ...newReward, projectId });
             history.push(`/edit-project/${projectId}/reward`, { newReward: res.data });
         } catch (err) {
