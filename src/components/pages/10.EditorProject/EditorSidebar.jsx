@@ -55,13 +55,13 @@ function EditorSidebar({ setShowSidebar, setShowCampaignDetail, setShowProfileDe
         {
             icon: <BsFillPersonFill />,
             name: "Supporters",
-            link: ""
+            link: "",
         },
 
         {
             icon: <BsCurrencyDollar />,
             name: "Payments",
-            link: ""
+            link: "",
         },
     ];
     return (
@@ -69,9 +69,11 @@ function EditorSidebar({ setShowSidebar, setShowCampaignDetail, setShowProfileDe
             <div className="flex justify-between items-center mb-5">
                 <div className="flex justify-between items-center w-full">
                     <h1 className="text-xl font-bold mr-8">Project Editor</h1>
-                    <button className="py-1 px-4 border border-gray-700 rounded-xl bg-prigreen text-whiten text-white">
-                        Launch
-                    </button>
+                    <Link to={`/edit-project/${projectId}/launch/`}>
+                        <button className="py-2 px-5 rounded-xl bg-priorange hover:bg-pripurple text-white">
+                            Launch
+                        </button>
+                    </Link>
                 </div>
             </div>
             <div className="h-150 overflow-y-scroll">

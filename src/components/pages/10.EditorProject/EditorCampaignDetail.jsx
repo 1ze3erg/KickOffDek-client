@@ -136,7 +136,7 @@ function EditorCampaignDetail({ setShowSidebar, setShowCampaignDetail, project, 
                         id="endDate"
                         name="endDate"
                         type="datetime-local"
-                        value={endDate.slice(0, 16)}
+                        value={endDate?.slice(0, 16)}
                         onChange={handleChangeInput}
                     />
                 </div>

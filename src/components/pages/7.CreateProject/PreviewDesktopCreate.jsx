@@ -5,8 +5,25 @@ import { calDiffDay } from "../../../helpers/calculate";
 import { formatMoney } from "../../../helpers/format";
 
 function PreviewDesktopCreate({ input, userInfo }) {
-    const { title, target, endDate, coverImage, campaignImage, currency } = input;
-    const { username, tagline, province, country } = userInfo;
+    const {
+        category,
+        currency,
+        title,
+        about,
+        target,
+        endDate,
+        organization,
+        tagline,
+        province,
+        country,
+        facebook,
+        instagram,
+        twitter,
+        website,
+        coverImage,
+        campaignImage,
+    } = input;
+
     return (
         <div className="col-span-9 flex flex-col w-full pr-3 pb-3">
             <div className="flex justify-end mx-3 my-5">
@@ -30,12 +47,12 @@ function PreviewDesktopCreate({ input, userInfo }) {
             >
                 <div className="flex w-full justify-around items-center text-white">
                     <div>
-                        <h1 className="text-7xl font-bold py-2">{username || "Organization"}</h1>
-                        <h1 className="text-3xl font-bold py-2">{tagline || "Tagline"}</h1>
+                        <h1 className="text-7xl font-bold py-2">{organization || userInfo.username || "Organization"}</h1>
+                        <h1 className="text-3xl font-bold py-2">{tagline || userInfo.tagline || "Tagline"}</h1>
                         <span className="text-xl py-2">
-                            {province || "Province"}, {country || "Country"}
+                            {province|| userInfo.province || "Province"}, {country || userInfo.country || "Country"}
                         </span>
-                        <p className="text-xl py-2">Category</p>
+                        <p className="text-xl py-2">{category}</p>
                         <div className="flex flex-row py-2 my-5">
                             <button className="inline-flex bg-purple-600 text-white rounded-full h-8 px-3 justify-center items-center hover:bg-purple-300">
                                 <HiOutlineShare />
@@ -48,10 +65,33 @@ function PreviewDesktopCreate({ input, userInfo }) {
                             </button>
                         </div>
                         <div className="flex flex-row  my-3">
-                            <FaFacebookSquare className="mx-2 p-1 text-4xl cursor-pointer hover:bg-prilight hover:text-pridark rounded" />
-                            <FaInstagram className="mx-2 p-1 text-4xl cursor-pointer hover:bg-prilight hover:text-pridark rounded" />
-                            <FaTwitter className="mx-2 p-1 text-4xl cursor-pointer hover:bg-prilight hover:text-pridark rounded" />
-                            <IoEarthOutline className="mx-2 p-1 text-4xl cursor-pointer hover:bg-prilight hover:text-pridark rounded" />
+                            <a
+                                href={`https://www.facebook.com/${facebook}`}
+                                title={facebook}
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                <FaFacebookSquare className="mx-2 p-1 text-4xl cursor-pointer hover:bg-prilight hover:text-pridark rounded" />
+                            </a>
+                            <a
+                                href={`https://www.instagram.com/${instagram}`}
+                                title={instagram}
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                <FaInstagram className="mx-2 p-1 text-4xl cursor-pointer hover:bg-prilight hover:text-pridark rounded" />
+                            </a>
+                            <a
+                                href={`https://www.twitter.com/${twitter}`}
+                                title={twitter}
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                <FaTwitter className="mx-2 p-1 text-4xl cursor-pointer hover:bg-prilight hover:text-pridark rounded" />
+                            </a>
+                            <a href={`https://${website}`} title={website} target="_blank" rel="noreferrer">
+                                <IoEarthOutline className="mx-2 p-1 text-4xl cursor-pointer hover:bg-prilight hover:text-pridark rounded" />
+                            </a>
                         </div>
                     </div>
                     <div>

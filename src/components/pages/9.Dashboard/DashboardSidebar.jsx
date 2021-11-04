@@ -20,7 +20,7 @@ function DashboardSidebar({Home , Preference , MyPledge, SavedProject , MyProjec
             
             <h1>Creating</h1>
             <button onClick={()=>{Home(false); Preference(false); MyPledge(false); SavedProject(false); MyProject(true); CurrentProject(false) }} className="flex flex-row gap-2 items-center"><MdOutlineDashboardCustomize />My Project</button>
-            <button onClick={()=>{Home(false); Preference(false); MyPledge(false); SavedProject(false); MyProject(false); CurrentProject(true) }} className="flex flex-row gap-2 items-center"><AiOutlineFund />Current Project</button>
+            {/* <button onClick={()=>{Home(false); Preference(false); MyPledge(false); SavedProject(false); MyProject(false); CurrentProject(true) }} className="flex flex-row gap-2 items-center"><AiOutlineFund />Current Project</button> */}
             <button className="mt-10 px-2 ml-10 h-12 rounded-xl bg-priorange text-white hover:bg-red-500">Create Campaign</button>
         </div>
     );
