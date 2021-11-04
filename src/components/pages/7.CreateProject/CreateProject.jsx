@@ -62,7 +62,7 @@ function CreateProject() {
             <div className="col-span-12 h-1 bg-blue-200 rounded-full">
                 <div
                     className={`${
-                        showProjectType ? "w-1/3" : showCampaignDetail ? "w-2/3" : "w-3/3"
+                        showProjectType ? "w-1/4" : showCampaignDetail ? "w-2/4" : showProfileDetail ? "w-3/4" : "w-4/4"
                     } h-full text-center text-xs text-white bg-pripurple rounded-full`}
                 ></div>
             </div>

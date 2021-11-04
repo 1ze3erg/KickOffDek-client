@@ -50,7 +50,7 @@ function RewardOverview({ setShowRewardOverview, setShowRewardDetail, newReward,
                 </div>
                 <div className="flex flex-row items-center justify-between ">
                     <button
-                        className={`bg-prigreen hover:bg-pridark h-8 w-16 text-md text-white rounded-lg ${
+                        className={`bg-prigreen hover:bg-green-900 h-8 w-16 text-md text-white rounded-lg ${
                             buttonNextDisabled ? "opacity-50" : "opacity-100"
                         }`}
                         onClick={() => {

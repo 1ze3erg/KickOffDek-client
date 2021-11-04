@@ -51,7 +51,7 @@ function EditorDescription() {
                     <h1 className="text-xl font-bold">Description</h1>
                 </div>
                 <button
-                    className="py-1 px-4 border border-gray-700 rounded-xl bg-prigreen text-white"
+                    className="py-1 px-4 border border-gray-700 rounded-xl bg-prigreen hover:bg-green-900 text-white"
                     onClick={clickSave}
                 >
                     Save

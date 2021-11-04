@@ -65,7 +65,7 @@ function EditorCampaignDetail({ setShowSidebar, setShowCampaignDetail, project, 
                     <h1 className="text-xl font-bold">Campaign Details</h1>
                 </div>
                 <button
-                    className="py-1 px-4 border border-gray-700 rounded-xl bg-prigreen text-white"
+                    className="py-1 px-4 border border-gray-700 rounded-xl bg-prigreen hover:bg-green-900 text-white"
                     onClick={clickSave}
                 >
                     Save
