@@ -119,7 +119,7 @@ function EditorVisual({ setShowSidebar, setShowVisual, project, setProject }) {
                             />
                         </div>
                         <div className="relative flex w-full flex-wrap items-stretch mb-3">
-                            <label className="w-full flex flex-col items-center px-4 py-3 bg-white rounded-md shadow-md tracking-wide uppercase border border-blue cursor-pointer hover:bg-pripurple hover:text-white text-pripurple ease-linear transition-all duration-150">
+                            <label className="w-full flex flex-col items-center px-4 py-3 bg-white rounded-t-md shadow-md tracking-wide uppercase border border-blue cursor-pointer hover:bg-pripurple hover:text-white text-pripurple ease-linear transition-all duration-150">
                                 {!campaignImageStatus ? (
                                     <>
                                         <BsFillCloudArrowUpFill className="text-3xl mr-3" />

@@ -32,7 +32,7 @@ function Header() {
         pathname === "/about" ||
         pathname.slice(0, 8) === "/project" ||
         pathname.slice(0, 7) === "/pledge"
-            ? "bg-green-800"
+            ? "bg-pridark"
             : "bg-white";
     const textColor =
         pathname === "/explore" ||
@@ -43,7 +43,7 @@ function Header() {
             : "text-black";
     return (
         <nav className={`flex justify-between ${bgColor} ${textColor} w-full`}>
-            <div className="text-lg text-prigreen px-5 xl:px-12 py-3 flex w-full items-center justify-between">
+            <div className="text-lg px-5 xl:px-12 py-3 flex w-full items-center justify-between">
                 <div className="flex flex-row align-center gap-10">
                     <Link to="/home">
                         <img className="h-12 rounded-md drop-shadow-sm" src="https://picsum.photos/500" alt="logo" />
@@ -51,7 +51,7 @@ function Header() {
                     <ul className="hidden md:flex px-4 mx-auto items-center font-heading space-x-12 gap-5">
                         <Link to="/explore">
                             <li>
-                                <span className="hover:text-gray-400 ">Explore</span>
+                                <span className="hover:text-gray-400">Explore</span>
                             </li>
                         </Link>
                         <Link to="/about">
@@ -91,7 +91,7 @@ function Header() {
                                 </li>
                                 <Link to="/dashboard">
                                     <li>
-                                        <button className="inline-flex bg-pripurple text-white rounded-xl px-7 py-2 justify-center items-center hover:bg-purple-700">
+                                        <button className="inline-flex bg-priorange text-white rounded-xl px-7 py-2 justify-center items-center hover:bg-pripurple">
                                             Dashboard
                                         </button>
                                     </li>

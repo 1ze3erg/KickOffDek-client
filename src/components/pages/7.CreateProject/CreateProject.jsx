@@ -2,24 +2,37 @@ import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import axios from "../../../config/axios";
 import CreateCampaignDetail from "./CreateCampaignDetail";
+import CreateProfileDetail from "./CreateProfileDetail";
 import CreateProjectType from "./CreateProjectType";
 import CreateProjectVisual from "./CreateProjectVisual";
 import PreviewDesktopCreate from "./PreviewDesktopCreate";
 
 function CreateProject() {
     const [input, setInput] = useState({
+        categoryId: "1",
+        category: "art",
         typeId: 0,
         currencyId: "3",
         currency: "THB",
         title: "",
+        about: "",
         target: "0",
         endDate: "",
+        organization: "",
+        tagline: "",
+        province: "",
+        country: "",
+        facebook: "",
+        instagram: "",
+        twitter: "",
+        website: "",
         coverImage: "",
         campaignImage: "",
     });
     const [userInfo, setUserInfo] = useState({});
     const [showProjectType, setShowProjectType] = useState(true);
     const [showCampaignDetail, setShowCampaignDetail] = useState(false);
+    const [showProfileDetail, setShowProfileDetail] = useState(false);
     const [showProjectVisual, setShowProjectVisual] = useState(false);
     const history = useHistory();
 
@@ -66,6 +79,15 @@ function CreateProject() {
                     <CreateCampaignDetail
                         setShowProjectType={setShowProjectType}
                         setShowCampaignDetail={setShowCampaignDetail}
+                        setShowProfileDetail={setShowProfileDetail}
+                        input={input}
+                        setInput={setInput}
+                    />
+                )}
+                {showProfileDetail && (
+                    <CreateProfileDetail
+                        setShowCampaignDetail={setShowCampaignDetail}
+                        setShowProfileDetail={setShowProfileDetail}
                         setShowProjectVisual={setShowProjectVisual}
                         input={input}
                         setInput={setInput}
