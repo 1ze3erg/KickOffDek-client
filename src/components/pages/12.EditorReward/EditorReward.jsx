@@ -81,7 +81,7 @@ function EditorReward() {
                             </Link>
                             <div className="bg-white w-full p-4 flex flex-col pt-4">
                                 <div className="flex items-center justify-center">
-                                    <h1 className="text-sm">No Reward</h1>
+                                    <h1 className="text-sm">{elem?.title}</h1>
                                 </div>
                                 <div>
                                     <h1 className={`text-md text-purple-800 mt-4 ${ShowMore}`}>{elem?.description}</h1>

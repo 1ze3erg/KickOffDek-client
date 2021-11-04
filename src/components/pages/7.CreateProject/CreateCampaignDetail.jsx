@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { MdKeyboardBackspace } from "react-icons/md";
 import axios from "../../../config/axios";
 
-function CreateCampaignDetail({ setShowProjectType, setShowCampaignDetail, setShowProjectVisual, input, setInput }) {
+function CreateCampaignDetail({ setShowProjectType, setShowCampaignDetail, setShowProfileDetail, input, setInput }) {
     const { title, currencyId, target, endDate } = input;
     const [currencies, setCurrencies] = useState([]);
     const [err, setErr] = useState({ title: "", currencyId: "", target: "", endDate: "" });
@@ -64,7 +64,7 @@ function CreateCampaignDetail({ setShowProjectType, setShowCampaignDetail, setSh
                     }`}
                     onClick={() => {
                         setShowCampaignDetail(false);
-                        setShowProjectVisual(true);
+                        setShowProfileDetail(true);
                     }}
                     disabled={buttonNextDisabled}
                 >

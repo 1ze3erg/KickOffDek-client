@@ -72,7 +72,7 @@ function RewardOverview({ setShowRewardOverview, setShowRewardDetail, newReward,
                         Title
                     </label>
                     <input
-                        className="border w-full border-gray-300 dark:border-gray-700 hover:border-green-700 pl-3 py-3 shadow-sm rounded text-sm focus:outline-none focus:border-indigo-700 bg-transparent placeholder-gray-500 text-gray-500 dark:text-gray-400 bg-white"
+                        className="border w-full border-gray-300 dark:border-gray-700 hover:border-green-700 pl-3 py-3 shadow-sm rounded text-sm focus:outline-none focus:border-indigo-700 bg-transparent placeholder-gray-500 text-pridark dark:text-gray-400 bg-white"
                         type="text"
                         id="title"
                         name="title"
