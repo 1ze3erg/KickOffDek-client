@@ -19,7 +19,7 @@ function EditorUpdate() {
             .catch((err) => {
                 console.dir(err);
             });
-    }, []);
+    }, [projectId]);
 
     return (
         <div>
