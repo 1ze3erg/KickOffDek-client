@@ -36,7 +36,7 @@ function Dashboard() {
       </div>
       <div className="bg-gray-100 w-full h-screen ">
         
-        {showHome && <Home />}
+        {showHome && <Home Home={setShowHome} MyProject={setShowMyProject} />}
         {showPreference && <Preference />}
         {showMyPledge && <MyPledge />}
         {showSavedProject && <Savedproject />}
