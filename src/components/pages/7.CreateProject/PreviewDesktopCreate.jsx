@@ -1,5 +1,6 @@
 import { HiDeviceMobile, HiOutlineShare } from "react-icons/hi";
 import { FaFacebookSquare, FaInstagram, FaTwitter, FaExternalLinkAlt } from "react-icons/fa";
+import { IoEarthOutline } from "react-icons/io5";
 import { calDiffDay } from "../../../helpers/calculate";
 import { formatMoney } from "../../../helpers/format";
 
@@ -27,7 +28,7 @@ function PreviewDesktopCreate({ input, userInfo }) {
                     backgroundRepeat: "no-repeat",
                 }}
             >
-                <div className="flex w-full justify-around items-center text-prilight">
+                <div className="flex w-full justify-around items-center text-white">
                     <div>
                         <h1 className="text-7xl font-bold py-2">{username || "Organization"}</h1>
                         <h1 className="text-3xl font-bold py-2">{tagline || "Tagline"}</h1>
@@ -47,22 +48,24 @@ function PreviewDesktopCreate({ input, userInfo }) {
                             </button>
                         </div>
                         <div className="flex flex-row  my-3">
-                            <FaFacebookSquare className="mx-2 text-2xl cursor-pointer" />
-                            <FaInstagram className="mx-2 text-2xl cursor-pointer" />
-                            <FaTwitter className="mx-2 text-2xl cursor-pointer" />
-                            <FaExternalLinkAlt className="mx-2 text-2xl cursor-pointer" />
+                            <FaFacebookSquare className="mx-2 p-1 text-4xl cursor-pointer hover:bg-prilight hover:text-pridark rounded" />
+                            <FaInstagram className="mx-2 p-1 text-4xl cursor-pointer hover:bg-prilight hover:text-pridark rounded" />
+                            <FaTwitter className="mx-2 p-1 text-4xl cursor-pointer hover:bg-prilight hover:text-pridark rounded" />
+                            <IoEarthOutline className="mx-2 p-1 text-4xl cursor-pointer hover:bg-prilight hover:text-pridark rounded" />
                         </div>
                     </div>
                     <div>
-                        <div className="overflow-hidden shadow-lg transition duration-500 ease-in-out transform hover:-translate-y-5 hover:shadow-2xl rounded-lg w-64 cursor-pointer m-auto mx-3">
+                        <div className="text-gray-600 overflow-hidden shadow-lg transition duration-200 ease-in-out transform hover:-translate-y-1 hover:shadow-2xl rounded-lg w-72 cursor-pointer m-auto mx-3">
                             <div className="w-full block h-full">
                                 <img
-                                    className="h-56 w-full object-cover"
-                                    alt=""
+                                    className="h-48 w-full object-cover"
+                                    alt="campaignImage"
                                     src={campaignImage || "https://picsum.photos/1920/1080"}
                                 />
-                                <div className="bg-white w-full p-4 flex flex-col pt-5">
-                                    <h1 className="text-2xl font-bold mb-2 text-pridark">{title || "My Campaign"}</h1>
+                                <div className="absolute top-20 h-28 w-full bg-gradient-to-t from-gray-800 flex items-center justify-center">
+                                    <h1 className="text-2xl text-white line-clamp-2 mx-5">{title || "My Campaign"}</h1>
+                                </div>
+                                <div className="bg-white w-full p-4 flex flex-col pt-8">
                                     <div className="w-full h-4 bg-prilight rounded-full">
                                         <div className="w-2/3 h-full text-center text-xs text-white bg-priorange rounded-full"></div>
                                     </div>
@@ -70,13 +73,11 @@ function PreviewDesktopCreate({ input, userInfo }) {
                                         <p className="text-pridark text-2xl">{formatMoney(0, currency)}</p>
                                         <p className="text-pridark text-2xl">{calDiffDay(endDate) || 0}</p>
                                     </div>
-                                    <div className="flex flex-start justify-between mb-4">
-                                        <p className="text-priorange text-md">
-                                            of {formatMoney(+target, currency) || 0} target
-                                        </p>
-                                        <p className="text-pridark text-md">days left</p>
+                                    <div className="flex flex-start justify-between">
+                                        <p className=" text-md ">of {formatMoney(+target, currency) || 0} target</p>
+                                        <p className=" text-md">days left</p>
                                     </div>
-                                    <button className="w=full bg-pridark transition-colors duration-700 text-white h-12 rounded-xl hover:bg-gray-500">
+                                    <button className="w-full h-12 rounded-xl text-white text-lg mt-3 bg-prigreen transition-colors duration-700   hover:bg-gray-700">
                                         Pledge Now
                                     </button>
                                 </div>

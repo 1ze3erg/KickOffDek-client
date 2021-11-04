@@ -22,9 +22,15 @@ function CreateCampaignDetail({ setShowProjectType, setShowCampaignDetail, setSh
         if (e.target.value.trim() === "") {
             setInput((currentState) => ({ ...currentState, [e.target.name]: "" }));
             setErr((currentState) => ({ ...currentState, [e.target.name]: `${e.target.name} is required` }));
-        } else if (e.target.name === "target" && isNaN(+e.target.value)) {
-            setInput((currentState) => ({ ...currentState, [e.target.name]: e.target.value }));
-            setErr((currentState) => ({ ...currentState, [e.target.name]: "target must be numeric" }));
+        } else if (e.target.name === "target") {
+            if (e.target.value.slice(0, 1) === "0") {
+                setInput((currentState) => ({ ...currentState, [e.target.name]: e.target.value.slice(1) }));
+            } else if (isNaN(+e.target.value)) {
+                setInput((currentState) => ({ ...currentState, [e.target.name]: e.target.value }));
+                setErr((currentState) => ({ ...currentState, [e.target.name]: "target must be numeric" }));
+            } else {
+                setInput((currentState) => ({ ...currentState, [e.target.name]: e.target.value }));
+            }
         } else if (e.target.name === "currencyId") {
             setInput((currentState) => ({
                 ...currentState,
@@ -65,7 +71,7 @@ function CreateCampaignDetail({ setShowProjectType, setShowCampaignDetail, setSh
                     Next
                 </button>
             </div>
-            <div className="w-full mx-auto flex flex-col p-2">
+            <div className="w-full mx-auto flex flex-col p-2 h-150">
                 <h1 className="mt-5 mb-7 font-bold text-lg">Overview</h1>
                 <div className="mb-5">
                     <label htmlFor="title" className="text-sm">

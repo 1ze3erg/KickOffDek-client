@@ -1,16 +1,6 @@
-// import axios from "../../config/axios";
-import React, { useEffect, useState } from "react";
-
 function Cardpledgenobutton() {
-  const [pledge, setPledge] = useState([]);
-
-  const totalPledge = pledge.reduce((acc, i) => {
-    return acc + +i?.amount;
-  }, 0);
-
-
   return (
-    <div className="overflow-hidden shadow-lg transition duration-200 ease-in-out transform hover:-translate-y-1 hover:shadow-2xl rounded-lg w-72 cursor-pointer m-auto mx-3">
+    <div className="text-gray-600 overflow-hidden shadow-lg transition duration-200 ease-in-out transform hover:-translate-y-1 hover:shadow-2xl rounded-lg w-72 cursor-pointer m-auto mx-3">
       <div className="w-full block h-full">
         <img
           className="h-48 w-full object-cover"
@@ -29,10 +19,10 @@ function Cardpledgenobutton() {
             <p className="text-gray-900 text-2xl">12</p>
           </div>
           <div className="flex flex-start justify-between">
-            <p className="text-gray-600 text-md">
+            <p className="text-md">
               of {Math.floor("12000")} stretch
             </p>
-            <p className="text-gray-600 text-md">days left</p>
+            <p className="text-md">days left</p>
           </div>
           
         </div>

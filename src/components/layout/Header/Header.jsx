@@ -12,6 +12,7 @@ function Header() {
     const { auth } = useAppContext();
     const { pathname } = useLocation();
     console.log(pathname);
+    console.log(pathname.slice(0, 13));
 
     const [showLogin, setShowLogin] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
@@ -42,26 +43,26 @@ function Header() {
             : "text-black";
     return (
         <nav className={`flex justify-between ${bgColor} ${textColor} w-full`}>
-            <div className="px-5 xl:px-12 py-3 flex w-full items-center justify-between">
-                <div className="flex flex-row align-center">
+            <div className="text-lg text-prigreen px-5 xl:px-12 py-3 flex w-full items-center justify-between">
+                <div className="flex flex-row align-center gap-10">
                     <Link to="/home">
                         <img className="h-12 rounded-md drop-shadow-sm" src="https://picsum.photos/500" alt="logo" />
                     </Link>
-                    <ul className="hidden md:flex px-4 mx-auto items-center font-heading space-x-12">
+                    <ul className="hidden md:flex px-4 mx-auto items-center font-heading space-x-12 gap-5">
                         <Link to="/explore">
                             <li>
-                                <span className="hover:text-gray-200">Explore</span>
+                                <span className="hover:text-gray-400 ">Explore</span>
                             </li>
                         </Link>
                         <Link to="/about">
                             <li>
-                                <span className="hover:text-gray-200">About</span>
+                                <span className="hover:text-gray-400">About</span>
                             </li>
                         </Link>
                         {auth && (
                             <Link to="/create-project">
                                 <li>
-                                    <span className="hover:text-gray-200">Create</span>
+                                    <span className="hover:text-gray-400">Create</span>
                                 </li>
                             </Link>
                         )}
@@ -82,7 +83,7 @@ function Header() {
                                 </Link>
                                 <li>
                                     <button
-                                        className="inline-flex bg-prigreen text-white rounded-full px-4 py-2 justify-center items-center hover:bg-purple-300"
+                                        className="inline-flex bg-prigreen text-white rounded-xl px-7 py-2 justify-center items-center hover:bg-gray-800"
                                         onClick={clickLogout}
                                     >
                                         Log Out
@@ -90,7 +91,7 @@ function Header() {
                                 </li>
                                 <Link to="/dashboard">
                                     <li>
-                                        <button className="inline-flex bg-pripurple text-white rounded-full px-4 py-2 justify-center items-center hover:bg-purple-300">
+                                        <button className="inline-flex bg-pripurple text-white rounded-xl px-7 py-2 justify-center items-center hover:bg-purple-700">
                                             Dashboard
                                         </button>
                                     </li>
@@ -99,7 +100,7 @@ function Header() {
                         ) : (
                             <li>
                                 <button
-                                    className="inline-flex bg-purple-600 text-white rounded-full px-4 py-2 justify-center items-center hover:bg-purple-300"
+                                    className="inline-flex bg-prigreen text-white rounded-xl px-7 py-2 justify-center items-center hover:bg-gray-800"
                                     onClick={() => setShowLogin(true)}
                                 >
                                     Sign in

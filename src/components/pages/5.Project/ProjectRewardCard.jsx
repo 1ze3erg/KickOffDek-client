@@ -1,9 +1,22 @@
 import React, { useState } from "react";
-import { BsPerson, BsCalendarCheck } from "react-icons/bs";
+import { BsPerson, BsCalendarCheck, BsFillTrashFill } from "react-icons/bs";
+import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
-function Cardrewardonedit() {
+function ProjectRewardCard({
+  id,
+  // title,
+  description,
+  image,
+  minAmount,
+  // limit,
+  estDeliveryMonth,
+  estDeliveryYear,
+}) {
   const [ShowMore, setShowMore] = useState("truncate");
   const [HideShowButton, setHideShowButton] = useState("Show more");
+
+  const { projectId } = useParams();
 
   const showMore = () => {
     if (ShowMore === "truncate") {
@@ -14,15 +27,19 @@ function Cardrewardonedit() {
       setHideShowButton("Show more");
     }
   };
-
   return (
-    <div className="overflow-hidden shadow-lg transform rounded-lg w-72 m-auto mx-3 text-pridark">
+    <div className="overflow-hidden shadow-lg transform rounded-lg w-68 m-auto mx-3 text-pridark my-5">
       <div className="w-full block h-full">
         <img
           className="h-48 w-full object-cover"
           alt=""
-          src="https://res.cloudinary.com/thisisdupreecloud/image/upload/v1634239095/photo-1537519646099-335112f03225_jwqufc.jpg"
+          src={
+            image
+              ? image
+              : "https://res.cloudinary.com/thisisdupreecloud/image/upload/v1634239095/photo-1537519646099-335112f03225_jwqufc.jpg"
+          }
         />
+        <BsFillTrashFill className="absolute bottom-4 right-3 text-xl text-pridark" />
 
         <div className="bg-white w-full p-4 flex flex-col pt-4">
           <div className="flex items-center justify-center">
@@ -30,13 +47,7 @@ function Cardrewardonedit() {
           </div>
           <div>
             <h1 className={`text-md text-purple-800 mt-4 ${ShowMore}`}>
-              10x14 inch hardcover book, printed in South Australia using
-              eco-friendly ink printed onto sustainable 150gsm paper. The book
-              will comprise all 100 portraits along with an introduction
-              explaining the project. We’ll include key dates in Sydney’s
-              Lockdown 2.0 and explain the restrictions locals were under in
-              areas that were dubbed “LGAs of concern” at the time. It will also
-              include pictures of the walls where the portraits were posted.
+              {description}
             </h1>
             <button
               onClick={showMore}
@@ -47,7 +58,9 @@ function Cardrewardonedit() {
           </div>
           <div className="flex justify-center mt-4">
             <button className="rounded-lg bg-prigreen transition-colors duration-700   hover:bg-gray-700 text-white w-full h-10">
-              $1 OR MORE
+              <Link to={`/pledge/${projectId}/${id}`}>
+                ${minAmount} OR MORE
+              </Link>
             </button>
           </div>
           <div className="flex flex-start text-xs mt-3 items-center">
@@ -56,7 +69,10 @@ function Cardrewardonedit() {
           </div>
           <div className="flex flex-start text-xs mt-3">
             <BsCalendarCheck />
-            <h1 className="ml-1"> Est. delivery is Dec 21</h1>
+            <h1 className="ml-1">
+              {" "}
+              Est. delivery {estDeliveryMonth}/{estDeliveryYear}
+            </h1>
           </div>
         </div>
       </div>
@@ -64,4 +80,4 @@ function Cardrewardonedit() {
   );
 }
 
-export default Cardrewardonedit;
+export default ProjectRewardCard;

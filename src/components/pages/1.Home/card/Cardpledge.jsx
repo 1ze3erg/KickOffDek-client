@@ -1,37 +1,6 @@
-// import axios from "../../config/axios";
-import React, { useEffect, useState } from "react";
-
 function Cardpledge() {
-//   const projectId = id;
-  const [pledge, setPledge] = useState([]);
-
-//   useEffect(() => {
-//     try {
-//       const fetchPledge = async () => {
-//         const res = await axios.get(`/pledges/get-by-project-id/id`);
-//         setPledge(res?.data);
-//       };
-//       fetchPledge();
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   }, []);
-
-  const totalPledge = pledge.reduce((acc, i) => {
-    return acc + +i?.amount;
-  }, 0);
-
-//   const day = new Date();
-// //   const lastday = new Date(endDate?.substring(0, 10));
-//   const today = new Date(
-//     day.getFullYear() + "-" + (day.getMonth() + 1) + "-" + day.getDate()
-//   );
-
-//   const difference = Math.abs(lastday - today);
-//   const difDays = difference / (1000 * 3600 * 24);
-
   return (
-    <div className="overflow-hidden shadow-lg transition duration-200 ease-in-out transform hover:-translate-y-1 hover:shadow-2xl rounded-lg w-72 cursor-pointer m-auto mx-3">
+    <div className="text-gray-600 overflow-hidden shadow-lg transition duration-200 ease-in-out transform hover:-translate-y-1 hover:shadow-2xl rounded-lg w-72 cursor-pointer m-auto mx-3">
       <div className="w-full block h-full">
         <img
           className="h-48 w-full object-cover"
@@ -48,14 +17,14 @@ function Cardpledge() {
             <div className="w-2/3 h-full text-center text-xs text-white bg-priorange rounded-full"></div>
           </div>
           <div className="flex flex-start justify-between pt-8">
-            <p className="text-gray-900 text-2xl">AU$ 12,222</p>
-            <p className="text-gray-900 text-2xl">12</p>
+            <p className="text-pridark text-2xl">AU$ 12,222</p>
+            <p className="text-pridark text-2xl">12</p>
           </div>
           <div className="flex flex-start justify-between">
-            <p className="text-purple-800 text-md">
+            <p className=" text-md ">
               of {Math.floor("12000")} stretch
             </p>
-            <p className="text-gray-900 text-md">days left</p>
+            <p className=" text-md">days left</p>
           </div>
             <button className="w-full h-12 rounded-xl text-white text-lg mt-3 bg-prigreen transition-colors duration-700   hover:bg-gray-700">Pledge Now</button>
         </div>
