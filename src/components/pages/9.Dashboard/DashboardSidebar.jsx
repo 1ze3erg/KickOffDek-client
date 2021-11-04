@@ -1,6 +1,7 @@
 import { FiHome, FiSettings } from "react-icons/fi";
 import { BsGift, BsHeart } from "react-icons/bs";
 import { MdOutlineDashboardCustomize } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 function DashboardSidebar({ Home, Preference, MyPledge, SavedProject, MyProject, CurrentProject }) {
     return (
@@ -76,10 +77,11 @@ function DashboardSidebar({ Home, Preference, MyPledge, SavedProject, MyProject,
                 <MdOutlineDashboardCustomize />
                 My Project
             </button>
-            {/* <button onClick={()=>{Home(false); Preference(false); MyPledge(false); SavedProject(false); MyProject(false); CurrentProject(true) }} className="flex flex-row gap-2 items-center"><AiOutlineFund />Current Project</button> */}
-            <button className="mt-10 px-2 ml-10 h-12 rounded-xl bg-priorange text-white hover:bg-red-500">
-                Create Campaign
-            </button>
+            <Link to="/create-project">
+                <button className="mt-10 px-2 ml-10 h-12 rounded-xl bg-priorange text-white hover:bg-red-500">
+                    Create Campaign
+                </button>
+            </Link>
         </div>
     );
 }
