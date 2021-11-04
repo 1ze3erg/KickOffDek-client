@@ -57,7 +57,7 @@ function RewardOverview({ setShowRewardOverview, setShowRewardDetail, newReward,
                             setShowRewardOverview(false);
                             setShowRewardDetail(true);
                         }}
-                        // disabled={buttonNextDisabled}
+                        disabled={buttonNextDisabled}
                     >
                         Next
                     </button>

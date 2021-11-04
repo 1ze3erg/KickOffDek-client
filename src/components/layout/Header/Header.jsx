@@ -14,7 +14,7 @@ function Header() {
     const { auth } = useAppContext();
     const { pathname } = useLocation();
     console.log(pathname);
-    console.log(pathname.slice(0, 13));
+    console.log(pathname.slice(0, 7));
 
     const [user, setUser] = useState({});
     const [showLogin, setShowLogin] = useState(false);
@@ -42,11 +42,10 @@ function Header() {
     };
 
     const bgColor =
-        pathname === "/explore" ||
-        pathname === "/about" ||
-        pathname.slice(0, 8) === "/project" ||
-        pathname.slice(0, 7) === "/pledge"
+        pathname === "/explore" || pathname === "/about" || pathname.slice(0, 8) === "/project"
             ? "bg-pridark"
+            : pathname.slice(0, 7) === "/pledge"
+            ? "bg-prigreen"
             : "bg-white";
 
     const textColor =
@@ -58,15 +57,24 @@ function Header() {
             : "text-black";
 
     const showEditorProjectHeader = pathname.slice(0, 13) === "/edit-project" ? true : false;
+    const showPledgePage = pathname.slice(0, 7) === "/pledge" ? true : false;
 
     return (
         <nav className={`flex justify-between ${bgColor} ${textColor} w-full`}>
             <div className="text-lg px-5 xl:px-12 py-3 flex w-full items-center justify-between">
                 <div className="flex flex-row align-center gap-10">
-                    <Link to="/home">
-                        <img className="h-12 rounded-md drop-shadow-sm" src="https://picsum.photos/500" alt="logo" />
-                    </Link>
-                    {!showEditorProjectHeader && (
+                    {!showPledgePage ? (
+                        <Link to="/home">
+                            <img
+                                className="h-12 rounded-md drop-shadow-sm"
+                                src="https://picsum.photos/500"
+                                alt="logo"
+                            />
+                        </Link>
+                    ) : (
+                        <h1 className="text-xl">Pledge</h1>
+                    )}
+                    {!showEditorProjectHeader && !showPledgePage && (
                         <ul className="hidden md:flex px-4 mx-auto items-center font-heading space-x-12 gap-5">
                             <Link to="/explore">
                                 <li>
@@ -88,10 +96,10 @@ function Header() {
                         </ul>
                     )}
                 </div>
-                <div className="">
+                <div>
                     <ul className="hidden md:flex px-4 mx-auto space-x-12">
                         {auth ? (
-                            !showEditorProjectHeader ? (
+                            !showEditorProjectHeader && !showPledgePage ? (
                                 <div className="flex items-center">
                                     <Link to="/profile/izeberg">
                                         <li>
@@ -118,12 +126,16 @@ function Header() {
                                         </li>
                                     </Link>
                                 </div>
-                            ) : (
+                            ) : !showPledgePage ? (
                                 <Link to="/dashboard">
                                     <button className="text-base font-medium text-gray-600 hover:bg-gray-100 px-6 py-3 rounded-lg flex items-center justify-center">
                                         <IoClose className="text-lg mr-1" />
                                         <span>Close Editor</span>
                                     </button>
+                                </Link>
+                            ) : (
+                                <Link to="/explore">
+                                    <IoClose className="cursor-pointer text-xl my-3" />
                                 </Link>
                             )
                         ) : (

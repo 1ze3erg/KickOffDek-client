@@ -86,7 +86,7 @@ function RewardDetail(props) {
                             setShowRewardDetail(false);
                             setShowRewardAdditional(true);
                         }}
-                        // disabled={buttonNextDisabled}
+                        disabled={buttonNextDisabled}
                     >
                         Next
                     </button>
