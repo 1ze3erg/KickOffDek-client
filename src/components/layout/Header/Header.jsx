@@ -9,6 +9,7 @@ import ModalPassword from "./ModalPassword";
 import ModalRegister from "./ModalRegister";
 import ModalSuccess from "./ModalSuccess";
 import axios from "../../../config/axios";
+import logo from "../img/KICKOFFDEKLight.jpg";
 
 function Header() {
     const { auth } = useAppContext();
@@ -64,13 +65,23 @@ function Header() {
             <div className="text-lg px-5 xl:px-12 py-3 flex w-full items-center justify-between">
                 <div className="flex flex-row align-center gap-10">
                     {!showPledgePage ? (
-                        <Link to="/home">
-                            <img
-                                className="h-12 rounded-md drop-shadow-sm"
-                                src="https://picsum.photos/500"
-                                alt="logo"
-                            />
-                        </Link>
+                        <>
+                            <Link to="/home">
+                                <img className="h-12 rounded-md drop-shadow-sm" src={logo} alt="logo" />
+                            </Link>
+                            <ul className="hidden md:flex px-4 mx-auto items-center font-heading space-x-12 gap-5">
+                                <Link to="/explore">
+                                    <li>
+                                        <span className="hover:text-gray-400">Explore</span>
+                                    </li>
+                                </Link>
+                                <Link to="/about">
+                                    <li>
+                                        <span className="hover:text-gray-400">About</span>
+                                    </li>
+                                </Link>
+                            </ul>
+                        </>
                     ) : (
                         <h1 className="text-xl">Pledge</h1>
                     )}
