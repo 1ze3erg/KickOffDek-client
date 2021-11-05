@@ -1,11 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { BsChevronDown, BsChevronUp, BsPencil } from "react-icons/bs";
 import { AiOutlineWarning, AiOutlineTrophy } from "react-icons/ai";
 import { CgSandClock } from "react-icons/cg";
+import axios from "../../../config/axios";
 
-function MyProjectItem({ elem }) {
+function MyProjectItem({ projectInfo }) {
     const [showDetail, setShowDetail] = useState(false);
+    const [pledges, setPledges] = useState([]);
+
+    useEffect(() => {
+        axios
+            .get(`/pledges/get-by-project-id/${projectInfo?.id}`)
+            .then((res) => {
+                setPledges(res.data);
+            })
+            .catch((err) => {
+                console.dir(err);
+            });
+    }, [projectInfo?.id]);
 
     function renderProjectStatus(status) {
         if (status === "live") {
@@ -45,19 +58,21 @@ function MyProjectItem({ elem }) {
         }
     }
 
+    const totalPledge = pledges.reduce((total, elem) => total + +elem.amount, 0);
+
     return (
         <div
             className="border-b border-gray-300 hover:bg-gray-200 grid grid-cols-12 px-7 py-5 gap-4 w-full items-center"
-            key={elem.id}
+            key={projectInfo?.id}
         >
             <>
                 <div className="col-span-6 flex flex-row items-center">
-                    {renderProjectStatus(elem.status)}
-                    <h1 className="font-semibold text-pridark">{elem.title}</h1>
+                    {renderProjectStatus(projectInfo?.status)}
+                    <h1 className="font-semibold text-pridark">{projectInfo?.title}</h1>
                 </div>
-                <div className="col-span-2">$0 pledged</div>
+                <div className="col-span-2">${totalPledge} pledged</div>
                 <div className="col-span-2">
-                    <Link to={`/edit-project/${elem.id}`}>
+                    <Link to={`/edit-project/${projectInfo?.id}`}>
                         <button className="w-full bg-prigreen transition-colors duration-700 text-white rounded-xl hover:bg-green-800 px-4 py-2">
                             Project Editor
                         </button>
@@ -79,9 +94,9 @@ function MyProjectItem({ elem }) {
                         <span className="flex-1">Ends</span>
                     </div>
                     <div className="flex justify-between items-center">
-                        <span className="flex-1">{elem.Type?.name}</span>
-                        <span className="flex-1">{elem.startDate || "Not Ready"}</span>
-                        <span className="flex-1">{elem.endDate}</span>
+                        <span className="flex-1">{projectInfo.Type?.name}</span>
+                        <span className="flex-1">{projectInfo?.startDate || "Not Ready"}</span>
+                        <span className="flex-1">{projectInfo?.endDate}</span>
                     </div>
                 </div>
             )}
