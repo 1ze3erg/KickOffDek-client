@@ -41,6 +41,7 @@ function CreateProject() {
             .get("/users/get-user")
             .then((res) => {
                 setUserInfo(res.data);
+                setInput((currentState) => ({ ...currentState, organization: res.data?.username }));
             })
             .catch((err) => {
                 console.dir(err);

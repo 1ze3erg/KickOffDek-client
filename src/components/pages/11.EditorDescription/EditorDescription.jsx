@@ -64,7 +64,7 @@ function EditorDescription() {
                         <CKEditor
                             editor={DecoupledEditor}
                             config={editorConfiguration}
-                            data={campaignStory}
+                            data={campaignStory || ""}
                             onChange={(event, editor) => {
                                 const data = editor.getData();
                                 console.log({ event, editor, data });
@@ -90,7 +90,7 @@ function EditorDescription() {
                         <CKEditor
                             editor={DecoupledEditor}
                             config={editorConfiguration}
-                            data={budgetOverview}
+                            data={budgetOverview || ""}
                             onChange={(event, editor) => {
                                 const data = editor.getData();
                                 console.log({ event, editor, data });

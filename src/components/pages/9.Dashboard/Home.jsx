@@ -23,7 +23,6 @@ function Home({ Home, MyProject }) {
                         Explore
                     </button>
                 </Link>
-
                 <button
                     className="rounded-xl text-white bg-priorange hover:bg-red-500 w-48 h-10 text-md font-semibold mx-3"
                     onClick={() => {

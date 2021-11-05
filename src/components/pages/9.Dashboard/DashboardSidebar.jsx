@@ -1,7 +1,7 @@
+import { Link } from "react-router-dom";
 import { FiHome, FiSettings } from "react-icons/fi";
 import { BsGift, BsHeart } from "react-icons/bs";
 import { MdOutlineDashboardCustomize } from "react-icons/md";
-import { Link } from "react-router-dom";
 
 function DashboardSidebar({ Home, Preference, MyPledge, SavedProject, MyProject, CurrentProject }) {
     return (

@@ -6,7 +6,7 @@ function CreateProfileDetail({ setShowCampaignDetail, setShowProfileDetail, setS
     const { categoryId, organization, tagline, province, country, about, facebook, instagram, twitter, website } =
         input;
     const [categories, setCategories] = useState([]);
-    const [err, setErr] = useState({ organization: "" });
+    const [err, setErr] = useState({ organization: "", tagline: "" });
 
     useEffect(() => {
         axios
@@ -20,9 +20,9 @@ function CreateProfileDetail({ setShowCampaignDetail, setShowProfileDetail, setS
     }, []);
 
     const handleChangeInput = (e) => {
-        if (e.target.name === "organization" && e.target.value.trim() === "") {
+        if ((e.target.name === "organization" || e.target.name === "tagline") && e.target.value.trim() === "") {
             setInput((currentState) => ({ ...currentState, [e.target.name]: "" }));
-            setErr(currentState => ({ ...currentState, organization: "organization is required" }))
+            setErr((currentState) => ({ ...currentState, [e.target.name]: `${e.target.name} is required` }));
         } else if (e.target.name === "categoryId") {
             setInput((currentState) => ({
                 ...currentState,
@@ -31,11 +31,11 @@ function CreateProfileDetail({ setShowCampaignDetail, setShowProfileDetail, setS
             }));
         } else {
             setInput((currentState) => ({ ...currentState, [e.target.name]: e.target.value }));
-            setErr(currentState => ({ ...currentState, [e.target.name]: "" }))
+            setErr((currentState) => ({ ...currentState, [e.target.name]: "" }));
         }
     };
 
-    const buttonNextDisabled = !categoryId || !organization;
+    const buttonNextDisabled = !categoryId || !organization || !tagline;
 
     return (
         <div className="col-span-3 flex flex-col justify-start py-5 px-3">
@@ -94,6 +94,7 @@ function CreateProfileDetail({ setShowCampaignDetail, setShowProfileDetail, setS
                             value={tagline}
                             onChange={handleChangeInput}
                         />
+                        {err.tagline && <p className="text-xs pt-2 text-red-700">{err.tagline}</p>}
                     </div>
                     <div className="mb-5">
                         <label htmlFor="province" className="text-sm">

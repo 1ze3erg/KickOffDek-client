@@ -30,6 +30,7 @@ function CreateCampaignDetail({ setShowProjectType, setShowCampaignDetail, setSh
                 setErr((currentState) => ({ ...currentState, [e.target.name]: "target must be numeric" }));
             } else {
                 setInput((currentState) => ({ ...currentState, [e.target.name]: e.target.value }));
+                setErr((currentState) => ({ ...currentState, [e.target.name]: "" }));
             }
         } else if (e.target.name === "currencyId") {
             setInput((currentState) => ({
