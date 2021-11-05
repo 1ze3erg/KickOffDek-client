@@ -23,7 +23,6 @@ axios.interceptors.response.use(
             removeToken();
             removeRole();
             window.location.reload();
-            return;
         }
         return Promise.reject(err);
     }

@@ -79,9 +79,7 @@ function Home() {
                         Creative work shows us what’s possible.
                     </h1>
                     <h1 className="text-pridark text-xl  lg:text-3xl text-center mb-6">Help fund it here.</h1>
-                    <h3 className="text-sm text-priorange  lg:text-md text-center mb-6">
-                        WITHIN THE LAST DAY
-                    </h3>
+                    <h3 className="text-sm text-priorange  lg:text-md text-center mb-6">WITHIN THE LAST DAY</h3>
                     <div className="grid grid-cols-3 gap-4 ">
                         <div className="flex flex-col justify-center items-center rounded-xl w-96 border-2 border-gray-300">
                             <span className="py-3 text-3xl text-prigreen">123</span>

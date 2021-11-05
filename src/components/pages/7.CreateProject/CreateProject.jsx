@@ -95,7 +95,7 @@ function CreateProject() {
                 )}
                 {showProjectVisual && (
                     <CreateProjectVisual
-                        setShowCampaignDetail={setShowCampaignDetail}
+                        setShowProfileDetail={setShowProfileDetail}
                         setShowProjectVisual={setShowProjectVisual}
                         input={input}
                         setInput={setInput}

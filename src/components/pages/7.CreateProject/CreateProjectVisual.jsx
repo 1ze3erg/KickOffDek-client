@@ -4,7 +4,7 @@ import { BsFillCloudArrowUpFill } from "react-icons/bs";
 import { FiAlertCircle } from "react-icons/fi";
 import axios from "../../../config/axios";
 
-function CreateProjectVisual({ setShowCampaignDetail, setShowProjectVisual, input, setInput, clickCreateProject }) {
+function CreateProjectVisual({ setShowProfileDetail, setShowProjectVisual, input, setInput, clickCreateProject }) {
     const { coverImage, campaignImage } = input;
     const [coverImageStatus, setCoverImageStatus] = useState(false);
     const [campaignImageStatus, setCampaignImageStatus] = useState(false);
@@ -39,7 +39,7 @@ function CreateProjectVisual({ setShowCampaignDetail, setShowProjectVisual, inpu
                     <MdKeyboardBackspace
                         className="text-2xl mr-2 cursor-pointer"
                         onClick={() => {
-                            setShowCampaignDetail(true);
+                            setShowProfileDetail(true);
                             setShowProjectVisual(false);
                         }}
                     />

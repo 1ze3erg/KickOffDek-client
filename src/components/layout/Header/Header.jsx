@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useAppContext } from "../../../contexts/AppContext";
-import { removeRole, removeToken } from "../../../helpers/localStorage";
+import { getToken, removeRole, removeToken } from "../../../helpers/localStorage";
 import { IoClose } from "react-icons/io5";
 import ModalChangePassword from "./ModalChangePassword";
 import ModalLogin from "./ModalLogin";
@@ -26,14 +26,16 @@ function Header() {
     const [checkedEmail, setCheckedEmail] = useState("");
 
     useEffect(() => {
-        axios
-            .get("/users/get-user")
-            .then((res) => {
-                setUser(res.data);
-            })
-            .catch((err) => {
-                console.dir(err);
-            });
+        if (getToken()) {
+            axios
+                .get("/users/get-user")
+                .then((res) => {
+                    setUser(res.data);
+                })
+                .catch((err) => {
+                    console.dir(err);
+                });
+        }
     }, []);
 
     const clickLogout = () => {

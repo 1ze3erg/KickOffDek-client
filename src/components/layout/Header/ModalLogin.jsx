@@ -3,9 +3,9 @@ import { HiOutlineX } from "react-icons/hi";
 import { FaGofore } from "react-icons/fa";
 import { isEmail } from "validator";
 import { GoogleLogin } from "react-google-login";
-import axios from "../../../config/axios";
 import { clientId } from "../../../config/key";
 import { setRole, setToken } from "../../../helpers/localStorage";
+import axios from "../../../config/axios";
 
 function ModalLogin({ setShowLogin, setShowPassword, setShowRegister, setCheckedEmail }) {
     const [email, setEmail] = useState("");
