@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import ActivityCard from "./ActivityCard";
 import axios from "../../../config/axios";
 
 function ProjectActivity() {
-    const [activities, setActivities] = useState([]);
-
     const { projectId } = useParams();
-    console.log(projectId);
+    const [activities, setActivities] = useState([]);
 
     useEffect(() => {
         axios
@@ -19,7 +17,7 @@ function ProjectActivity() {
             .catch((err) => {
                 console.dir(err);
             });
-    }, []);
+    }, [projectId]);
 
     return (
         <div className="grid grid-cols-4 w-10/12 mx-auto">

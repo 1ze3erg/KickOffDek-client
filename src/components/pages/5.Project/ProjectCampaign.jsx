@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "../../../config/axios";
 import parse from "html-react-parser";
 
 function ProjectCampaign() {
-    const [project, setProject] = useState([]);
     const { projectId } = useParams();
+    const [project, setProject] = useState([]);
 
     useEffect(() => {
         try {
@@ -17,7 +17,7 @@ function ProjectCampaign() {
         } catch (error) {
             console.log(error);
         }
-    }, []);
+    }, [projectId]);
 
     const { campaignImage, pitchVideo, campaignStory } = project;
     console.log(project);
@@ -34,7 +34,7 @@ function ProjectCampaign() {
                         <h1 className="font-bold text-lg my-10">Project description is currently not available</h1>
                     )}
                 </p>
-                <iframe className="my-2 mx-auto" src={pitchVideo} width="700" height="500"></iframe>
+                <iframe className="my-2 mx-auto" src={pitchVideo} width="700" height="500" title="pitchVideo"></iframe>
             </div>
         </div>
     );
