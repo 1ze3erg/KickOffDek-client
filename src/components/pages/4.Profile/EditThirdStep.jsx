@@ -1,43 +1,39 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import axios from "../../../config/axios";
-// import { BsFillCloudArrowUpFill } from "react-icons/bs";
-// import { FiAlertCircle } from "react-icons/fi";
 
-function EditThirdStep({ facebook, instagram, twitter, website, userInfo, setShow2, setShow3 }) {
+function EditThirdStep({ user, setShow2, setShow3, setShowProfile, setShowEditor }) {
     const [userInfoChange, setUserInfoChange] = useState({
-        facebook: "",
-        instagram: "",
-        twitter: "",
-        website: "",
+        facebook: user.facebook,
+        instagram: user.instagram,
+        twitter: user.twitter,
+        website: user.website,
     });
-    useEffect(() => {
-        setUserInfoChange({ facebook, instagram, twitter, website });
-    }, [facebook, instagram, twitter, website]);
-
-    console.log("3rd step", userInfoChange);
 
     const clickNext = async (e) => {
         try {
-            e.preventDefault();
-            await axios
-                .put(`/users/update-user`, {
-                    facebook: userInfoChange.facebook,
-                    instagram: userInfoChange.instagram,
-                    twitter: userInfoChange.twitter,
-                    website: userInfoChange.website,
-                })
-                .then((res) => console.log(res.data));
+            await axios.put(`/users/update-user`, {
+                facebook: userInfoChange.facebook,
+                instagram: userInfoChange.instagram,
+                twitter: userInfoChange.twitter,
+                website: userInfoChange.website,
+            });
+            setShow3(false);
+            setShowProfile(true);
+            setShowEditor(false);
         } catch (err) {
             console.dir(err);
         }
     };
+
     const clickBack = () => {
         setShow3(false);
         setShow2(true);
     };
+
     const changeValueInput = (e) => {
-        setUserInfoChange((cur) => ({ ...cur, [e.target.name]: e.target.value })); // { username: "dupree", firstName, lastName, username: "izeberg" } => { username: "izeberg", firstName, lastName}
+        setUserInfoChange((cur) => ({ ...cur, [e.target.name]: e.target.value }));
     };
+
     return (
         <>
             <div className="grid grid-cols-2 gap-4 w-144 my-10">
@@ -51,13 +47,12 @@ function EditThirdStep({ facebook, instagram, twitter, website, userInfo, setSho
                             </span>
                         </div>
                         <input
+                            className="h-10 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-3 pr-12 sm:text-sm border-gray-300 rounded-md bg-gray-100"
                             type="text"
                             name="facebook"
                             id="facebook"
                             value={userInfoChange.facebook}
                             onChange={changeValueInput}
-                            className="h-10 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-3 pr-12 sm:text-sm border-gray-300 rounded-md"
-                            placeholder=""
                         />
                     </div>
                 </div>
@@ -69,13 +64,12 @@ function EditThirdStep({ facebook, instagram, twitter, website, userInfo, setSho
                             <span className="text-gray-700 px-2 sm:text-sm border-r border-gray-300">@</span>
                         </div>
                         <input
+                            className="h-10 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-3 pr-12 sm:text-sm border-gray-300 rounded-md bg-gray-100"
                             type="text"
                             name="instagram"
                             id="instagram"
                             value={userInfoChange.instagram}
                             onChange={changeValueInput}
-                            className="h-10 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-3 pr-12 sm:text-sm border-gray-300 rounded-md"
-                            placeholder="instagram"
                         />
                     </div>
                 </div>
@@ -87,13 +81,12 @@ function EditThirdStep({ facebook, instagram, twitter, website, userInfo, setSho
                             <span className="text-gray-700 px-2 sm:text-sm border-r border-gray-300">@</span>
                         </div>
                         <input
+                            className="h-10 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-3 pr-12 sm:text-sm border-gray-300 rounded-md bg-gray-100"
                             type="text"
                             name="twitter"
                             id="twitter"
                             value={userInfoChange.twitter}
                             onChange={changeValueInput}
-                            className="h-10 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-3 pr-12 sm:text-sm border-gray-300 rounded-md"
-                            placeholder="twitter"
                         />
                     </div>
                 </div>
@@ -105,29 +98,28 @@ function EditThirdStep({ facebook, instagram, twitter, website, userInfo, setSho
                             <span className="text-gray-700 px-2 sm:text-sm border-r border-gray-300">http://</span>
                         </div>
                         <input
+                            className="h-10 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-3 pr-12 sm:text-sm border-gray-300 rounded-md bg-gray-100"
                             type="text"
                             name="website"
                             id="website"
                             value={userInfoChange.website}
                             onChange={changeValueInput}
-                            className="h-10 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-3 pr-12 sm:text-sm border-gray-300 rounded-md"
-                            placeholder="Website"
                         />
                     </div>
                 </div>
             </div>
             <div className="flex items-center justify-center">
                 <button
-                    className="rounded-xl text-white bg-prigreen hover:bg-green-800 w-16 h-10 text-md font-semibold mx-3"
+                    className="rounded-xl text-white bg-prigreen hover:bg-green-800 px-5 py-2 text-md font-semibold mx-3"
                     onClick={clickBack}
                 >
                     Back
                 </button>
                 <button
-                    className="rounded-xl text-white bg-priorange hover:bg-red-500 w-16 h-10 text-md font-semibold mx-3"
+                    className="rounded-xl text-white bg-priorange hover:bg-red-500 px-5 py-2 text-md font-semibold mx-3"
                     onClick={clickNext}
                 >
-                    Next
+                    Save & Preview
                 </button>
             </div>
         </>

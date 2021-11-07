@@ -102,7 +102,7 @@ function Header() {
                                     <Link to={`/profile/${user.username}`}>
                                         <li>
                                             <img
-                                                className="w-14 rounded-full drop-shadow-sm mr-2"
+                                                className="w-14 h-14 rounded-full drop-shadow-sm mr-2"
                                                 src={user?.avatar}
                                                 alt="avatar"
                                             />
