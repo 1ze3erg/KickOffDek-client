@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { BsChevronDown, BsChevronUp, BsPencil } from "react-icons/bs";
 import { AiOutlineWarning, AiOutlineTrophy } from "react-icons/ai";
 import { CgSandClock } from "react-icons/cg";
+import { formatMoney } from "../../../helpers/format";
 import axios from "../../../config/axios";
 
 function MyProjectItem({ projectInfo }) {
@@ -62,15 +63,19 @@ function MyProjectItem({ projectInfo }) {
 
     return (
         <div
-            className="border-b border-gray-300 hover:bg-gray-200 grid grid-cols-12 px-7 py-5 gap-4 w-full items-center"
+            className="border-b border-gray-300 hover:bg-gray-200 grid grid-cols-12 px-5 py-5 gap-4 w-full items-center"
             key={projectInfo?.id}
         >
             <>
-                <div className="col-span-6 flex flex-row items-center">
+                <div className="col-span-5 flex flex-row items-center">
                     {renderProjectStatus(projectInfo?.status)}
                     <h1 className="font-semibold text-pridark">{projectInfo?.title}</h1>
                 </div>
-                <div className="col-span-2">${totalPledge} pledged</div>
+                <div className="col-span-3">
+                    {formatMoney(totalPledge, projectInfo.Currency?.name)} pledged
+                    <br />
+                    of {formatMoney(projectInfo.target, projectInfo.Currency?.name) || "N/A"} target
+                </div>
                 <div className="col-span-2">
                     <Link to={`/edit-project/${projectInfo?.id}`}>
                         <button className="w-full bg-prigreen transition-colors duration-700 text-white rounded-xl hover:bg-green-800 px-4 py-2">
@@ -79,7 +84,7 @@ function MyProjectItem({ projectInfo }) {
                     </Link>
                 </div>
                 <div
-                    className="text-prigreen hover:bg-gray-300 ml-7 flex flex-row justify-center items-center gap2 col-span-2 cursor-pointer rounded-xl py-2"
+                    className="text-prigreen hover:bg-gray-300 ml-5 flex flex-row justify-center items-center gap2 col-span-2 cursor-pointer rounded-xl py-2"
                     onClick={() => setShowDetail((currentState) => !currentState)}
                 >
                     {showDetail ? "Hide" : "Show"}&nbsp;
@@ -88,7 +93,7 @@ function MyProjectItem({ projectInfo }) {
             </>
             {showDetail && (
                 <div className="flex flex-col col-span-12">
-                    <div className="flex justify-between items-center">
+                    <div className="flex justify-between items-center font-semibold">
                         <span className="flex-1">Project</span>
                         <span className="flex-1">Starts</span>
                         <span className="flex-1">Ends</span>

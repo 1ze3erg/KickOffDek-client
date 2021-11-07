@@ -3,17 +3,16 @@ import { FiHome, FiSettings } from "react-icons/fi";
 import { BsGift, BsHeart } from "react-icons/bs";
 import { MdOutlineDashboardCustomize } from "react-icons/md";
 
-function DashboardSidebar({ Home, Preference, MyPledge, SavedProject, MyProject, CurrentProject }) {
+function DashboardSidebar({ setShowHome, setShowPreference, setShowMyPledge, setShowSavedProject, setShowMyProject }) {
     return (
         <div className="mx-4 flex flex-col items-start mt-5 gap-5 text-lg font-semibold">
             <button
                 onClick={() => {
-                    Home(true);
-                    Preference(false);
-                    MyPledge(false);
-                    SavedProject(false);
-                    MyProject(false);
-                    CurrentProject(false);
+                    setShowHome(true);
+                    setShowPreference(false);
+                    setShowMyPledge(false);
+                    setShowSavedProject(false);
+                    setShowMyProject(false);
                 }}
                 className="flex flex-row gap-2 items-center"
             >
@@ -22,12 +21,11 @@ function DashboardSidebar({ Home, Preference, MyPledge, SavedProject, MyProject,
             </button>
             <button
                 onClick={() => {
-                    Home(false);
-                    Preference(true);
-                    MyPledge(false);
-                    SavedProject(false);
-                    MyProject(false);
-                    CurrentProject(false);
+                    setShowHome(false);
+                    setShowPreference(true);
+                    setShowMyPledge(false);
+                    setShowSavedProject(false);
+                    setShowMyProject(false);
                 }}
                 className="flex flex-row gap-2 items-center"
             >
@@ -35,12 +33,11 @@ function DashboardSidebar({ Home, Preference, MyPledge, SavedProject, MyProject,
             </button>
             <button
                 onClick={() => {
-                    Home(false);
-                    Preference(false);
-                    MyPledge(true);
-                    SavedProject(false);
-                    MyProject(false);
-                    CurrentProject(false);
+                    setShowHome(false);
+                    setShowPreference(false);
+                    setShowMyPledge(true);
+                    setShowSavedProject(false);
+                    setShowMyProject(false);
                 }}
                 className="flex flex-row gap-2 items-center"
             >
@@ -49,12 +46,11 @@ function DashboardSidebar({ Home, Preference, MyPledge, SavedProject, MyProject,
             </button>
             <button
                 onClick={() => {
-                    Home(false);
-                    Preference(false);
-                    MyPledge(false);
-                    SavedProject(true);
-                    MyProject(false);
-                    CurrentProject(false);
+                    setShowHome(false);
+                    setShowPreference(false);
+                    setShowMyPledge(false);
+                    setShowSavedProject(true);
+                    setShowMyProject(false);
                 }}
                 className="flex flex-row gap-2 items-center"
             >
@@ -64,12 +60,11 @@ function DashboardSidebar({ Home, Preference, MyPledge, SavedProject, MyProject,
             <h1>Creating</h1>
             <button
                 onClick={() => {
-                    Home(false);
-                    Preference(false);
-                    MyPledge(false);
-                    SavedProject(false);
-                    MyProject(true);
-                    CurrentProject(false);
+                    setShowHome(false);
+                    setShowPreference(false);
+                    setShowMyPledge(false);
+                    setShowSavedProject(false);
+                    setShowMyProject(true);
                 }}
                 className="flex flex-row gap-2 items-center"
             >

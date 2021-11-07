@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { BiEditAlt } from "react-icons/bi";
 import { MdDeleteOutline } from "react-icons/md";
+import { useAppContext } from "../../../contexts/AppContext";
 import axios from "../../../config/axios";
 
 function Preference() {
-    const [userEmail, setUserEmail] = useState("");
+    const { user } = useAppContext();
     const [shippingAddress, setShippingAddress] = useState({
         recipient: "",
         address: "",
@@ -24,14 +25,6 @@ function Preference() {
     const [shippingAddresses, setShippingAddresses] = useState([]);
 
     useEffect(() => {
-        axios
-            .get("/users/get-user")
-            .then((res) => {
-                setUserEmail(res.data?.email);
-            })
-            .catch((err) => {
-                console.dir(err);
-            });
         axios
             .get("/shipping-addresses/get-by-user-id")
             .then((res) => {
@@ -54,9 +47,21 @@ function Preference() {
 
     const clickAddShippingAddress = async () => {
         try {
-            setShippingAddresses((currentState) => [...currentState, shippingAddress]);
-            await axios.post("/shipping-addresses/create", shippingAddress);
-            alert("Shipping address has been created");
+            let isError = true;
+            Object.keys(shippingAddress).forEach((elem) => {
+                if (shippingAddress[elem].trim() === "") {
+                    setErr((currentState) => ({ ...currentState, [elem]: `${elem} is required` }));
+                    isError = isError || true;
+                } else {
+                    isError = isError && false;
+                }
+            });
+
+            if (!isError) {
+                setShippingAddresses((currentState) => [...currentState, shippingAddress]);
+                await axios.post("/shipping-addresses/create", shippingAddress);
+                alert("Shipping address has been created");
+            }
         } catch (err) {
             console.dir(err);
         }
@@ -87,7 +92,7 @@ function Preference() {
                     type="text"
                     id="email"
                     name="email"
-                    value={userEmail}
+                    value={user.email}
                     disabled={true}
                 />
                 <h1 className="mt-2">This crowdfunding passport is registered through KickOffDek.</h1>
@@ -99,7 +104,7 @@ function Preference() {
             {shippingAddresses.map((elem, idx) => (
                 <div
                     className="grid grid-cols-12 border-b border-gray-300 px-7 py-2 gap-4 w-full items-center"
-                    key={elem.id}
+                    key={idx}
                 >
                     <div className="col-span-2 flex justify-center items-center text-3xl">
                         <span>{idx + 1}</span>

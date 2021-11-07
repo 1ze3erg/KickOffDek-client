@@ -99,7 +99,7 @@ function Header() {
                         {auth ? (
                             !showEditorProjectHeader && !showPledgePage ? (
                                 <div className="flex items-center">
-                                    <Link to="/profile/izeberg">
+                                    <Link to={`/profile/${user.username}`}>
                                         <li>
                                             <img
                                                 className="w-14 rounded-full drop-shadow-sm mr-2"
