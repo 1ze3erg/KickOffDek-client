@@ -47,11 +47,14 @@ function ModalPassword({ setShowLogin, setShowPassword, setShowChangePassword, c
                 className="min-w-screen h-screen animated fadeIn faster  fixed  left-0 top-0 flex justify-center items-center inset-0 z-50 outline-none focus:outline-none bg-no-repeat bg-center bg-cover"
                 id="modal-id"
             >
-                <div className="absolute backdrop-filter backdrop-blur-lg  inset-0 z-0"></div>
-                <div className="w-150  p-3 relative mx-auto my-auto rounded-xl shadow-lg  bg-white ">
+                <div
+                    className="absolute backdrop-filter backdrop-blur-lg inset-0 z-0"
+                    onClick={() => setShowPassword(false)}
+                ></div>
+                <div className="w-150 p-3 relative mx-auto my-auto rounded-xl shadow-lg bg-white ">
                     <div className="text-center p-3 flex-auto justify-center">
                         <HiOutlineX
-                            className="text-gray-900 absolute right-7 hover:text-red-800"
+                            className="text-gray-900 absolute right-7 hover:text-red-800 cursor-pointer"
                             onClick={() => setShowPassword(false)}
                         />
                         <h2 className="text-2xl py-4 text-gray-900 ">You have a KICKOFFDEK account!</h2>
@@ -96,7 +99,13 @@ function ModalPassword({ setShowLogin, setShowPassword, setShowChangePassword, c
                                 <span className="px-3"> Login</span>
                             </button>
                             <div>
-                                <button className="text-green-800" onClick={setShowChangePassword}>
+                                <button
+                                    className="text-green-800"
+                                    onClick={() => {
+                                        setShowChangePassword(true);
+                                        setShowPassword(false);
+                                    }}
+                                >
                                     Forgot Password?
                                 </button>
                             </div>

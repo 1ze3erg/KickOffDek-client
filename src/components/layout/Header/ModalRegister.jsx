@@ -76,13 +76,17 @@ function ModalRegister({ setShowLogin, setShowRegister, setShowChangePassword, s
 
     const clickRegister = async () => {
         try {
+            let isError = true;
             Object.keys(input).forEach((elem) => {
                 if (input[elem] === "") {
                     setErr((currentState) => ({ ...currentState, [elem]: `${elem} is required` }));
+                    isError = isError || true;
+                } else {
+                    isError = isError && false;
                 }
             });
 
-            if (!err.username && !err.email && !err.password) {
+            if (!isError) {
                 await axios.post("/users/register", input);
                 setShowRegister(false);
                 setShowSuccess(true);
@@ -98,11 +102,14 @@ function ModalRegister({ setShowLogin, setShowRegister, setShowChangePassword, s
                 className="min-w-screen h-screen animated fadeIn faster  fixed  left-0 top-0 flex justify-center items-center inset-0 z-50 outline-none focus:outline-none bg-no-repeat bg-center bg-cover"
                 id="modal-id"
             >
-                <div className="absolute backdrop-filter backdrop-blur-lg  inset-0 z-0"></div>
+                <div
+                    className="absolute backdrop-filter backdrop-blur-lg inset-0 z-0"
+                    onClick={() => setShowRegister(false)}
+                ></div>
                 <div className="w-150 p-3 relative mx-auto my-auto rounded-xl shadow-lg  bg-white ">
                     <div className="text-center p-3 flex-auto justify-center">
                         <HiOutlineX
-                            className="text-gray-900 absolute right-7 hover:text-red-800"
+                            className="text-gray-900 absolute right-7 hover:text-red-800 cursor-pointer"
                             onClick={() => setShowRegister(false)}
                         />
                         <h2 className="text-2xl py-2 text-gray-900 ">You don't have KICKOFFDEK account</h2>
