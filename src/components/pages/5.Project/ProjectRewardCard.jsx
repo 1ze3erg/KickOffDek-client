@@ -41,11 +41,13 @@ function ProjectRewardCard({ id, title, description, image, minAmount, limit, es
                             {HideShowButton}
                         </button>
                     </div>
-                    <div className="flex justify-center mt-4">
-                        <button className="rounded-lg bg-prigreen transition-colors duration-700   hover:bg-gray-700 text-white w-full h-10">
-                            <Link to={`/pledge/${projectId}/${id}`}>${minAmount} OR MORE</Link>
-                        </button>
-                    </div>
+                    <Link to={`/pledge/${projectId}/${id}`}>
+                        <div className="flex justify-center mt-4">
+                            <button className="rounded-lg bg-prigreen transition-colors duration-700   hover:bg-gray-700 text-white h-10 w-full">
+                                ${minAmount} OR MORE
+                            </button>
+                        </div>
+                    </Link>
                     <div className="flex flex-start text-xs mt-3 items-center">
                         <BsPerson />
                         <h1 className="ml-1"> 0 chosen / {limit} available</h1>

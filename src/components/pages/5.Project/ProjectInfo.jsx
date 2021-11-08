@@ -6,12 +6,13 @@ import { IoEarthOutline } from "react-icons/io5";
 import { formatMoney } from "../../../helpers/format";
 import { calDiffDay } from "../../../helpers/calculate";
 import axios from "../../../config/axios";
+import { Link } from "react-router-dom";
 
 function ProjectInfo() {
-  const { projectId } = useParams();
-  const [project, setProject] = useState({});
-  const [pledge, setPledge] = useState([]);
-  const [currencies, setCurrencies] = useState([]);
+    const { projectId } = useParams();
+    const [project, setProject] = useState({});
+    const [pledge, setPledge] = useState([]);
+    const [currencies, setCurrencies] = useState([]);
 
     const {
         Category,
@@ -29,7 +30,7 @@ function ProjectInfo() {
         website,
         coverImage,
         campaignImage,
-      } = project;
+    } = project;
 
     useEffect(() => {
         try {
@@ -44,17 +45,16 @@ function ProjectInfo() {
     }, [projectId]);
 
     useEffect(() => {
-      try {
-          const fetchPledge = async () => {
-              const res = await axios.get(`/pledges/get-by-project-id/${projectId}`);
-              setPledge(res?.data);
-          };
-          fetchPledge();
-      } catch (error) {
-          console.log(error);
-      }
-  }, [projectId]);
-
+        try {
+            const fetchPledge = async () => {
+                const res = await axios.get(`/pledges/get-by-project-id/${projectId}`);
+                setPledge(res?.data);
+            };
+            fetchPledge();
+        } catch (error) {
+            console.log(error);
+        }
+    }, [projectId]);
 
     useEffect(() => {
         axios
@@ -135,9 +135,11 @@ function ProjectInfo() {
                                 <p className="text-md">of {formatMoney(+target, currency)?.slice(0, -3) || 0} target</p>
                                 <p className="text-md">days left</p>
                             </div>
-                            <button className="w-full h-12 rounded-xl text-white text-lg mt-3 bg-prigreen transition-colors duration-700 hover:bg-gray-700">
-                                Pledge Now
-                            </button>
+                            <Link to={`/pledge/${projectId}/0`}>
+                                <button className="w-full h-12 rounded-xl text-white text-lg mt-3 bg-prigreen transition-colors duration-700 hover:bg-gray-700">
+                                    Pledge Now
+                                </button>
+                            </Link>
                         </div>
                     </div>
                 </div>

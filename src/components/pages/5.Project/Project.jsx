@@ -35,9 +35,11 @@ function Project() {
                 </div>
                 <div className="col-span-3 p-5">
                     <h1 className="text-2xl font-bold my-2">Pledge</h1>
-                    {reward.map((item) => {
-                        return <ProjectRewardCard key={item.id} {...item} />;
-                    })}
+                    {reward
+                        .sort((a, b) => a.minAmount - b.minAmount)
+                        .map((item) => {
+                            return <ProjectRewardCard key={item.id} {...item} />;
+                        })}
                 </div>
             </div>
         </div>
