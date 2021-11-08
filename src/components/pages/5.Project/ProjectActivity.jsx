@@ -20,13 +20,13 @@ function ProjectActivity() {
     }, [projectId]);
 
     return (
-        <div className="grid grid-cols-4 w-10/12 mx-auto">
-            <div className="col-span-3 mr-4">
-                <h1 className="text-2xl font-bold my-2">Activity</h1>
-                {activities.map((elem) => {
+        <div className="px-12 py-5">
+            <h1 className="text-3xl font-bold my-2 w-10/12 mx-auto">Activity</h1>
+            {activities
+                .map((elem) => {
                     return <ActivityCard key={elem.id} {...elem} />;
-                })}
-            </div>
+                })
+                .reverse()}
         </div>
     );
 }

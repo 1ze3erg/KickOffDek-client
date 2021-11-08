@@ -1,32 +1,41 @@
-import React from "react";
+import { IoChatbubblesOutline } from "react-icons/io5";
+import { AiOutlineProject } from "react-icons/ai";
+import { BiSitemap } from "react-icons/bi";
 
-function ProjectNav({ setPage }) {
-  return (
-    <div className="flex justify-center bg-gray-900">
-      <div>
-        <button
-          className="m-2 mx-8 p-1.5 rounded-md border border-black text-white bg-purple-600 hover:bg-white hover:text-black"
-          onClick={() => setPage(1)}
-        >
-          Campaign
-        </button>
-      </div>
+function ProjectNav({ page, setPage }) {
+    return (
+        <div className="flex justify-center bg-gray-100">
+            <button
+                className={`px-5 py-3 text-lg font-semibold  ${
+                    page === 1 ? "border-b-4 text-pridark border-pridark" : "text-prigreen"
+                } hover:text-pridark hover:border-pridark hover:border flex justify-center items-center`}
+                onClick={() => setPage(1)}
+            >
+                <AiOutlineProject className="mr-2" />
+                <span>Campaign</span>
+            </button>
 
-      <button
-        className="m-2 mx-8 p-1.5 rounded-md border border-black text-white bg-purple-600 hover:bg-white hover:text-black"
-        onClick={() => setPage(2)}
-      >
-        Activities
-      </button>
+            <button
+                className={`px-5 py-3 text-lg font-semibold  ${
+                    page === 2 ? "border-b-4 text-pridark border-pridark" : "text-prigreen"
+                } hover:text-pridark hover:border-pridark hover:border flex justify-center items-center`}
+                onClick={() => setPage(2)}
+            >
+                <BiSitemap className="mr-2" />
+                <span>Activities</span>
+            </button>
 
-      <button
-        className="m-2 mx-8 p-1.5 rounded-md border border-black text-white bg-purple-600 hover:bg-white hover:text-black"
-        onClick={() => setPage(3)}
-      >
-        Community
-      </button>
-    </div>
-  );
+            <button
+                className={`px-5 py-3 text-lg font-semibold  ${
+                    page === 3 ? "border-b-4 text-pridark border-pridark" : "text-prigreen"
+                } hover:text-pridark hover:border-pridark hover:border flex justify-center items-center`}
+                onClick={() => setPage(3)}
+            >
+                <IoChatbubblesOutline className="mr-2" />
+                <span>Community</span>
+            </button>
+        </div>
+    );
 }
 
 export default ProjectNav;

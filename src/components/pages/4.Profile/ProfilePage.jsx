@@ -11,7 +11,7 @@ function ProfilePage() {
 
     return (
         <div
-            className="bg-scroll h-full flex flex-row rounded-lg "
+            className="bg-scroll h-full flex flex-row"
             style={{
                 backgroundImage: `url(${user.avatar})`,
                 backgroundPosition: "center",

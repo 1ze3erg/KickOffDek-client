@@ -48,7 +48,7 @@ function UpdateHome({ setShowUpdateHome, setShowUpdateForm, updates, setUpdates 
                         >
                             <div className="flex justify-between">
                                 <h1 className="text-md font-regular text-gray-500 mb-5">
-                                    {new Date(elem.createdAt).toISOString().slice(0, 10)}
+                                    {new Date(elem.updatedAt).toLocaleString("en-GB")}
                                 </h1>
                                 <div className="flex">
                                     <FaEdit className="text-xl cursor-default mr-10 opacity-50" />

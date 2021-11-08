@@ -110,35 +110,33 @@ function PreviewEdit({ project }) {
                             </a>
                         </div>
                     </div>
-                    <div>
-                        <div className="text-gray-600 overflow-hidden shadow-lg transition duration-200 ease-in-out transform hover:-translate-y-1 hover:shadow-2xl rounded-lg w-72 cursor-pointer m-auto mx-3">
-                            <div className="w-full block h-full">
-                                <img
-                                    className="h-48 w-full object-cover"
-                                    alt="campaignImage"
-                                    src={campaignImage || "https://picsum.photos/1920/1080"}
-                                />
-                                <div className="absolute top-20 h-28 w-full bg-gradient-to-t from-gray-800 flex items-center justify-center">
-                                    <h1 className="text-2xl text-white line-clamp-2 mx-5">{title || "My Campaign"}</h1>
+                    <div className="text-gray-600 overflow-hidden shadow-lg transition duration-200 ease-in-out transform hover:-translate-y-1 hover:shadow-2xl rounded-lg w-72 cursor-pointer m-auto mx-3">
+                        <div className="w-full block h-full">
+                            <img
+                                className="h-48 w-full object-cover"
+                                alt="campaignImage"
+                                src={campaignImage || "https://picsum.photos/1920/1080"}
+                            />
+                            <div className="absolute top-20 h-28 w-full bg-gradient-to-t from-gray-800 flex items-center justify-center">
+                                <h1 className="text-2xl text-white line-clamp-2 mx-5">{title || "My Campaign"}</h1>
+                            </div>
+                            <div className="bg-white w-full p-4 flex flex-col pt-8">
+                                <div className="w-full h-4 bg-prilight rounded-full">
+                                    <div className="w-2/3 h-full text-center text-xs text-white bg-priorange rounded-full"></div>
                                 </div>
-                                <div className="bg-white w-full p-4 flex flex-col pt-8">
-                                    <div className="w-full h-4 bg-prilight rounded-full">
-                                        <div className="w-2/3 h-full text-center text-xs text-white bg-priorange rounded-full"></div>
-                                    </div>
-                                    <div className="flex flex-start justify-between pt-8">
-                                        <p className="text-pridark text-2xl">{formatMoney(0, currency)}</p>
-                                        <p className="text-pridark text-2xl">{calDiffDay(endDate) || 0}</p>
-                                    </div>
-                                    <div className="flex flex-start justify-between">
-                                        <p className="text-md">
-                                            of {formatMoney(+target, currency)?.slice(0, -3) || 0} target
-                                        </p>
-                                        <p className="text-md">days left</p>
-                                    </div>
-                                    <button className="w-full h-12 rounded-xl text-white text-lg mt-3 bg-prigreen transition-colors duration-700 hover:bg-gray-700">
-                                        Pledge Now
-                                    </button>
+                                <div className="flex flex-start justify-between pt-8">
+                                    <p className="text-pridark text-2xl">{formatMoney(0, currency)}</p>
+                                    <p className="text-pridark text-2xl">{calDiffDay(endDate) || 0}</p>
                                 </div>
+                                <div className="flex flex-start justify-between">
+                                    <p className="text-md">
+                                        of {formatMoney(+target, currency)?.slice(0, -3) || 0} target
+                                    </p>
+                                    <p className="text-md">days left</p>
+                                </div>
+                                <button className="w-full h-12 rounded-xl text-white text-lg mt-3 bg-prigreen transition-colors duration-700 hover:bg-gray-700">
+                                    Pledge Now
+                                </button>
                             </div>
                         </div>
                     </div>

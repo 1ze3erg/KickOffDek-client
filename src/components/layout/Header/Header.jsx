@@ -46,7 +46,7 @@ function Header() {
     const bgColor =
         pathname === "/explore" || pathname === "/about" || pathname.slice(0, 8) === "/project"
             ? "bg-pridark"
-            : pathname.slice(0, 7) === "/pledge"
+            : pathname.slice(0, 7) === "/pledge" || pathname.slice(0, 8) === "/profile"
             ? "bg-prigreen"
             : "bg-white";
 
@@ -54,25 +54,32 @@ function Header() {
         pathname === "/explore" ||
         pathname === "/about" ||
         pathname.slice(0, 8) === "/project" ||
-        pathname.slice(0, 7) === "/pledge"
+        pathname.slice(0, 7) === "/pledge" ||
+        pathname.slice(0, 8) === "/profile"
             ? "text-white"
             : "text-black";
 
     const showEditorProjectHeader = pathname.slice(0, 13) === "/edit-project" ? true : false;
     const showPledgePage = pathname.slice(0, 7) === "/pledge" ? true : false;
+    const showProfilePage = pathname.slice(0, 8) === "/profile" ? true : false;
 
     return (
         <nav className={`flex justify-between ${bgColor} ${textColor} w-full`}>
             <div className="text-lg px-5 xl:px-12 py-3 flex w-full items-center justify-between">
                 <div className="flex flex-row align-center gap-10">
-                    {!showPledgePage ? (
+                    {showPledgePage ? (
+                        <h1 className="text-xl">Pledge</h1>
+                    ) : showProfilePage ? (
+                        <>
+                            <h1 className="text-xl font-bold">Profile</h1>
+                            <span>{user.username}</span>
+                        </>
+                    ) : (
                         <Link to="/home">
                             <img className="h-12 rounded-md drop-shadow-sm" src={logo} alt="logo" />
                         </Link>
-                    ) : (
-                        <h1 className="text-xl">Pledge</h1>
                     )}
-                    {!showEditorProjectHeader && !showPledgePage && (
+                    {!showEditorProjectHeader && !showPledgePage && !showProfilePage && (
                         <ul className="hidden md:flex px-4 mx-auto items-center font-heading space-x-12 gap-5">
                             <Link to="/explore">
                                 <li>
@@ -97,7 +104,22 @@ function Header() {
                 <div>
                     <ul className="hidden md:flex px-4 mx-auto space-x-12">
                         {auth ? (
-                            !showEditorProjectHeader && !showPledgePage ? (
+                            showEditorProjectHeader ? (
+                                <Link to="/dashboard">
+                                    <button className="text-base font-medium text-gray-600 hover:bg-gray-100 px-6 py-3 rounded-lg flex items-center justify-center">
+                                        <IoClose className="text-lg mr-1" />
+                                        <span>Close Editor</span>
+                                    </button>
+                                </Link>
+                            ) : showPledgePage ? (
+                                <Link to="/explore">
+                                    <IoClose className="cursor-pointer text-xl my-3" />
+                                </Link>
+                            ) : showProfilePage ? (
+                                <Link to="/dashboard">
+                                    <IoClose className="cursor-pointer text-xl my-3" />
+                                </Link>
+                            ) : (
                                 <div className="flex items-center">
                                     <Link to={`/profile/${user.username}`}>
                                         <li>
@@ -124,17 +146,6 @@ function Header() {
                                         </li>
                                     </Link>
                                 </div>
-                            ) : !showPledgePage ? (
-                                <Link to="/dashboard">
-                                    <button className="text-base font-medium text-gray-600 hover:bg-gray-100 px-6 py-3 rounded-lg flex items-center justify-center">
-                                        <IoClose className="text-lg mr-1" />
-                                        <span>Close Editor</span>
-                                    </button>
-                                </Link>
-                            ) : (
-                                <Link to="/explore">
-                                    <IoClose className="cursor-pointer text-xl my-3" />
-                                </Link>
                             )
                         ) : (
                             <li>
