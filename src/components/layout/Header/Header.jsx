@@ -93,7 +93,7 @@ function Header() {
                                     </li>
                                 </Link>
                                 {auth && (
-                                    <Link to="/create-project">
+                                    <Link to="/create">
                                         <li>
                                             <span className="hover:text-gray-500">Create</span>
                                         </li>

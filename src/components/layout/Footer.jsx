@@ -1,6 +1,6 @@
 function Footer() {
     return (
-        <div className=" mx-auto w-full bg-prigreen flex flex-row justify-around p-4">
+        <div className=" mx-auto w-full bg-pridark flex flex-row justify-around p-4">
             <ul className="flex flex-start gap-x-20 text-white">
                 <div className="">
                     <ul className="mx-10">

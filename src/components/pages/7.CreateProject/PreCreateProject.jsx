@@ -1,10 +1,35 @@
+import React from "react";
+import { Link } from "react-router-dom";
 import { BsTrophy } from "react-icons/bs";
 import { GiReceiveMoney, GiWorld } from "react-icons/gi";
 import { HiOutlineLightBulb } from "react-icons/hi";
 
-function About() {
+function PreCreateProject() {
   return (
     <>
+      <div className="flex flex-row container mx-auto my-20 gap-20">
+        <div className="w-1/2">
+          <iframe
+            title="vimeo-player"
+            src="https://player.vimeo.com/video/518442550?h=8a5670682a"
+            width="640"
+            height="360"
+            frameborder="0"
+            allowfullscreen
+          ></iframe>
+        </div>
+        <div className="w-1/2 gap-5">
+          <h1 className="text-4xl font-semibold my-5">How it works</h1>
+          <h2 className="text-sm my-5">
+            We provide the best tools for creators to plan, draft and execute
+            amazing crowdfunding campaigns for a range of different categories
+            and projects.
+          </h2>
+          <Link className="text-pripurple my-10" to="/create-project">
+            Create
+          </Link>
+        </div>
+      </div>
       <div className="bg-pridark">
         <div className="container mx-auto py-32  text-prilight grid grid-cols-1 md:grid-cols-4 sm:grid-cols-2">
           <div className="flex flex-col items-center justify-center">
@@ -104,14 +129,15 @@ function About() {
             Founded in Sydney with our head office in Bangkok,
           </h1>
           <h1 className="text-4xl flex items-center justify-center">
-            KICKOFFDEK is 100%
-            Thai owned & operated.
+            KICKOFFDEK is 100% Thai owned & operated.
           </h1>
-          <button className="my-10 bg-white text-pridark font-semibold p-3 rounded-lg">Meet the team</button>
+          <button className="my-10 bg-white text-pridark font-semibold p-3 rounded-lg">
+            Meet the team
+          </button>
         </div>
       </div>
     </>
   );
 }
 
-export default About;
+export default PreCreateProject;
