@@ -20,7 +20,6 @@ function ProjectCampaign() {
     }, [projectId]);
 
     const { campaignImage, pitchVideo, campaignStory } = project;
-    console.log(project);
 
     return (
         <div className="px-12 py-5">

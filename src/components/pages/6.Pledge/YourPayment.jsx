@@ -1,11 +1,25 @@
 import { GiCheckMark } from "react-icons/gi";
+import { formatMoney } from "../../../helpers/format";
 import PaymentDetail from "./payment_subComps/PaymentDetail";
 import PledgeType from "./payment_subComps/PledgeType";
 import CardRewardNoButton from "./YourPledge_subComps/CardRewardNoButton";
 import PledgeSummaryAmount from "./YourPledge_subComps/PledgeSummaryAmount";
 
-function YourPayment({ show1, show2, show3, setShow3, setShow2, setShow4, chosenReward, amount, target, endDate }) {
-    let sumtotal = amount * +chosenReward.minAmount;
+function YourPayment(props) {
+    const {
+        show1,
+        show2,
+        show3,
+        setShow3,
+        setShow2,
+        setShow4,
+        project,
+        chosenReward,
+        payment,
+        setPayment,
+        pledgeCreated,
+        setPledgeCreated,
+    } = props;
 
     return (
         <div className="my-1">
@@ -18,20 +32,39 @@ function YourPayment({ show1, show2, show3, setShow3, setShow2, setShow4, chosen
                     {show1 || show2 || show3 ? 3 : <GiCheckMark />}
                 </h1>
                 <h1 className="mx-3 font-semibold">Your Payment</h1>
-                <h1 className="text-sm">US$ {sumtotal}</h1>
+                <h1 className="text-sm mr-2">
+                    {formatMoney(pledgeCreated.quantity * chosenReward.minAmount || 0, project.Currency?.name)}
+                </h1>
+                <h1 className="text-sm mr-2">{payment.cardProvider}</h1>
+                <h1 className="text-sm">
+                    {payment.cardNumber && "**** **** ****"}&nbsp;
+                    {payment.cardNumber?.substring(payment.cardNumber.length - 4, payment.cardNumber.length)}
+                </h1>
             </div>
             {show3 && (
                 <>
                     <div className="flex flex-row justify-center mb-5">
-                        <div className="w-1/2">
-                            <PaymentDetail />
+                        <div className="w-9/12">
+                            <PaymentDetail
+                                setPayment={setPayment}
+                                pledgeCreated={pledgeCreated}
+                                setPledgeCreated={setPledgeCreated}
+                            />
                         </div>
 
-                        <div className=" flex flex-col items-center justify-center w-1/2">
+                        <div className=" flex flex-col items-center justify-start w-3/12">
                             {/* Pledge Summary */}
-
-                            <PledgeSummaryAmount chosenReward={chosenReward} amount={amount} />
-                            <PledgeType target={target} endDate={endDate} />
+                            <PledgeSummaryAmount
+                                project={project}
+                                chosenReward={chosenReward}
+                                pledgeCreated={pledgeCreated}
+                            />
+                            <PledgeType
+                                type={project.Type?.name}
+                                target={project.target}
+                                endDate={project.endDate}
+                                currency={project.Currency?.name}
+                            />
                             {/* Card details */}
                             <div className="">
                                 <CardRewardNoButton chosenReward={chosenReward} />
@@ -39,13 +72,13 @@ function YourPayment({ show1, show2, show3, setShow3, setShow2, setShow4, chosen
                         </div>
                     </div>
                     {/* Button Confirm Payment*/}
-                    <div className="flex items-center justify-center">
+                    <div className="flex items-center justify-center mt-10">
                         <button
                             onClick={() => {
                                 setShow2(true);
                                 setShow3(false);
                             }}
-                            className="rounded-xl text-white bg-green-700 hover:bg-green-800 w-20  h-10 text-md font-semibold mx-3"
+                            className="rounded-xl text-white bg-prigreen hover:bg-green-800 px-5 py-2 text-md font-semibold mx-3"
                         >
                             Back
                         </button>
@@ -54,9 +87,9 @@ function YourPayment({ show1, show2, show3, setShow3, setShow2, setShow4, chosen
                                 setShow3(false);
                                 setShow4(true);
                             }}
-                            className="rounded-xl text-white bg-purple-700 hover:bg-purple-800 w-24 h-10 text-md font-semibold mx-3"
+                            className="rounded-xl text-white bg-priorange hover:bg-red-500 px-5 py-2 text-md font-semibold mx-3"
                         >
-                            Confirm
+                            Next
                         </button>
                     </div>
                 </>

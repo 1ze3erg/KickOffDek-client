@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import PledgeHeader from "./PledgeHeader";
 import YourDetail from "./YourDetail";
 import YourPayment from "./YourPayment";
@@ -10,14 +10,20 @@ import axios from "../../../config/axios";
 
 function Pledge() {
     const { projectId, rewardId } = useParams();
-    const [chosenRewardId, setChosenRewardId] = useState(+rewardId);
+    const history = useHistory();
     const [project, setProject] = useState({});
     const [rewards, setRewards] = useState([]);
     const [chosenReward, setChosenReward] = useState({});
-    const [amount, setAmount] = useState(1);
-    const [shippingInfo, setShippingInfo] = useState({});
-    const [addressCreated, setAddressCreated] = useState({});
-    const [pledgeCreated, setPledgeCreated] = useState({});
+    const [payment, setPayment] = useState({});
+    const [shippingAddress, setShippingAddress] = useState({});
+    const [pledgeCreated, setPledgeCreated] = useState({
+        rewardId: +rewardId,
+        shippingAddressId: "",
+        paymentId: "",
+        amount: "",
+        quantity: 1,
+        pledgeDate: "",
+    });
     const [show1, setShow1] = useState(true);
     const [show2, setShow2] = useState(false);
     const [show3, setShow3] = useState(false);
@@ -46,29 +52,38 @@ function Pledge() {
             .get(`/rewards/get-by-id/${+rewardId}`)
             .then((res) => {
                 setChosenReward(res.data);
+                setPledgeCreated((currentState) => ({ ...currentState, amount: res.data.minAmount }));
             })
             .catch((err) => {
                 console.dir(err);
             });
     }, [rewardId]);
 
-    const { title, target, endDate } = project;
+    const clickConfirmPledge = async () => {
+        try {
+            const res = await axios.post("/pledges/create", { ...pledgeCreated, pledgeDate: new Date() });
+            console.log(res.data);
+            alert("Pledge has been created");
+            history.push("/dashboard");
+        } catch (err) {
+            console.dir(err);
+        }
+    };
 
     return (
         <div>
-            <PledgeHeader title={title} />
+            <PledgeHeader title={project.title} />
             <div className="px-16 py-5">
                 <YourPledge
+                    project={project}
                     rewards={rewards}
-                    chosenRewardId={chosenRewardId}
-                    setChosenRewardId={setChosenRewardId}
                     chosenReward={chosenReward}
                     setChosenReward={setChosenReward}
-                    amount={amount}
-                    setAmount={setAmount}
                     show1={show1}
                     setShow1={setShow1}
                     setShow2={setShow2}
+                    pledgeCreated={pledgeCreated}
+                    setPledgeCreated={setPledgeCreated}
                 />
                 <YourDetail show1={show1} show2={show2} setShow1={setShow1} setShow2={setShow2} setShow3={setShow3} />
                 <YourPayment
@@ -78,10 +93,12 @@ function Pledge() {
                     setShow3={setShow3}
                     setShow2={setShow2}
                     setShow4={setShow4}
+                    project={project}
                     chosenReward={chosenReward}
-                    amount={amount}
-                    target={target}
-                    endDate={endDate}
+                    payment={payment}
+                    setPayment={setPayment}
+                    pledgeCreated={pledgeCreated}
+                    setPledgeCreated={setPledgeCreated}
                 />
                 <YourShippingAddress
                     show1={show1}
@@ -91,12 +108,9 @@ function Pledge() {
                     setShow3={setShow3}
                     setShow4={setShow4}
                     setShow5={setShow5}
-                    shippingInfo={shippingInfo}
-                    setShippingInfo={setShippingInfo}
-                    amount={amount}
-                    chosenReward={chosenReward}
-                    addressCreated={addressCreated}
-                    setAddressCreated={setAddressCreated}
+                    shippingAddress={shippingAddress}
+                    setShippingAddress={setShippingAddress}
+                    pledgeCreated={pledgeCreated}
                     setPledgeCreated={setPledgeCreated}
                 />
                 <YourSummary
@@ -107,9 +121,11 @@ function Pledge() {
                     show5={show5}
                     setShow4={setShow4}
                     setShow5={setShow5}
-                    pledgeCreated={pledgeCreated}
-                    shippingInfo={shippingInfo}
                     chosenReward={chosenReward}
+                    payment={payment}
+                    shippingAddress={shippingAddress}
+                    pledgeCreated={pledgeCreated}
+                    clickConfirmPledge={clickConfirmPledge}
                 />
             </div>
         </div>

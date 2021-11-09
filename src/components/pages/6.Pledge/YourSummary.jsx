@@ -1,19 +1,22 @@
 import { GiCheckMark } from "react-icons/gi";
-import { Link } from "react-router-dom";
 import PledgeSummary from "./summary_subComps/PledgeSummary";
 
-function YourSummary({
-    show1,
-    show2,
-    show3,
-    show4,
-    show5,
-    setShow4,
-    setShow5,
-    pledgeCreated,
-    shippingInfo,
-    chosenReward,
-}) {
+function YourSummary(props) {
+    const {
+        show1,
+        show2,
+        show3,
+        show4,
+        show5,
+        setShow4,
+        setShow5,
+        pledgeCreated,
+        payment,
+        shippingAddress,
+        chosenReward,
+        clickConfirmPledge
+    } = props;
+
     return (
         <div className="my-1">
             <div className="flex flex-row items-center ">
@@ -33,7 +36,8 @@ function YourSummary({
                         <PledgeSummary
                             pledgeCreated={pledgeCreated}
                             chosenReward={chosenReward}
-                            shippingInfo={shippingInfo}
+                            shippingAddress={shippingAddress}
+                            payment={payment}
                         />
                     </div>
                     <div className="flex items-center justify-center">
@@ -42,20 +46,13 @@ function YourSummary({
                                 setShow4(true);
                                 setShow5(false);
                             }}
-                            className="rounded-xl text-white bg-green-700 hover:bg-green-800 w-20  h-10 text-md font-semibold mx-3"
+                            className="rounded-xl text-white bg-prigreen hover:bg-green-800 px-5 py-2 text-md font-semibold mx-3"
                         >
                             Back
                         </button>
-                        <Link to="/">
-                            <button className="rounded-xl text-white bg-green-700 hover:bg-green-800 w-20  h-10 text-md font-semibold mx-3">
-                                Home
-                            </button>
-                        </Link>
-                        <Link to="/dashboard">
-                            <button className="rounded-xl text-white bg-purple-700 hover:bg-purple-800 w-24 h-10 text-md font-semibold mx-3">
-                                Dashboard
-                            </button>
-                        </Link>
+                        <button className="rounded-xl text-white bg-priorange hover:bg-red-500 px-5 py-2 text-md font-semibold mx-3" onClick={clickConfirmPledge}>
+                            Confirm Pledge
+                        </button>
                     </div>
                 </>
             )}
