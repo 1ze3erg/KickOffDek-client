@@ -4,18 +4,19 @@ import ChooseRewards from "./YourPledge_subComps/ChooseRewards";
 import PledgeSummaryAmount from "./YourPledge_subComps/PledgeSummaryAmount";
 import CardRewardNoButton from "./YourPledge_subComps/CardRewardNoButton";
 
-function YourPledge({
-    rewards,
-    chosenRewardId,
-    setChosenRewardId,
-    chosenReward,
-    setChosenReward,
-    amount,
-    setAmount,
-    show1,
-    setShow1,
-    setShow2,
-}) {
+function YourPledge(props) {
+    const {
+        show1,
+        setShow1,
+        setShow2,
+        project,
+        rewards,
+        chosenReward,
+        setChosenReward,
+        pledgeCreated,
+        setPledgeCreated,
+    } = props;
+    
     return (
         <div className="my-3 flex-col">
             <div className="flex flex-row items-center">
@@ -31,20 +32,23 @@ function YourPledge({
                     <div className="flex flex-row  justify-center">
                         <div className="w-1/2">
                             <ChooseRewards
+                                project={project}
                                 rewards={rewards}
-                                chosenRewardId={chosenRewardId}
-                                setChosenRewardId={setChosenRewardId}
+                                pledgeCreated={pledgeCreated}
+                                setPledgeCreated={setPledgeCreated}
                                 chosenReward={chosenReward}
                                 setChosenReward={setChosenReward}
-                                amount={amount}
-                                setAmount={setAmount}
                             />
                         </div>
                         <div className=" flex flex-col items-center justify-center w-1/2">
                             {/* Pledge Summary */}
-                            <PledgeSummaryAmount chosenReward={chosenReward} amount={amount} />
+                            <PledgeSummaryAmount
+                                project={project}
+                                chosenReward={chosenReward}
+                                pledgeCreated={pledgeCreated}
+                            />
                             {/* Card details */}
-                            {chosenRewardId ? (
+                            {pledgeCreated.rewardId ? (
                                 <div className="">
                                     <CardRewardNoButton chosenReward={chosenReward} />
                                 </div>
@@ -52,9 +56,9 @@ function YourPledge({
                         </div>
                     </div>
                     {/* Button Detail Checkout */}
-                    <div className="flex items-center justify-center">
-                        <Link to="/explore/project/activity/6">
-                            <button className="rounded-xl text-white bg-green-700 hover:bg-green-800 w-20  h-10 text-md font-semibold mx-3">
+                    <div className="flex items-center justify-center mt-10">
+                        <Link to={`/project/${project.id}`}>
+                            <button className="rounded-xl text-white bg-prigreen hover:bg-green-800 px-5 py-2 text-md font-semibold mx-3">
                                 Back
                             </button>
                         </Link>
@@ -63,7 +67,7 @@ function YourPledge({
                                 setShow1(false);
                                 setShow2(true);
                             }}
-                            className="rounded-xl text-white bg-purple-700 hover:bg-purple-800 w-24 h-10 text-md font-semibold mx-3"
+                            className="rounded-xl text-white bg-priorange hover:bg-red-500 px-5 py-2 text-md font-semibold mx-3"
                         >
                             Next
                         </button>

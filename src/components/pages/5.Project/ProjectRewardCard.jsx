@@ -18,6 +18,7 @@ function ProjectRewardCard({ id, title, description, image, minAmount, limit, es
             setHideShowButton("Show more");
         }
     };
+    
     return (
         <div className="overflow-hidden shadow-lg transform rounded-lg w-68 m-auto mx-3 text-pridark my-5">
             <div className="w-full block h-full">
@@ -44,7 +45,7 @@ function ProjectRewardCard({ id, title, description, image, minAmount, limit, es
                     <Link to={`/pledge/${projectId}/${id}`}>
                         <div className="flex justify-center mt-4">
                             <button className="rounded-lg bg-prigreen transition-colors duration-700   hover:bg-gray-700 text-white h-10 w-full">
-                                ${minAmount} OR MORE
+                                {minAmount} or More
                             </button>
                         </div>
                     </Link>

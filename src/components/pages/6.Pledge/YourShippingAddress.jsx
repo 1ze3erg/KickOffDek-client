@@ -1,68 +1,21 @@
 import { GiCheckMark } from "react-icons/gi";
 import ShipppingDetail from "./shipping_subComps/ShipppingDetail";
-import axios from "../../../config/axios";
 
-function YourShippingAddress({
-    show1,
-    show2,
-    show3,
-    show4,
-    setShow4,
-    setShow3,
-    setShow5,
-    shippingInfo,
-    setShippingInfo,
-    amount,
-    chosenReward,
-    addressCreated,
-    setAddressCreated,
-    setPledgeCreated,
-}) {
-    const total = amount * +chosenReward?.minAmount;
+function YourShippingAddress(props) {
+    const {
+        show1,
+        show2,
+        show3,
+        show4,
+        setShow4,
+        setShow3,
+        setShow5,
+        shippingAddress,
+        setShippingAddress,
+        pledgeCreated,
+        setPledgeCreated,
+    } = props;
 
-    const clickNextShipping = async (e) => {
-        try {
-            e.preventDefault();
-            await axios
-                .post(`/shipping-addresses/create`, {
-                    recipient: shippingInfo.recipient,
-                    address: shippingInfo.address,
-                    phoneNumber: shippingInfo.phoneNumber,
-                    postalCode: shippingInfo.postalCode,
-                    province: shippingInfo.province,
-                    country: shippingInfo.country,
-                })
-                .then((res) => {
-                    console.log(res.data);
-                    setAddressCreated(res.data);
-                });
-        } catch (err) {
-            console.dir(err);
-        }
-    };
-
-    const clickConfirmPledge = async (e) => {
-        try {
-            await axios
-                .post(`/pledges/create`, {
-                    rewardId: chosenReward.id,
-                    shippingAddressId: addressCreated.id,
-                    paymentId: 3,
-                    amount: total,
-                    quantity: amount,
-                    pledgeDate: new Date(),
-                })
-                .then((res) => {
-                    console.log(res.data);
-                    setPledgeCreated(res.data);
-                    alert("You are all set!");
-                    setShow4(false);
-                    setShow5(true);
-                });
-        } catch (err) {
-            console.dir(err);
-        }
-    };
     return (
         <div className="my-1">
             <div className="flex flex-row items-center">
@@ -74,11 +27,20 @@ function YourShippingAddress({
                     {show1 || show2 || show3 || show4 ? 4 : <GiCheckMark />}
                 </h1>
                 <h1 className="mx-3 font-semibold">Your Shipping Address</h1>
+                <h1 className="mr-2">{shippingAddress.recipient}</h1>
+                <h1 className="mr-2">{shippingAddress.address}</h1>
+                <h1 className="mr-2">{shippingAddress.province}</h1>
+                <h1 className="mr-2">{shippingAddress.country}</h1>
+                <h1 className="mr-2">{shippingAddress.postalCode}</h1>
             </div>
             {show4 && (
                 <>
                     {/* Shipping Detail */}
-                    <ShipppingDetail setShippingInfo={setShippingInfo} />
+                    <ShipppingDetail
+                        setShippingAddress={setShippingAddress}
+                        pledgeCreated={pledgeCreated}
+                        setPledgeCreated={setPledgeCreated}
+                    />
                     {/* Button */}
                     <div className="flex items-center justify-center">
                         <button
@@ -86,7 +48,7 @@ function YourShippingAddress({
                                 setShow3(true);
                                 setShow4(false);
                             }}
-                            className="rounded-xl text-white bg-green-700 hover:bg-green-800 w-20  h-10 text-md font-semibold mx-3"
+                            className="rounded-xl text-white bg-prigreen hover:bg-green-800 px-5 py-2 text-md font-semibold mx-3"
                         >
                             Back
                         </button>
@@ -95,15 +57,9 @@ function YourShippingAddress({
                                 setShow4(false);
                                 setShow5(true);
                             }}
-                            className="rounded-xl text-white bg-purple-700 hover:bg-purple-800 w-48 h-10 text-md font-semibold mx-3"
+                            className="rounded-xl text-white bg-priorange hover:bg-red-500 px-5 py-2 text-md font-semibold mx-3"
                         >
                             Next
-                        </button>
-                        <button
-                            onClick={clickConfirmPledge}
-                            className="rounded-xl text-white bg-purple-700 hover:bg-purple-800 w-48 h-10 text-md font-semibold mx-3"
-                        >
-                            Confirm Pledge
                         </button>
                     </div>
                 </>

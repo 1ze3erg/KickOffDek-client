@@ -69,12 +69,12 @@ function Header() {
                 <div className="text-lg px-5 xl:px-12 py-3 flex w-full items-center justify-between">
                     <div className="flex flex-row align-center gap-10">
                         {showPledgePage ? (
-                            <h1 className="text-xl">Pledge</h1>
+                            <h1 className="text-2xl">Pledge</h1>
                         ) : showProfilePage ? (
-                            <>
-                                <h1 className="text-xl font-bold">Profile</h1>
-                                <span>{user.username}</span>
-                            </>
+                            <div className="flex items-center">
+                                <h1 className="text-xl mr-5">Profile</h1>
+                                <h1 className="text-xl font-semibold">{user.username}</h1>
+                            </div>
                         ) : (
                             <Link to="/home">
                                 <img className="h-12 rounded-md drop-shadow-sm" src={logo} alt="logo" />

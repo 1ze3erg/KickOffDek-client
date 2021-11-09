@@ -6,7 +6,7 @@ function PledgeHeader({ title }) {
     return (
         <div className="flex justify-between items-center bg-prigreen w-full h-16 py-9 text-white px-7">
             <div className="flex flex-row">
-                <h1 className="text-xl mr-3">Pledge</h1>
+                <h1 className="text-xl mr-5">Pledge</h1>
                 <h1 className="text-xl font-semibold">{title}</h1>
             </div>
             <Link to={`/project/${projectId}`}>

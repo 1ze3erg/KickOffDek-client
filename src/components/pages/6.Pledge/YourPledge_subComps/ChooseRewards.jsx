@@ -1,12 +1,6 @@
-function ChooseRewards({
-    rewards,
-    chosenRewardId,
-    setChosenRewardId,
-    chosenReward,
-    setChosenReward,
-    amount,
-    setAmount,
-}) {
+import { formatMoney } from "../../../../helpers/format";
+
+function ChooseRewards({ project, rewards, pledgeCreated, setPledgeCreated, chosenReward, setChosenReward }) {
     return (
         <>
             <div className="flex items-center justify-center my-3">
@@ -19,15 +13,19 @@ function ChooseRewards({
                         <button
                             key={elem.id}
                             onClick={() => {
-                                setChosenRewardId(elem.id);
                                 setChosenReward(elem);
-                                setAmount(1);
+                                setPledgeCreated((currentState) => ({
+                                    ...currentState,
+                                    rewardId: elem.id,
+                                    quantity: 1,
+                                    amount: elem.minAmount
+                                }));
                             }}
                             className={`w-full rounded-xl bg-white h-10 hover:bg-prigreen hover:text-white border-2 border-prigreen ${
-                                elem.id === chosenRewardId ? "bg-prigreen text-white" : "text-prigreen"
+                                elem.id === pledgeCreated.rewardId ? "bg-prigreen text-white" : "text-prigreen"
                             }`}
                         >
-                            {elem.minAmount} or More
+                            {formatMoney(elem.minAmount, project.Currency?.name)} or More
                         </button>
                     ))}
             </div>
@@ -37,14 +35,17 @@ function ChooseRewards({
                         Amount
                     </label>
                     <div className="flex flex-row items-center">
-                        <span className="rounded-left border border-gray-300 px-3 py-3 text-sm">US$</span>
+                        <span className="rounded-left border border-gray-300 px-3 py-3 text-sm">
+                            {project.Currency?.name}
+                        </span>
                         <input
                             className="border w-48 border-gray-300 dark:border-gray-700 hover:border-green-700 pl-3 py-3 rounded-r text-sm focus:outline-none focus:border-indigo-700 bg-transparent placeholder-gray-500 text-pridark dark:text-gray-400"
                             type="text"
                             id="minAmount"
                             name="minAmount"
+                            placeholder="Amount"
                             value={chosenReward.minAmount}
-                            placeholder=""
+                            disabled={true}
                         />
                     </div>
                 </div>
@@ -60,9 +61,14 @@ function ChooseRewards({
                         name="quantity"
                         max={chosenReward.maxQtyPerPledge}
                         min="1"
-                        onChange={(e) => setAmount(e.target.value)}
-                        value={amount}
-                        required
+                        value={pledgeCreated.quantity}
+                        onChange={(e) =>
+                            setPledgeCreated((currentState) => ({
+                                ...currentState,
+                                quantity: +e.target.value,
+                                amount: chosenReward.minAmount * e.target.value,
+                            }))
+                        }
                     />
                 </div>
                 <div className="mt-7 flex flex-col mx-3">
@@ -81,10 +87,6 @@ function ChooseRewards({
                         <option>EMS - US%2</option>
                     </select>
                 </div>
-            </div>
-            <div className="flex items-center mt-10">
-                <input className="text-green-800 bg-green-900 w-5 h-5" type="checkbox" />
-                <h1 className="mx-3">Don't list my pledge publicly</h1>
             </div>
         </>
     );
