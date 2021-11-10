@@ -2,8 +2,9 @@ import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { BsPerson, BsCalendarCheck, BsFillTrashFill } from "react-icons/bs";
 import { BiInfinite } from "react-icons/bi";
+import { formatMoney } from "../../../helpers/format";
 
-function RewardCard({ elem, clickDelReward }) {
+function RewardCard({ elem, project, clickDelReward }) {
     const { projectId } = useParams();
     const [ShowMore, setShowMore] = useState("truncate");
     const [HideShowButton, setHideShowButton] = useState("Show more");
@@ -43,7 +44,7 @@ function RewardCard({ elem, clickDelReward }) {
                     </div>
                     <div className="flex justify-center mt-4">
                         <button className="rounded-lg bg-prigreen transition-colors duration-700   hover:bg-gray-700 text-white w-full h-10">
-                            ${elem?.minAmount} OR MORE
+                            {formatMoney(elem?.minAmount, project.Currency?.name)} OR MORE
                         </button>
                     </div>
                     <div className="flex flex-start text-xs mt-3 items-center">

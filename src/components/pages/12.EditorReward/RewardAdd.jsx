@@ -13,6 +13,8 @@ function RewardAdd() {
         description: "",
         image: "",
         minAmount: "",
+        limit: null,
+        maxQtyPerPledge: null,
         estDeliveryMonth: "",
         estDeliveryYear: "",
     });
