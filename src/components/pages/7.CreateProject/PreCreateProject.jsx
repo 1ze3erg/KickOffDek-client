@@ -1,8 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { BsTrophy } from "react-icons/bs";
-import { GiReceiveMoney, GiWorld } from "react-icons/gi";
-import { HiOutlineLightBulb } from "react-icons/hi";
+import {
+  BsClipboardCheck,
+  BsDice5,
+  BsChevronRight,
+  BsJournalCheck,
+  BsMegaphone,
+} from "react-icons/bs";
 
 function PreCreateProject() {
   return (
@@ -30,46 +34,42 @@ function PreCreateProject() {
           </Link>
         </div>
       </div>
-      <div className="bg-pridark">
-        <div className="container mx-auto py-32  text-prilight grid grid-cols-1 md:grid-cols-4 sm:grid-cols-2">
-          <div className="flex flex-col items-center justify-center">
-            <BsTrophy className="p-9 text-8xl border border-gray-100 rounded-md" />
-            <h1 className="text-3xl my-5">56%</h1>
-            <h2 className="text-lg">Success Rate</h2>
+      <div className="bg-prigreen">
+        <div className="container mx-auto py-32  text-prilight flex flex-col sm:flex-row items-center gap-10 justify-center ">
+          <div className="flex flex-col items-center justify-center gap-5">
+            <BsClipboardCheck className="p-7 text-8xl border border-gray-100 rounded-md" />
+
+            <h2 className="text-lg">Start creating your draft</h2>
           </div>
-          <div className="flex flex-col items-center justify-center">
-            <GiReceiveMoney className="p-9 text-8xl border border-gray-100 rounded-md" />
-            <h1 className="text-3xl my-5">$100M+</h1>
-            <h2 className="text-lg">Raised via Crowdfunding</h2>
+          <BsChevronRight />
+
+          <div className="flex flex-col items-center justify-center gap-5">
+            <BsDice5 className="p-7 text-8xl border border-gray-100 rounded-md" />
+
+            <h2 className="text-lg">Build visual campaign page</h2>
           </div>
-          <div className="flex flex-col items-center justify-center">
-            <HiOutlineLightBulb className="p-9 text-8xl border border-gray-100 rounded-md" />
-            <h1 className="text-3xl my-5">15,700+</h1>
-            <h2 className="text-lg">Projects Launched</h2>
+          <BsChevronRight />
+          <div className="flex flex-col items-center justify-center gap-5">
+            <BsJournalCheck className="p-7 text-8xl border border-gray-100 rounded-md" />
+
+            <h2 className="text-lg">Submit for approval</h2>
           </div>
-          <div className="flex flex-col items-center justify-center">
-            <GiWorld className="p-9 text-8xl border border-gray-100 rounded-md" />
-            <h1 className="text-3xl my-5">105</h1>
-            <h2 className="text-lg">Countries Pledged From</h2>
+          <BsChevronRight />
+          <div className="flex flex-col items-center justify-center gap-5">
+            <BsMegaphone className="p-7 text-8xl border border-gray-100 rounded-md" />
+
+            <h2 className="text-lg">Launch your campaign</h2>
           </div>
         </div>
       </div>
       <div>
         <div className="container mx-auto my-20 flex flex-col sm:flex-row items-center justify-center">
-          <div className="w-1/2 flex items-center justify-center ">
-            <iframe
-              className="rounded-xl shadow-xl"
-              width="560"
-              height="315"
-              src="https://www.youtube.com/embed/TIusBBMmvjs"
-              title=""
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            ></iframe>
+          <div className="w-1/2 flex flex-col  gap-10 ">
+            <h1 className="text-3xl">Ready to launch your campaign?</h1>
+            <h2 className="text-xl">Choose your option to get started</h2>
           </div>
           <div className="w-1/2 flex flex-col ">
-            <h1 className="text-3xl text-prigreen font-semibold">
+            {/* <h1 className="text-3xl text-prigreen font-semibold">
               Making It Possible.
             </h1>
             <span className="text-md line-clamp-6 sm:line-clamp-none">
@@ -80,24 +80,58 @@ function PreCreateProject() {
               over $100 million in total pledges raised across all campaigns,
               from independent album launches to sustainable
               farming—environmental movements to funding feature films.
-            </span>
+            </span> */}
           </div>
         </div>
         <div className="container mx-auto my-20  flex flex-col sm:flex-row items-center justify-center">
-          <div className="w-1/2 flex items-center justify-center">
-            <h1 className="text-xl sm:text-3xl">
-              We provide the best tools for creators to plan, draft and execute
-              amazing crowdfunding campaigns for a range of different categories
-              and projects.
+          <div className="w-1/2 flex flex-col gap-10  shadow-xl p-5">
+            <h1 className="text-sm bg-gray-200 sm:text-md w-1/6">
+              Most Popular
             </h1>
+            <h1 className="text-xl sm:text-3xl">All-or-Nothing</h1>
+            <span>
+              Set a funding target and a timeframe of up to 60 days to reach it
+              in order to receive your funds! Great for pre-orders, independent
+              artists, product launches & plenty more!
+            </span>
+            <Link
+              to="/create-project"
+              className="bg-prigreen w-1/3 text-center  text-white  hover:bg-green-500 rounded-xl px-4 py-2"
+            >
+              Create Project
+            </Link>
           </div>
-          <div className="w-1/2 flex items-center justify-center">
-            <img src="https://res.cloudinary.com/thisisdupreecloud/image/upload/v1636452589/Illustration_1_rmxorr.svg"></img>
+          <div className="w-1/2 flex flex-col gap-10 shadow-xl p-5 ">
+            <h1 className="text-sm bg-gray-200 sm:text-md w-1/6">
+              Most Popular
+            </h1>
+            <h1 className="text-xl sm:text-3xl">Fundraising</h1>
+            <span>
+            Set up a project-based fundraising campaign with zero platform fees. Made for charities and not-for-profit organisations to raise funds for a cause. (Australian projects only)
+            </span>
+            <Link
+              to="/create-project"
+              className="bg-prigreen w-1/3 text-center  text-white  hover:bg-green-500 rounded-xl px-4 py-2"
+            >
+              Create Project
+            </Link>
           </div>
         </div>
         <div className="container mx-auto my-20  flex flex-col sm:flex-row items-center justify-center">
-          <div className="w-1/2 flex items-center justify-center">
-            <img src="https://res.cloudinary.com/thisisdupreecloud/image/upload/v1636452588/Illustration_2_i1clhz.svg"></img>
+          <div className="w-1/2 flex flex-col gap-10  shadow-xl p-5">
+            <h1 className="text-sm bg-gray-200 sm:text-md w-2/6">
+            Expression of Interest
+            </h1>
+            <h1 className="text-xl sm:text-3xl">Waitlist</h1>
+            <span>
+            Create a landing page to capture potential supporters details before you launch your crowdfunding campaign. Build and launch in minutes.
+            </span>
+            <Link
+              to="/create-project"
+              className="bg-prigreen w-1/3 text-center text-white  hover:bg-green-500 rounded-xl px-4 py-2"
+            >
+              Create Project
+            </Link>
           </div>
           <div className="w-1/2 flex items-center justify-center">
             <h1 className="text-xl sm:text-3xl">
@@ -106,19 +140,7 @@ function PreCreateProject() {
             </h1>
           </div>
         </div>
-        <div className="container mx-auto my-20  flex flex-col sm:flex-row items-center justify-center">
-          <div className="w-1/2 flex items-center justify-center">
-            <h1 className="text-xl sm:text-3xl">
-              We are proud to host and work with a range of amazing initiatives
-              from environmental and social causes, feature and indie film
-              productions, arts and theatre, independent publishing, music
-              projects, product launches and everything else in between.
-            </h1>
-          </div>
-          <div className="w-1/2 flex items-center justify-center">
-            <img src="https://res.cloudinary.com/thisisdupreecloud/image/upload/v1636452588/Illustration_3_a6bpfr.svg"></img>
-          </div>
-        </div>
+        
       </div>
       <div className="bg-prigreen py-32">
         <div className="flex flex-col text-prilight  items-center justify-center container mx-auto">
