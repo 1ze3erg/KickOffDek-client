@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useHistory, useParams } from "react-router";
 import PreviewReward from "./PreviewReward";
 import RewardAdditional from "./RewardAdditional";
 import RewardDetail from "./RewardDetail";
 import RewardOverview from "./RewardOverview";
 import axios from "../../../config/axios";
-import { useHistory, useParams } from "react-router";
 
 function RewardAdd() {
     const { projectId } = useParams();
@@ -22,6 +22,18 @@ function RewardAdd() {
     const [showRewardDetail, setShowRewardDetail] = useState(false);
     const [showRewardAdditional, setShowRewardAdditional] = useState(false);
     const history = useHistory();
+    const [project, setProject] = useState({});
+
+    useEffect(() => {
+        axios
+            .get(`/projects/get-by-id/${projectId}`)
+            .then((res) => {
+                setProject(res.data);
+            })
+            .catch((err) => {
+                console.dir(err);
+            });
+    }, [projectId]);
 
     const clickCreateReward = async () => {
         try {
@@ -66,7 +78,7 @@ function RewardAdd() {
                     />
                 )}
                 <div className="w-1/2 h-150 overflow-y-auto flex justify-center mx-5 border border-gray-300 rounded-xl">
-                    <PreviewReward reward={newReward} setNewReward={setNewReward} />
+                    <PreviewReward reward={newReward} project={project} />
                 </div>
             </div>
         </div>
