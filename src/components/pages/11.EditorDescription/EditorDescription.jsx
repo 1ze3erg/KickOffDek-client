@@ -45,7 +45,7 @@ function EditorDescription() {
         <div>
             <div className="mx-5 my-5 mb-12 flex flex-row items-center">
                 <div className="flex items-center mr-8">
-                    <Link to={{ pathname: "/edit-project/6" }}>
+                    <Link to={`/edit-project/${projectId}`}>
                         <HiArrowNarrowLeft className="text-2xl mr-2 cursor-pointer" />
                     </Link>
                     <h1 className="text-xl font-bold">Description</h1>
