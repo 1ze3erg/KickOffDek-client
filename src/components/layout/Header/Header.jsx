@@ -14,9 +14,6 @@ import logo from "../img/KICKOFFDEKLight.jpg";
 function Header() {
     const { auth, user, setUser } = useAppContext();
     const { pathname } = useLocation();
-    console.log(pathname);
-    console.log(pathname.slice(0, 7));
-
     const [showLogin, setShowLogin] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
     const [showRegister, setShowRegister] = useState(false);

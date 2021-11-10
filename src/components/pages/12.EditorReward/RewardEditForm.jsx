@@ -62,6 +62,7 @@ function RewardEditForm({ reward, setReward }) {
             setChecked((currentState) => ({ ...currentState, [e.target.name]: true }));
             setErr((currentState) => ({ ...currentState, [e.target.name]: "" }));
         } else {
+            setReward((currentState) => ({ ...currentState, [e.target.name]: "" }));
             setChecked((currentState) => ({ ...currentState, [e.target.name]: false }));
         }
     };
@@ -113,7 +114,7 @@ function RewardEditForm({ reward, setReward }) {
                 </div>
             </div>
 
-            <div className="h-150 overflow-y-scroll mx-5 my-5 overflow-auto shadow-xl rounded-lg px-5">
+            <div className="h-150 overflow-y-scroll mx-5 my-5 shadow-xl rounded-lg px-5">
                 <div className="mt-10">
                     <h1>Reward overview</h1>
                 </div>
@@ -137,7 +138,7 @@ function RewardEditForm({ reward, setReward }) {
                         Description
                     </label>
                     <textarea
-                        class="px-2 py-2 text-sm font-normal border border-gray-300 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 rounded w-full h-24"
+                        className="px-2 py-2 text-sm font-normal border border-gray-300 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 rounded w-full h-24"
                         id="description"
                         name="description"
                         value={description}
@@ -158,14 +159,14 @@ function RewardEditForm({ reward, setReward }) {
                             alt="rewardImage"
                         />
                     </div>
-                    <label class="w-full flex flex-col items-center justify-center px-4 py-6 bg-white rounded-b-md tracking-wide uppercase border border-gray-300 cursor-pointer hover:bg-purple-600 hover:text-white text-purple-600 ease-linear transition-all duration-150">
+                    <label className="w-full flex flex-col items-center justify-center px-4 py-6 bg-white rounded-b-md tracking-wide uppercase border border-gray-300 cursor-pointer hover:bg-purple-600 hover:text-white text-purple-600 ease-linear transition-all duration-150">
                         {!rewardImageStatus ? (
                             <>
                                 <BsCloudArrowUpFill className="text-3xl" />
-                                <span class="mt-2 text-base leading-normal">Select a file</span>
+                                <span className="mt-2 text-base leading-normal">Select a file</span>
                             </>
                         ) : (
-                            <div class="w-10 h-10 border-4 border-pripurple rounded-full loader z-10"></div>
+                            <div className="w-10 h-10 border-4 border-pripurple rounded-full loader z-10"></div>
                         )}
                         <input className="hidden" type="file" name="image" onChange={handleChangeFile} />
                     </label>
@@ -200,11 +201,15 @@ function RewardEditForm({ reward, setReward }) {
                             Est. Delivery
                         </label>
                         <input
-                            className="border border-gray-300 text-sm text-gray-600 w-full p-2 my-2 h-10 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                            className="border border-gray-300 text-sm text-pridark w-full p-2 my-2 h-10 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                             type="month"
                             name="estDelivery"
                             placeholder="Est. Delivery"
-                            value={`${estDeliveryYear}-${formatMonthStringToNumber(estDeliveryMonth)}`}
+                            value={
+                                estDeliveryMonth &&
+                                estDeliveryYear &&
+                                `${estDeliveryYear}-${formatMonthStringToNumber(estDeliveryMonth)}`
+                            }
                             onChange={handleChangeInput}
                         />
                     </div>
@@ -214,12 +219,12 @@ function RewardEditForm({ reward, setReward }) {
                         </label>
                         <div className="flex flex-row items-center">
                             <input
-                                className="border w-1/3 border-gray-300 dark:border-gray-700 hover:border-green-700 pl-3 py-3 shadow-sm rounded text-sm focus:outline-none focus:border-indigo-700 bg-transparent placeholder-gray-500 text-gray-500 dark:text-gray-400"
+                                className="border w-1/3 border-gray-300 dark:border-gray-700 hover:border-green-700 pl-3 py-3 shadow-sm rounded text-sm focus:outline-none focus:border-indigo-700 bg-transparent placeholder-gray-500 text-pridark dark:text-gray-400"
                                 type="number"
                                 id="limit"
                                 name="limit"
                                 placeholder="Total quantity"
-                                value={limit}
+                                value={limit || ""}
                                 onChange={handleChangeInput}
                                 disabled={checked.limit}
                             />
@@ -240,12 +245,12 @@ function RewardEditForm({ reward, setReward }) {
                         </label>
                         <div className="flex flex-row items-center">
                             <input
-                                className="border w-1/3 border-gray-300 dark:border-gray-700 hover:border-green-700 pl-3 py-3 shadow-sm rounded text-sm focus:outline-none focus:border-indigo-700 bg-transparent placeholder-gray-500 text-gray-500 dark:text-gray-400"
+                                className="border w-1/3 border-gray-300 dark:border-gray-700 hover:border-green-700 pl-3 py-3 shadow-sm rounded text-sm focus:outline-none focus:border-indigo-700 bg-transparent placeholder-gray-500 text-pridark dark:text-gray-400"
                                 type="number"
                                 id="maxQtyPerPledge"
                                 name="maxQtyPerPledge"
                                 placeholder="Max per pledge"
-                                value={maxQtyPerPledge}
+                                value={maxQtyPerPledge || ""}
                                 onChange={handleChangeInput}
                                 disabled={checked.maxQtyPerPledge}
                             />

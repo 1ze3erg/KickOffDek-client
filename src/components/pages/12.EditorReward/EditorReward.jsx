@@ -8,6 +8,7 @@ import RewardCard from "./RewardCard";
 function EditorReward() {
     const { projectId } = useParams();
     const [rewards, setRewards] = useState([]);
+    const [project, setProject] = useState({});
     const location = useLocation();
 
     useEffect(() => {
@@ -15,6 +16,14 @@ function EditorReward() {
             .get(`/rewards/get-by-project-id/${projectId}`)
             .then((res) => {
                 setRewards(res.data);
+            })
+            .catch((err) => {
+                console.dir(err);
+            });
+        axios
+            .get(`/projects/get-by-id/${projectId}`)
+            .then((res) => {
+                setProject(res.data);
             })
             .catch((err) => {
                 console.dir(err);
@@ -27,8 +36,10 @@ function EditorReward() {
 
     const clickDelReward = async (id) => {
         try {
-            setRewards((currentState) => currentState.filter((elem) => elem?.id !== id));
-            await axios.delete(`/rewards/delete/${id}`);
+            if (window.confirm("Delete Reward?")) {
+                setRewards((currentState) => currentState.filter((elem) => elem?.id !== id));
+                await axios.delete(`/rewards/delete/${id}`);
+            }
         } catch (err) {
             console.dir(err);
         }
@@ -52,7 +63,7 @@ function EditorReward() {
             </div>
             <div className="grid grid-cols-4 w-full pb-10">
                 {rewards.map((elem) => (
-                    <RewardCard elem={elem} clickDelReward={clickDelReward} />
+                    <RewardCard elem={elem} project={project} clickDelReward={clickDelReward} />
                 ))}
             </div>
         </div>

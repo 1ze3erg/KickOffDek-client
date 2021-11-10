@@ -62,7 +62,7 @@ function RewardDetail(props) {
         }
     };
 
-    const buttonNextDisabled = !minAmount || !limit || !maxQtyPerPledge || !estDeliveryMonth || !estDeliveryYear;
+    const buttonNextDisabled = !minAmount ||  !estDeliveryMonth || !estDeliveryYear;
 
     return (
         <div className="w-1/2">
