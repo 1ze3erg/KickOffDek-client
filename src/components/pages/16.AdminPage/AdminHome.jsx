@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import ModalProjectDetails from "./ModalProjectDetails";
+import axios from "../../../config/axios";
 
 function AdminHome() {
   const [openModal, setOpenModal] = useState(false);
@@ -154,11 +155,11 @@ function AdminHome() {
                 </span>
               </td>
             </tr> */}
-          </tbody>
-        </table>
-      </div>
-    </div>
-  );
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
 }
 
 export default AdminHome;

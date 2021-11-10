@@ -69,8 +69,10 @@ function Preference() {
 
     const clickDelShippingAddress = async (id) => {
         try {
-            setShippingAddresses((currentState) => currentState.filter((elem) => elem.id !== id));
-            await axios.delete(`/shipping-addresses/delete/${id}`);
+            if (window.confirm("Delete Shipping Address?")) {
+                setShippingAddresses((currentState) => currentState.filter((elem) => elem.id !== id));
+                await axios.delete(`/shipping-addresses/delete/${id}`);
+            }
         } catch (err) {
             console.dir(err);
         }
@@ -140,7 +142,7 @@ function Preference() {
                         </div>
                     </div>
                     <div className="col-span-2 text-2xl flex">
-                        <BiEditAlt className="mr-10 cursor-pointer" />
+                        <BiEditAlt className="mr-10 opacity-50" />
                         <MdDeleteOutline className="cursor-pointer" onClick={() => clickDelShippingAddress(elem.id)} />
                     </div>
                 </div>

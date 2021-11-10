@@ -51,7 +51,7 @@ function UpdateHome({ setShowUpdateHome, setShowUpdateForm, updates, setUpdates 
                                     {new Date(elem.updatedAt).toLocaleString("en-GB")}
                                 </h1>
                                 <div className="flex">
-                                    <FaEdit className="text-xl cursor-default mr-10 opacity-50" />
+                                    <FaEdit className="text-xl mr-10 opacity-50" />
                                     <BsFillTrashFill
                                         className="text-xl cursor-pointer"
                                         onClick={() => clickDelUpdate(elem.id)}

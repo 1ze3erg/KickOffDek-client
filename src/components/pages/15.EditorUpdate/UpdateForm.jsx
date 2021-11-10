@@ -33,10 +33,27 @@ function UpdateForm({ setShowUpdateHome, setShowUpdateForm, setUpdates }) {
 
     const clickCreateNewUpdate = async () => {
         try {
-            const res = await axios.post("/updates/create", { projectId, title, message });
-            setUpdates((currentState) => [...currentState, res.data]);
-            setShowUpdateHome(true);
-            setShowUpdateForm(false);
+            let isError = true;
+            if (title === "") {
+                setErr((currentState) => ({ ...currentState, title: "title is required" }));
+                isError = isError || true;
+            } else {
+                isError = isError && false;
+            }
+
+            if (message === "") {
+                setErr((currentState) => ({ ...currentState, message: "message is required" }));
+                isError = isError || true;
+            } else {
+                isError = isError && false;
+            }
+
+            if (!isError) {
+                const res = await axios.post("/updates/create", { projectId, title, message });
+                setUpdates((currentState) => [...currentState, res.data]);
+                setShowUpdateHome(true);
+                setShowUpdateForm(false);
+            }
         } catch (err) {
             console.dir(err);
         }

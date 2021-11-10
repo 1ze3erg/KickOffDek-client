@@ -1,13 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BsPerson, BsCalendarCheck } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import { formatMoney } from "../../../helpers/format";
+import axios from "../../../config/axios";
 
 function ProjectRewardCard({ id, title, description, image, minAmount, limit, estDeliveryMonth, estDeliveryYear }) {
+    const { projectId } = useParams();
     const [ShowMore, setShowMore] = useState("truncate");
     const [HideShowButton, setHideShowButton] = useState("Show more");
+    const [currency, setCurrency] = useState("");
 
-    const { projectId } = useParams();
+    useEffect(() => {
+        axios
+            .get(`/projects/get-by-id/${projectId}`)
+            .then((res) => {
+                setCurrency(res.data?.Currency.name);
+            })
+            .catch((err) => {
+                console.dir(err);
+            });
+    }, [projectId]);
 
     const showMore = () => {
         if (ShowMore === "truncate") {
@@ -18,7 +31,7 @@ function ProjectRewardCard({ id, title, description, image, minAmount, limit, es
             setHideShowButton("Show more");
         }
     };
-    
+
     return (
         <div className="overflow-hidden shadow-lg transform rounded-lg w-68 m-auto mx-3 text-pridark my-5">
             <div className="w-full block h-full">
@@ -45,7 +58,7 @@ function ProjectRewardCard({ id, title, description, image, minAmount, limit, es
                     <Link to={`/pledge/${projectId}/${id}`}>
                         <div className="flex justify-center mt-4">
                             <button className="rounded-lg bg-prigreen transition-colors duration-700   hover:bg-gray-700 text-white h-10 w-full">
-                                {minAmount} or More
+                                {formatMoney(minAmount, currency)} or More
                             </button>
                         </div>
                     </Link>

@@ -7,7 +7,7 @@ function EditorSidebar({ setShowSidebar, setShowCampaignDetail, setShowProfileDe
     const naveditor = [
         {
             name: "Campaigns Details",
-            link: "",
+            link: `/edit-project/${projectId}`,
             onClick: () => {
                 setShowSidebar(false);
                 setShowCampaignDetail(true);
@@ -15,7 +15,7 @@ function EditorSidebar({ setShowSidebar, setShowCampaignDetail, setShowProfileDe
         },
         {
             name: "Profile Details",
-            link: "",
+            link: `/edit-project/${projectId}`,
             onClick: () => {
                 setShowSidebar(false);
                 setShowProfileDetail(true);
@@ -23,7 +23,7 @@ function EditorSidebar({ setShowSidebar, setShowCampaignDetail, setShowProfileDe
         },
         {
             name: "Visuals",
-            link: "",
+            link: `/edit-project/${projectId}`,
             onClick: () => {
                 setShowSidebar(false);
                 setShowVisual(true);
@@ -40,6 +40,7 @@ function EditorSidebar({ setShowSidebar, setShowCampaignDetail, setShowProfileDe
         {
             name: "Payments",
             link: `/edit-project/${projectId}/bank-account`,
+            disabled: true
         },
         {
             name: "Launch",
@@ -56,12 +57,14 @@ function EditorSidebar({ setShowSidebar, setShowCampaignDetail, setShowProfileDe
             icon: <BsFillPersonFill />,
             name: "Supporters",
             link: "",
+            disabled: true
         },
 
         {
             icon: <BsCurrencyDollar />,
             name: "Payments",
             link: "",
+            disabled: true
         },
     ];
     return (
@@ -80,8 +83,8 @@ function EditorSidebar({ setShowSidebar, setShowCampaignDetail, setShowProfileDe
                 <h1 className="text-pridark text-md mb-1">Edit</h1>
                 <ul className="">
                     {naveditor.map((elem, idx) => (
-                        <Link to={{ pathname: elem.link }} key={idx}>
-                            <li onClick={elem.onClick}>
+                        <Link to={!elem.disabled && elem.link} key={idx}>
+                            <li onClick={elem.onClick} className={`${elem.disabled && "opacity-50 cursor-default"}`}>
                                 <div className="flex items-center justify-between mr-2 py-5 px-3 text-green-800 hover:bg-prilight rounded-md">
                                     <div className="flex">
                                         <BsCheck2Circle className="text-purple-800 text-xl" />
@@ -96,8 +99,8 @@ function EditorSidebar({ setShowSidebar, setShowCampaignDetail, setShowProfileDe
                 <h1 className="text-pridark text-md my-1">Manage</h1>
                 <ul className="">
                     {navupdateproject.map((elem, idx) => (
-                        <Link to={elem.link} key={idx}>
-                            <li>
+                        <Link to={!elem.disabled && elem.link} key={idx}>
+                            <li className={`${elem.disabled && "opacity-50 cursor-default"}`}>
                                 <div className="flex items-center justify-between mr-2 py-5 px-3 text-green-800 hover:bg-prilight rounded-md">
                                     <div className="flex">
                                         <div className="text-purple-800 text-xl">{elem.icon}</div>

@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { BsPerson, BsCalendarCheck } from "react-icons/bs";
 import { BiInfinite } from "react-icons/bi";
+import { formatMoney } from "../../../helpers/format";
 
-function PreviewReward({ reward }) {
+function PreviewReward({ reward, project }) {
     const { title, description, image, minAmount, limit, estDeliveryMonth, estDeliveryYear } = reward;
     const [ShowMore, setShowMore] = useState("truncate");
     const [HideShowButton, setHideShowButton] = useState("Show more");
@@ -37,7 +38,7 @@ function PreviewReward({ reward }) {
                     </div>
                     <div className="flex justify-center mt-4">
                         <button className="rounded-lg bg-prigreen transition-colors duration-700   hover:bg-gray-700 text-white w-full h-10">
-                            ${minAmount} OR MORE
+                            {formatMoney(minAmount, project?.Currency?.name)} OR MORE
                         </button>
                     </div>
                     <div className="flex flex-start text-xs mt-3 items-center">

@@ -28,66 +28,41 @@ function EditorProject() {
     }, [projectId]);
 
     return (
-        <>
-            <div className="grid grid-cols-12 min-h-screen bg-gray-100">
-                {showSidebar && (
-                    <EditorSidebar
-                        setShowSidebar={setShowSidebar}
-                        setShowCampaignDetail={setShowCampaignDetail}
-                        setShowProfileDetail={setShowProfileDetail}
-                        setShowVisual={setShowVisual}
-                    />
-                )}
-                {showCampaignDetail && (
-                    <EditorCampaignDetail
-                        setShowSidebar={setShowSidebar}
-                        setShowCampaignDetail={setShowCampaignDetail}
-                        project={project}
-                        setProject={setProject}
-                    />
-                )}
-                {showProfileDetail && (
-                    <EditorProfileDetail
-                        setShowSidebar={setShowSidebar}
-                        setShowProfileDetail={setShowProfileDetail}
-                        project={project}
-                        setProject={setProject}
-                    />
-                )}
-                {showVisual && (
-                    <EditorVisual
-                        setShowSidebar={setShowSidebar}
-                        setShowVisual={setShowVisual}
-                        project={project}
-                        setProject={setProject}
-                    />
-                )}
-                <PreviewEdit project={project} />
-            </div>
-            {/* <Link to="/dashboard" className="text-blue-500 underline">
-                Back to Dashboard
-            </Link>
-            <br />
-            <Link to="/edit-project/:projectId/description" className="text-blue-500 underline">
-                Go to Editor Description
-            </Link>
-            <br />
-            <Link to="/edit-project/:projectId/reward" className="text-blue-500 underline">
-                Go to Editor Reward
-            </Link>
-            <br />
-            <Link to="/edit-project/:projectId/bank-account" className="text-blue-500 underline">
-                Go to Editor Bank Account
-            </Link>
-            <br />
-            <Link to="/edit-project/:projectId/launch" className="text-blue-500 underline">
-                Go to Editor Launch
-            </Link>
-            <br />
-            <Link to="/edit-project/:projectId/update" className="text-blue-500 underline">
-                Go to Editor Update
-            </Link> */}
-        </>
+        <div className="grid grid-cols-12 min-h-screen bg-gray-100">
+            {showSidebar && (
+                <EditorSidebar
+                    setShowSidebar={setShowSidebar}
+                    setShowCampaignDetail={setShowCampaignDetail}
+                    setShowProfileDetail={setShowProfileDetail}
+                    setShowVisual={setShowVisual}
+                />
+            )}
+            {showCampaignDetail && (
+                <EditorCampaignDetail
+                    setShowSidebar={setShowSidebar}
+                    setShowCampaignDetail={setShowCampaignDetail}
+                    project={project}
+                    setProject={setProject}
+                />
+            )}
+            {showProfileDetail && (
+                <EditorProfileDetail
+                    setShowSidebar={setShowSidebar}
+                    setShowProfileDetail={setShowProfileDetail}
+                    project={project}
+                    setProject={setProject}
+                />
+            )}
+            {showVisual && (
+                <EditorVisual
+                    setShowSidebar={setShowSidebar}
+                    setShowVisual={setShowVisual}
+                    project={project}
+                    setProject={setProject}
+                />
+            )}
+            <PreviewEdit project={project} />
+        </div>
     );
 }
 

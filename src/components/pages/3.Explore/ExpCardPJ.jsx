@@ -32,7 +32,10 @@ function ExpCardPJ({ id, target, campaignImage, title, endDate, Currency }) {
                 </div>
                 <div className="bg-white w-full p-4 flex flex-col pt-8">
                     <div className="w-full h-4 bg-prilight rounded-full">
-                        <div className="w-2/3 h-full text-center text-xs text-white bg-priorange rounded-full"></div>
+                        <div
+                            className="h-full text-center text-xs text-white bg-priorange rounded-full"
+                            style={{ width: `${(totalPledge / target) * 100}%` }}
+                        ></div>
                     </div>
                     <div className="flex flex-start justify-between pt-8">
                         <p className="text-gray-900 text-2xl">
