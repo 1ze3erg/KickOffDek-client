@@ -11,7 +11,7 @@ function Explore() {
         try {
             const fetchProject = async () => {
                 const res = await axios.get("/projects/get-all");
-                setCurrentFeed(res.data);
+                setCurrentFeed(res.data.filter(elem => elem.status === "live"));
             };
             fetchProject();
         } catch (error) {
