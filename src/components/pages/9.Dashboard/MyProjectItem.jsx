@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { BsChevronDown, BsChevronUp, BsPencil } from "react-icons/bs";
+import { BsChevronDown, BsChevronUp, BsPencil, BsClipboardCheck } from "react-icons/bs";
 import { AiOutlineWarning, AiOutlineTrophy } from "react-icons/ai";
 import { CgSandClock } from "react-icons/cg";
 import { formatMoney } from "../../../helpers/format";
@@ -22,20 +22,29 @@ function MyProjectItem({ projectInfo }) {
     }, [projectInfo?.id]);
 
     function renderProjectStatus(status) {
-        if (status === "live") {
-            return (
-                <div className="flex flex-row bg-yellow-200 text-yellow-600 px-1 py-1 rounded-xl gap-1 text-xs mx-2 items-center">
-                    <CgSandClock />
-                    <h1 className="">Live</h1>
-                </div>
-            );
-        }
-
         if (status === "draft") {
             return (
                 <div className="flex flex-row bg-gray-200 text-pripurple px-1 py-1 rounded-xl gap-1 text-xs mx-2 items-center">
                     <BsPencil />
                     <h1 className="">Draft</h1>
+                </div>
+            );
+        }
+
+        if (status === "review") {
+            return (
+                <div className="flex flex-row bg-priorange text-pridark px-1 py-1 rounded-xl gap-1 text-xs mx-2 items-center">
+                    <BsClipboardCheck />
+                    <h1 className="">Review</h1>
+                </div>
+            );
+        }
+
+        if (status === "live") {
+            return (
+                <div className="flex flex-row bg-yellow-200 text-yellow-600 px-1 py-1 rounded-xl gap-1 text-xs mx-2 items-center">
+                    <CgSandClock />
+                    <h1 className="">Live</h1>
                 </div>
             );
         }

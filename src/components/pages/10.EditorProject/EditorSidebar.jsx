@@ -7,7 +7,7 @@ function EditorSidebar({ setShowSidebar, setShowCampaignDetail, setShowProfileDe
     const naveditor = [
         {
             name: "Campaigns Details",
-            link: "",
+            link: `/edit-project/${projectId}`,
             onClick: () => {
                 setShowSidebar(false);
                 setShowCampaignDetail(true);
@@ -15,7 +15,7 @@ function EditorSidebar({ setShowSidebar, setShowCampaignDetail, setShowProfileDe
         },
         {
             name: "Profile Details",
-            link: "",
+            link: `/edit-project/${projectId}`,
             onClick: () => {
                 setShowSidebar(false);
                 setShowProfileDetail(true);
@@ -23,7 +23,7 @@ function EditorSidebar({ setShowSidebar, setShowCampaignDetail, setShowProfileDe
         },
         {
             name: "Visuals",
-            link: "",
+            link: `/edit-project/${projectId}`,
             onClick: () => {
                 setShowSidebar(false);
                 setShowVisual(true);

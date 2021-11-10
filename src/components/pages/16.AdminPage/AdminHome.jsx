@@ -1,74 +1,119 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import ModalProjectDetails from "./ModalProjectDetails";
+import axios from "../../../config/axios";
 
 function AdminHome() {
-  const [openModal, setOpenModal] = useState(false);
-  const pledgeInfo = "deeznuts";
-  return (
-    <div>
-      <div className="h-screen">
-        <table class="min-w-full table-auto">
-          <thead class="justify-between">
-            <tr class="bg-gray-800">
-              <th class="px-16 py-2">
-                <span class="text-gray-300"></span>
-              </th>
-              <th class="px-16 py-2">
-                <span class="text-gray-300">Project Name</span>
-              </th>
-              <th class="px-16 py-2">
-                <span class="text-gray-300">Details</span>
-              </th>
-              <th class="px-16 py-2">
-                <span class="text-gray-300">Category</span>
-              </th>
+    const [openModal, setOpenModal] = useState(false);
+    const [projects, setProjects] = useState([]);
 
-              <th class="px-16 py-2">
-                <span class="text-gray-300">Create time</span>
-              </th>
+    useEffect(() => {
+        axios
+            .get("/projects/get-all")
+            .then((res) => {
+                setProjects(res.data.filter((elem) => elem.status === "review"));
+            })
+            .catch((err) => {
+                console.dir(err);
+            });
+    }, []);
 
-              <th class="px-16 py-2">
-                <span class="text-gray-300">Status</span>
-              </th>
-            </tr>
-          </thead>
-          <tbody class="bg-gray-200">
-            <tr class="bg-white border-4 border-gray-200">
-              <td class="px-16 py-2 flex flex-row items-center">
-                <img
-                  class="h-8 w-8 rounded-full object-cover "
-                  src="https://randomuser.me/api/portraits/men/30.jpg"
-                  alt=""
-                />
-              </td>
-              <td>
-                <span class="text-center ml-2 font-semibold">Dean Lynch</span>
-              </td>
-              <td class="px-16 py-2">
-                <button onClick={() => setOpenModal(true)} class="bg-indigo-500 text-white px-4 py-2 border rounded-md hover:bg-white hover:border-indigo-500 hover:text-black ">
-                  Open Link
-                </button>
-              </td>
-              <td class="px-16 py-2">
-                <span>Photography</span>
-              </td>
-              <td class="px-16 py-2">
-                <span>21/10/2021 10:00</span>
-              </td>
+    const clickApproveLaunch = async (projectId) => {
+        try {
+            await axios.put(`/projects/admin-update-status/${projectId}`, { status: "live" });
+            setProjects(currentState => currentState.filter(elem => elem.id !== projectId))
+            alert("This project is in live status");
+          } catch (err) {
+            console.dir(err);
+          }
+        };
+        
+        const clickReject = async (projectId) => {
+          try {
+            await axios.put(`/projects/admin-update-status/${projectId}`, { status: "draft" });
+            setProjects(currentState => currentState.filter(elem => elem.id !== projectId))
+            alert("This project is in draft status");
+        } catch (err) {
+            console.dir(err);
+        }
+    };
 
-              <td class="px-16 py-2">
-                <span class="">
-                  <button className="mx-3 px-3 py-1 rounded-xl bg-red-500 text-white hover:bg-red-800">
-                    Reject
-                  </button>
-                  <button className="mx-3 px-3 py-1 rounded-xl bg-prigreen text-white hover:bg-green-300">
-                    Approve Launch
-                  </button>
-                </span>
-              </td>
-            </tr>
-            {openModal && <ModalProjectDetails closeModal={setOpenModal} pledgeInfo={pledgeInfo} />}
-            {/* <tr class="bg-white border-4 border-gray-200">
+    const pledgeInfo = "deeznuts";
+    return (
+        <div>
+            <div className="min-h-screen">
+                <table class="min-w-full table-auto">
+                    <thead class="justify-between">
+                        <tr class="bg-gray-800">
+                            <th class="px-16 py-2">
+                                <span class="text-gray-300"></span>
+                            </th>
+                            <th class="px-16 py-2">
+                                <span class="text-gray-300">Project Name</span>
+                            </th>
+                            <th class="px-16 py-2">
+                                <span class="text-gray-300">Details</span>
+                            </th>
+                            <th class="px-16 py-2">
+                                <span class="text-gray-300">Category</span>
+                            </th>
+
+                            <th class="px-16 py-2">
+                                <span class="text-gray-300">Create time</span>
+                            </th>
+
+                            <th class="px-16 py-2">
+                                <span class="text-gray-300">Status</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-gray-200">
+                        {projects.map((elem) => (
+                            <tr class="bg-white border-4 border-gray-200">
+                                <td class="px-12 py-2 flex flex-row items-center">
+                                    <img
+                                        class="w-96 rounded-md object-cover "
+                                        src={elem.campaignImage || "https://randomuser.me/api/portraits/men/30.jpg"}
+                                        alt="campaignImage"
+                                    />
+                                </td>
+                                <td>
+                                    <span class="text-center ml-2 font-semibold">{elem.title}</span>
+                                </td>
+                                <td class="px-16 py-2">
+                                    <button
+                                        onClick={() => setOpenModal(true)}
+                                        class="bg-indigo-500 text-white px-4 py-2 border rounded-md hover:bg-white hover:border-indigo-500 hover:text-black "
+                                    >
+                                        Open Link
+                                    </button>
+                                </td>
+                                <td class="px-16 py-2">
+                                    <span>{elem?.Category.name}</span>
+                                </td>
+                                <td class="px-16 py-2">
+                                    <span>{new Date(elem.createdAt).toLocaleString("en-GB")}</span>
+                                </td>
+
+                                <td class="px-16 py-2">
+                                    <span class="">
+                                        <button
+                                            className="mx-3 px-3 py-1 rounded-xl bg-red-500 text-white hover:bg-red-800"
+                                            onClick={() => clickReject(elem.id)}
+                                        >
+                                            Reject
+                                        </button>
+                                        <button
+                                            className="mx-3 px-3 py-1 rounded-xl bg-prigreen text-white hover:bg-green-300"
+                                            onClick={() => clickApproveLaunch(elem.id)}
+                                        >
+                                            Approve Launch
+                                        </button>
+                                    </span>
+                                </td>
+                            </tr>
+                        ))}
+                        {openModal && <ModalProjectDetails closeModal={setOpenModal} pledgeInfo={pledgeInfo} />}
+                        {/* <tr class="bg-white border-4 border-gray-200">
               <td class="px-16 py-2 flex flex-row items-center">
                 <img
                   class="h-8 w-8 rounded-full object-cover "
@@ -154,11 +199,11 @@ function AdminHome() {
                 </span>
               </td>
             </tr> */}
-          </tbody>
-        </table>
-      </div>
-    </div>
-  );
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
 }
 
 export default AdminHome;
